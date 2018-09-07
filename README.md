@@ -9,6 +9,12 @@ These are my hand-crafted minimalist React components that I use for various pro
 
 Use them at your discretion or build your own component library.
 
+## Dependencies
+
+- React
+- Font Awesome
+- Styled-Components
+
 ## Principles
 
 - All interactive components should support "focus", "error", "disabled" and "in-progress" states.
