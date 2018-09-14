@@ -4,6 +4,7 @@ import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Span = styled.div`
+  display: inline-block;
   font-size: 16px;
   color: ${props => props.pass ? '#0eb50e' : '#f00'}
 `

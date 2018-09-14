@@ -6,6 +6,7 @@ import Decorator from './Decorator'
 
 const StyledInput = styled.input`
   border: solid 1px #ccc;
+  color: ${props => props.error ? 'red' : props.disabled ? '#999' : 'black'};
   border-bottom: solid 1px ${props => props.error ? '#f00' : '#ccc'};
   padding: 7px;
   width: ${props => props.width - 16}px;
@@ -26,7 +27,19 @@ class Input extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.value !== undefined) {
-      this.setState({value: nextProps.value})
+      this.setState({ value: nextProps.value })
+    }
+  }
+
+  handleChange (event) {
+    const { disabled, inProgress, onChange } = this.props
+    if (disabled || inProgress) {
+      return
+    }
+    if (onChange) {
+      onChange(event, event.target.value)
+    } else {
+      this.setState({ value: event.target.value })
     }
   }
 
@@ -35,8 +48,8 @@ class Input extends Component {
     const { value } = this.state
     return <Decorator error={error}>
       <StyledInput {...this.props}
-        {...{name, value, placeholder, onKeyUp, disabled}}
-        onChange={event => this.setState({value: event.target.value})}
+        {...{ name, value, placeholder, onKeyUp, disabled }}
+        onChange={this.handleChange.bind(this)}
         type={type || 'text'}
         innerRef={this.inputRef}
       />

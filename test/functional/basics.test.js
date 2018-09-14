@@ -9,16 +9,13 @@ import TextButton from '../../src/TextButton'
 import IconButton from '../../src/IconButton'
 import RefreshButton from '../../src/RefreshButton'
 import Switch from '../../src/Switch'
+import Checkbox from '../../src/Checkbox'
 import Verified from '../../src/Verified'
 
 import StyledTable from './StyledTable'
 
 const handleClick = (event) => {
   console.log(event)
-}
-
-const handleSwitchOnChange = (event, on) => {
-  console.log('switch:', on)
 }
 
 const StyledDiv = styled.div`
@@ -46,8 +43,12 @@ const Basics = (props) => <StyledDiv>
       <td><Input placeholder='username' /></td>
     </tr>
     <tr>
-      <td>{`<Input error />`}:</td>
-      <td><Input error /></td>
+      <td>{`<Input error value='foo' />`}:</td>
+      <td><Input error value='foo' /></td>
+    </tr>
+    <tr>
+      <td>{`<Input disabled value='123' />`}:</td>
+      <td><Input disabled value='123' /></td>
     </tr>
     <tr>
       <td>{`<TextButton label='Click me' />`}:</td>
@@ -115,49 +116,81 @@ const Basics = (props) => <StyledDiv>
     </tr>
     <tr>
       <td>{`<Switch onChange={...} />`}:</td>
-      <td><Switch onChange={handleSwitchOnChange} /></td>
+      <td><Switch /></td>
     </tr>
     <tr>
       <td>{`<Switch on />`}:</td>
-      <td><Switch on onChange={handleSwitchOnChange} /></td>
+      <td><Switch on /></td>
     </tr>
     <tr>
       <td>{`<Switch on error />`}:</td>
-      <td><Switch on error onChange={handleSwitchOnChange} /></td>
+      <td><Switch on error /></td>
     </tr>
     <tr>
       <td>{`<Switch inProgress />`}:</td>
-      <td><Switch inProgress onChange={handleSwitchOnChange} /></td>
+      <td><Switch inProgress /></td>
     </tr>
     <tr>
       <td>{`<Switch on inProgress />`}:</td>
-      <td><Switch on inProgress onChange={handleSwitchOnChange} /></td>
+      <td><Switch on inProgress /></td>
     </tr>
     <tr>
       <td>{`<Switch disabled />`}:</td>
-      <td><Switch disabled onChange={handleSwitchOnChange} /></td>
+      <td><Switch disabled /></td>
     </tr>
     <tr>
       <td>{`<Switch on disabled />`}:</td>
-      <td><Switch on disabled onChange={handleSwitchOnChange} /></td>
+      <td><Switch on disabled /></td>
     </tr>
     <tr>
-      <td>{`<TextButton /><Switch /><Input >`}:</td>
+      <td>{`<Checkbox />`}:</td>
+      <td><Checkbox label='Option A' /></td>
+    </tr>
+    <tr>
+      <td>{`<Checkbox onChange={...} />`}:</td>
+      <td><Checkbox label='Option A' /></td>
+    </tr>
+    <tr>
+      <td>{`<Checkbox on />`}:</td>
+      <td><Checkbox on label='Option A' /></td>
+    </tr>
+    <tr>
+      <td>{`<Checkbox on error />`}:</td>
+      <td><Checkbox on error label='Option A' /></td>
+    </tr>
+    <tr>
+      <td>{`<Checkbox inProgress />`}:</td>
+      <td><Checkbox inProgress label='Option A' /></td>
+    </tr>
+    <tr>
+      <td>{`<Checkbox on inProgress />`}:</td>
+      <td><Checkbox on inProgress label='Option A' /></td>
+    </tr>
+    <tr>
+      <td>{`<Checkbox disabled />`}:</td>
+      <td><Checkbox disabled label='Option A' /></td>
+    </tr>
+    <tr>
+      <td>{`<Checkbox on disabled />`}:</td>
+      <td><Checkbox on disabled label='Option A' /></td>
+    </tr>
+    <tr>
+      <td>{`<Verified pass /> <Verified />`}</td>
+      <td><Verified pass /><HSpace /><Verified /></td>
+    </tr>
+    <tr>
+      <td>Row of components</td>
       <td>
         <TextButton label='Row' onClick={handleClick} />
         <HSpace />
-        <Switch onChange={handleSwitchOnChange} />
+        <Switch />
+        <HSpace />
+        <Checkbox label='Option B' />
         <HSpace />
         <Input />
+        <HSpace />
+        <Verified />
       </td>
-    </tr>
-    <tr>
-      <td>{`<Verified pass />`}</td>
-      <td><Verified pass /></td>
-    </tr>
-    <tr>
-      <td>{`<Verified />`}</td>
-      <td><Verified /></td>
     </tr>
   </tbody></StyledTable>
 </StyledDiv>

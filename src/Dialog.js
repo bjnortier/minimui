@@ -31,7 +31,7 @@ export const Footer = styled.div`
   border-top: solid 1px #eee;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  background-color: #fff;
+  background-color: #d0ecff;
 `
 
 export default Dialog

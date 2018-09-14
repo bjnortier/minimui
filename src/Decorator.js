@@ -48,15 +48,11 @@ class Decorator extends Component {
   }
 
   handleFocus () {
-    this.setState({focussed: true})
+    this.setState({ focussed: true })
   }
 
   handleBlur () {
-    this.setState({focussed: false})
-  }
-
-  get value () {
-    return this.decoratedRef.value
+    this.setState({ focussed: false })
   }
 
   render () {

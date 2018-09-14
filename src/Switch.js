@@ -14,8 +14,8 @@ const Outer = styled.div`
   vertical-align: middle;
   position: relative;
   top: -1px;
-  cursor: ${props => (props.disabled || props.inProgress) ? 'not-allowed' : 'pointer'};
-  background-color: ${props => (props.on && !props.disabled) ? '#f5f5f5' : 'transparent'}
+  cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
+  background-color: ${({ disabled, inProgress, on }) => disabled ? 'transparent' : on ? '#d0ecff' : '#fff'}
   :focus {
     outline: none;
   }
@@ -27,9 +27,9 @@ const Knob = styled.div`
   top: 0;
   width: 28px;
   height: 28px;
-  border: solid 1px #333;
+  border: solid 1px ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : '#444'};
   border-radius: 15px;
-  background-color: ${props => (props.disabled) ? 'transparent' : '#fff'};
+  background-color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#e6e6e6' : '#fff'};
 `
 
 const SpinnerPad = styled.div`
@@ -48,7 +48,7 @@ class Switch extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.on !== undefined) {
-      this.setState({on: nextProps.on})
+      this.setState({ on: nextProps.on })
     }
   }
 
@@ -61,7 +61,7 @@ class Switch extends Component {
       // State is managed outside of component (e.g. redux)
       onChange(event, !this.state.on)
     } else {
-      this.setState({on: !this.state.on})
+      this.setState({ on: !this.state.on })
     }
   }
 
@@ -88,6 +88,10 @@ class Switch extends Component {
         </Knob>
       </Outer>
     </Decorator>
+  }
+
+  get on () {
+    return this.state.on
   }
 }
 

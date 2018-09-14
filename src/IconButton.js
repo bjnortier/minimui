@@ -28,7 +28,7 @@ class IconButton extends Component {
       }
     }
     return <Decorator error={error}>
-      <StyledButton {...{error, disabled, borderColor, backgroundColor, spinning}}
+      <StyledButton {...{ error, disabled, borderColor, backgroundColor, spinning }}
         onClick={onClickIfAllowed}
       >
         <FontAwesomeIcon icon={icon} spin={spinning} />
