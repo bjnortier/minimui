@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Spinner from './Spinner'
-import HSpace from './HSpace'
+import HalfHSpace from './HalfHSpace'
 import Decorator from './Decorator'
 
 const StyledButton = styled.button`
   border-radius: 16px;
   padding: 7px 10px;
-  cursor: ${props => (props.disabled || props.ellipsis) ? 'not-allowed' : 'pointer'};
-  color: ${props => props.error ? 'red' : (props.disabled || props.ellipsis) ? '#999' : 'black'};
+  cursor: ${props => (props.disabled || props.inProgress) ? 'not-allowed' : 'pointer'};
+  color: ${props => props.error ? 'red' : (props.disabled || props.inProgress) ? '#999' : 'black'};
   border: solid 1px #ccc;
   background-color: white;
   :focus {
@@ -20,9 +20,9 @@ const StyledButton = styled.button`
 
 class TextButton extends Component {
   render () {
-    const { label, ellipsis, error, disabled, onClick } = this.props
+    const { label, inProgress, error, disabled, onClick } = this.props
     const onClickIfAllowed = (event) => {
-      if (!disabled && !ellipsis) {
+      if (!disabled && !inProgress) {
         onClick(event)
       }
     }
@@ -30,11 +30,11 @@ class TextButton extends Component {
       <StyledButton
         error={error}
         disabled={disabled}
-        ellipsis={ellipsis}
+        inProgress={inProgress}
         onClick={onClickIfAllowed}
       >
         {label}
-        {ellipsis ? <React.Fragment><HSpace /><Spinner /></React.Fragment> : null}
+        {inProgress ? <React.Fragment><HalfHSpace /><Spinner /></React.Fragment> : null}
       </StyledButton>
     </Decorator>
   }
@@ -43,7 +43,7 @@ class TextButton extends Component {
 TextButton.propTypes = {
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  ellipsis: PropTypes.bool,
+  inProgress: PropTypes.bool,
   disabled: PropTypes.bool,
   error: PropTypes.bool
 }

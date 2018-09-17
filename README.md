@@ -17,7 +17,7 @@ Use them at your discretion or build your own component library.
 
 ## Principles
 
-- All interactive components should support "focus", "error", "disabled" and "in-progress" states.
+- All interactive components should support "focus", "error", "disabled" and "inProgress" states. 
 - All interactive components should support keyboard navigation (tab), and keyboard activation where applicable (spacebar).
 - All component states should be observable to color-blind people, i.e. no component state is primarily indicated by color.
 - Colors are used as a secondary state indicators.

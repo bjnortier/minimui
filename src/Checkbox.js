@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import Decorator from './Decorator'
 import Spinner from './Spinner'
+import HalfHSpace from './HalfHSpace'
 
 const Outer = styled.div`
   display: inline-block;
@@ -18,11 +19,6 @@ const Input = styled.input`
     outline: none;
   }
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
-`
-
-const Label = styled.div`
-  display: inline-block;
-  padding: 0 5px;
 `
 
 class Checkbox extends Component {
@@ -71,11 +67,10 @@ class Checkbox extends Component {
           disabled={disabled || inProgress}
           checked={on}
           onChange={this.handleClick.bind(this)}
-
         />
       </Decorator>
-      <Label>{label}</Label>
-      {inProgress ? <Spinner /> : null}
+      {label}
+      {inProgress ? <React.Fragment><HalfHSpace /><Spinner /></React.Fragment> : null}
     </Outer>
   }
 }

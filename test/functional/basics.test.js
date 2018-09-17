@@ -10,6 +10,7 @@ import IconButton from '../../src/IconButton'
 import RefreshButton from '../../src/RefreshButton'
 import Switch from '../../src/Switch'
 import Checkbox from '../../src/Checkbox'
+import Select from '../../src/Select'
 import Verified from '../../src/Verified'
 
 import StyledTable from './StyledTable'
@@ -55,8 +56,8 @@ const Basics = (props) => <StyledDiv>
       <td><TextButton label='Click me' onClick={handleClick} /></td>
     </tr>
     <tr>
-      <td>{`<TextButton label='In progress' ellipsis />`}:</td>
-      <td><TextButton label='In progress' ellipsis onClick={handleClick} /></td>
+      <td>{`<TextButton label='In progress' inProgress />`}:</td>
+      <td><TextButton label='In progress' inProgress onClick={handleClick} /></td>
     </tr>
     <tr>
       <td>{`<TextButton label='Error' error />`}:</td>
@@ -175,6 +176,34 @@ const Basics = (props) => <StyledDiv>
       <td><Checkbox on disabled label='Option A' /></td>
     </tr>
     <tr>
+      <td>{`<Select />`}</td>
+      <td><Select onChange={(event, value) => console.log(event, value)}>
+        <option>Cape Town</option>
+        <option>Toronto</option>
+        <option>London</option>
+      </Select></td>
+    </tr>
+    <tr>
+      <td>{`<Select error />`}</td>
+      <td><Select error onChange={(event, value) => console.log(event, value)}>
+        <option>Cape Town</option>
+        <option>Toronto</option>
+        <option>London</option>
+      </Select></td>
+    </tr>
+    <tr>
+      <td>{`<Select inProgress />`}</td>
+      <td><Select inProgress onChange={(event, value) => console.log(event, value)}>
+        <option>Cape Town</option>
+        <option>Toronto</option>
+        <option>London</option>
+      </Select></td>
+    </tr>
+    <tr>
+      <td>{`<Select disabled value='Toronto'/>`}</td>
+      <td><Select disabled value='Toronto'><option>Cape Town</option><option>Toronto</option><option>London</option></Select></td>
+    </tr>
+    <tr>
       <td>{`<Verified pass /> <Verified />`}</td>
       <td><Verified pass /><HSpace /><Verified /></td>
     </tr>
@@ -188,6 +217,8 @@ const Basics = (props) => <StyledDiv>
         <Checkbox label='Option B' />
         <HSpace />
         <Input />
+        <HSpace />
+        <Select />
         <HSpace />
         <Verified />
       </td>
