@@ -3,14 +3,16 @@ import { faClipboard, faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
 
-import HSpace from '../../src/HSpace'
-import Input from '../../src/Input'
-import TextButton from '../../src/TextButton'
-import IconButton from '../../src/IconButton'
-import Switch from '../../src/Switch'
-import Checkbox from '../../src/Checkbox'
-import Select from '../../src/Select'
-import Verified from '../../src/Verified'
+import {
+  HSpace,
+  Input,
+  TextButton,
+  IconButton,
+  Switch,
+  Checkbox,
+  Select,
+  Verified
+} from '../../src'
 
 import StyledTable from './StyledTable'
 
