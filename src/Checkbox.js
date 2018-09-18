@@ -92,7 +92,7 @@ class Checkbox extends Component {
 
 Checkbox.propTypes = {
   onChange: PropTypes.func,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   on: PropTypes.bool,
   disabled: PropTypes.bool,
   error: PropTypes.bool,

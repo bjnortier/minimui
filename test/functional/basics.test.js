@@ -1,6 +1,7 @@
 import React from 'react'
 import { faClipboard, faTrashAlt } from '@fortawesome/free-regular-svg-icons'
-import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
+import { faSyncAlt, faFilter } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled from 'styled-components'
 
 import {
@@ -142,7 +143,7 @@ const Basics = (props) => <StyledDiv>
     </tr>
     <tr>
       <td>{`<Checkbox on error />`}:</td>
-      <td><Checkbox on error label='Option A' /></td>
+      <td><Checkbox on error label={<FontAwesomeIcon icon={faFilter} />} /></td>
     </tr>
     <tr>
       <td>{`<Checkbox inProgress />`}:</td>
@@ -158,7 +159,7 @@ const Basics = (props) => <StyledDiv>
     </tr>
     <tr>
       <td>{`<Checkbox on disabled />`}:</td>
-      <td><Checkbox on disabled label='Option A' /></td>
+      <td><Checkbox on disabled label={<FontAwesomeIcon icon={faFilter} />} /></td>
     </tr>
     <tr>
       <td>{`<Select />`}</td>
