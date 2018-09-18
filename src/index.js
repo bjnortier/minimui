@@ -2,7 +2,6 @@ import Dialog, { Header, Footer } from './Dialog'
 import HSpace from './HSpace'
 import IconButton from './IconButton'
 import Input from './Input'
-import RefreshButton from './RefreshButton'
 import reset from './reset'
 import Spinner from './Spinner'
 import Switch from './Switch'
@@ -15,6 +14,6 @@ export {
   Spinner, Verified,
   Dialog, Header, Footer,
   HSpace, VSpace,
-  IconButton, RefreshButton, TextButton,
+  IconButton, TextButton,
   Input, Switch
 }

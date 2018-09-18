@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Spinner from './Spinner'
-import HalfHSpace from './HalfHSpace'
 import Decorator from './Decorator'
 
 const StyledButton = styled.button`
@@ -18,6 +17,11 @@ const StyledButton = styled.button`
   }
 `
 
+const SpinnerSpan = styled.span`
+  padding-left: 5px;
+  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
+`
+
 class TextButton extends Component {
   render () {
     const { label, inProgress, error, disabled, onClick } = this.props
@@ -29,12 +33,12 @@ class TextButton extends Component {
     return <Decorator error={error}>
       <StyledButton
         error={error}
-        disabled={disabled}
+        disabled={disabled || inProgress}
         inProgress={inProgress}
         onClick={onClickIfAllowed}
       >
         {label}
-        {inProgress ? <React.Fragment><HalfHSpace /><Spinner /></React.Fragment> : null}
+        {inProgress ? <SpinnerSpan {...{ inProgress, disabled }}><Spinner /></SpinnerSpan> : null}
       </StyledButton>
     </Decorator>
   }

@@ -7,7 +7,6 @@ import HSpace from '../../src/HSpace'
 import Input from '../../src/Input'
 import TextButton from '../../src/TextButton'
 import IconButton from '../../src/IconButton'
-import RefreshButton from '../../src/RefreshButton'
 import Switch from '../../src/Switch'
 import Checkbox from '../../src/Checkbox'
 import Select from '../../src/Select'
@@ -76,12 +75,12 @@ const Basics = (props) => <StyledDiv>
       <td><IconButton icon={faTrashAlt} disabled onClick={handleClick} /></td>
     </tr>
     <tr>
-      <td>{`<IconButton icon={faTrashAlt} spinning />`}:</td>
-      <td><IconButton icon={faTrashAlt} spinning onClick={handleClick} /></td>
+      <td>{`<IconButton icon={faTrashAlt} inProgress />`}:</td>
+      <td><IconButton icon={faTrashAlt} inProgress onClick={handleClick} /></td>
     </tr>
     <tr>
-      <td>{`<IconButton icon={faSyncAlt} spinning />`}:</td>
-      <td><IconButton icon={faSyncAlt} spinning onClick={handleClick} /></td>
+      <td>{`<IconButton icon={faSyncAlt} inProgress />`}:</td>
+      <td><IconButton icon={faSyncAlt} inProgress onClick={handleClick} /></td>
     </tr>
     <tr>
       <td>{`<IconButton icon={faSyncAlt} error />`}:</td>
@@ -94,22 +93,6 @@ const Basics = (props) => <StyledDiv>
         <HSpace />
         <IconButton icon={faTrashAlt} onClick={handleClick} />
       </td>
-    </tr>
-    <tr>
-      <td>{`<RefreshButton readyState='initial' />`}:</td>
-      <td><RefreshButton readyState='initial' onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<RefreshButton readyState='in-progress' />`}:</td>
-      <td><RefreshButton readyState='in-progress' onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<RefreshButton readyState='error' />`}:</td>
-      <td><RefreshButton readyState='error' onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<RefreshButton readyState='done' />`}:</td>
-      <td><RefreshButton readyState='done' onClick={handleClick} /></td>
     </tr>
     <tr>
       <td>{`<Switch />`}:</td>
@@ -184,8 +167,12 @@ const Basics = (props) => <StyledDiv>
       </Select></td>
     </tr>
     <tr>
-      <td>{`<Select error />`}</td>
-      <td><Select error onChange={(event, value) => console.log(event, value)}>
+      <td>{`<Select error value='Toronto' />`}</td>
+      <td><Select
+        error
+        onChange={(event, value) => console.log(event, value)}
+        value='Toronto'
+      >
         <option>Cape Town</option>
         <option>Toronto</option>
         <option>London</option>
@@ -218,7 +205,7 @@ const Basics = (props) => <StyledDiv>
         <HSpace />
         <Input />
         <HSpace />
-        <Select />
+        <Select><option>A</option></Select>
         <HSpace />
         <Verified />
       </td>

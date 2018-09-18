@@ -4,13 +4,16 @@ import styled from 'styled-components'
 
 import Decorator from './Decorator'
 import Spinner from './Spinner'
-import HalfHSpace from './HalfHSpace'
 
 const Outer = styled.div`
   display: inline-block;
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
-  color: ${({ error, disabled, inProgress }) => error ? 'red' : (disabled || inProgress) ? '#999' : 'black'};
   user-select: none;
+`
+
+const CheckboxAdjust = styled.div`
+  position: relative;
+  bottom: 1px;
 `
 
 const Input = styled.input`
@@ -18,7 +21,16 @@ const Input = styled.input`
   :focus {
     outline: none;
   }
-  cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
+  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+`
+
+const Label = styled.span`
+  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
+`
+
+const SpinnerSpan = styled.span`
+  padding-left: 5px;
+  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
 `
 
 class Checkbox extends Component {
@@ -62,15 +74,17 @@ class Checkbox extends Component {
       onClick={this.handleClick.bind(this)}
     >
       <Decorator error={error} bottom={-8} left={-6} >
-        <Input
-          type='checkbox'
-          disabled={disabled || inProgress}
-          checked={on}
-          onChange={this.handleClick.bind(this)}
-        />
+        <CheckboxAdjust>
+          <Input
+            type='checkbox'
+            disabled={disabled || inProgress}
+            checked={on}
+            onChange={this.handleClick.bind(this)}
+          />
+        </CheckboxAdjust>
       </Decorator>
-      {label}
-      {inProgress ? <React.Fragment><HalfHSpace /><Spinner /></React.Fragment> : null}
+      <Label {...{ inProgress, disabled }}>{label}</Label>
+      {inProgress ? <SpinnerSpan {...{ inProgress, disabled }}><Spinner /></SpinnerSpan> : null}
     </Outer>
   }
 }

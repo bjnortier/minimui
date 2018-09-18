@@ -10,8 +10,8 @@ const StyledButton = styled.button`
   width: 32px;
   padding: 7px 8px;
   text-align: center;
-  cursor: ${props => (props.disabled || props.spinning) ? 'not-allowed' : 'pointer'};
-  color: ${props => props.error ? 'red' : (props.disabled || props.spinning) ? '#999' : 'black'};
+  cursor: ${props => (props.disabled || props.inProgress) ? 'not-allowed' : 'pointer'};
+  color: ${props => props.error ? 'red' : (props.disabled || props.inProgress) ? '#999' : 'black'};
   border: solid 1px ${props => props.borderColor};
   background-color: ${props => props.backgroundColor};
   :focus {
@@ -21,17 +21,19 @@ const StyledButton = styled.button`
 
 class IconButton extends Component {
   render () {
-    const { icon, spinning, error, disabled, borderColor, backgroundColor, onClick } = this.props
+    const { icon, inProgress, error, disabled, borderColor, backgroundColor, onClick } = this.props
     const onClickIfAllowed = (event) => {
-      if (!disabled && !spinning) {
+      if (!disabled && !inProgress) {
         onClick(event)
       }
     }
     return <Decorator error={error}>
-      <StyledButton {...{ error, disabled, borderColor, backgroundColor, spinning }}
+      <StyledButton
+        {...{ error, borderColor, backgroundColor, inProgress }}
+        disabled={disabled || inProgress}
         onClick={onClickIfAllowed}
       >
-        <FontAwesomeIcon icon={icon} spin={spinning} />
+        <FontAwesomeIcon icon={icon} spin={inProgress} />
       </StyledButton>
     </Decorator>
   }
@@ -40,11 +42,11 @@ class IconButton extends Component {
 IconButton.propTypes = {
   icon: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
-  spinning: PropTypes.bool,
   disabled: PropTypes.bool,
   borderColor: PropTypes.string,
   backgroundColor: PropTypes.string,
-  error: PropTypes.bool
+  error: PropTypes.bool,
+  inProgress: PropTypes.bool
 }
 
 IconButton.defaultProps = {

@@ -4,12 +4,10 @@ import styled from 'styled-components'
 
 import Decorator from './Decorator'
 import Spinner from './Spinner'
-import HalfHSpace from './HalfHSpace'
 
 const Outer = styled.div`
   display: inline-block;
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
-  color: ${({ error, disabled, inProgress }) => error ? 'red' : (disabled || inProgress) ? '#999' : 'black'};
   user-select: none;
 `
 
@@ -17,9 +15,16 @@ const StyledSelect = styled.select`
   border: solid 1px #ccc;
   height: 25px;
   background-color: #fff;
+  color: ${({ disabled }) => disabled ? '#999' : 'black'};
+  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   :focus {
     outline: none;
   }
+`
+
+const SpinnerSpan = styled.span`
+  padding-left: 5px;
+  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
 `
 
 class Select extends Component {
@@ -48,7 +53,6 @@ class Select extends Component {
     return <Outer {...{ disabled, error, inProgress }}>
       <Decorator error={error} bottom={-4}>
         <StyledSelect
-          inProgress={inProgress}
           value={value}
           disabled={disabled || inProgress}
           onChange={this.handleChange.bind(this)}
@@ -56,7 +60,7 @@ class Select extends Component {
           {this.props.children}
         </StyledSelect>
       </Decorator>
-      {inProgress ? <React.Fragment><HalfHSpace /><Spinner /></React.Fragment> : null}
+      {inProgress ? <SpinnerSpan {...{ inProgress, disabled }}><Spinner /></SpinnerSpan> : null}
     </Outer>
   }
 }
