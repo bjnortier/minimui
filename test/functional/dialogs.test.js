@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Dialog, { Header, Footer } from '../../src/Dialog'
+import { Dialog, Header, Footer } from '../../src'
 
 import StyledTable from './StyledTable'
 

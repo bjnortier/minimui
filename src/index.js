@@ -8,6 +8,8 @@ import Switch from './Switch'
 import TextButton from './TextButton'
 import Verified from './Verified'
 import VSpace from './VSpace'
+import Checkbox from './Checkbox'
+import Select from './Select'
 
 export {
   reset,
@@ -15,5 +17,5 @@ export {
   Dialog, Header, Footer,
   HSpace, VSpace,
   IconButton, TextButton,
-  Input, Switch
+  Input, Switch, Checkbox, Select
 }
