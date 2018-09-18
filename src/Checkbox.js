@@ -13,7 +13,7 @@ const Outer = styled.div`
 
 const CheckboxAdjust = styled.div`
   position: relative;
-  bottom: 1px;
+  bottom: 1.5px;
 `
 
 const Input = styled.input`
@@ -25,6 +25,7 @@ const Input = styled.input`
 `
 
 const Label = styled.span`
+  padding-left: 2px;
   color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
 `
 
