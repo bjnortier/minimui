@@ -16,7 +16,7 @@ const CheckboxAdjust = styled.div`
   bottom: 1.5px;
 `
 
-const Input = styled.input`
+const StyledInput = styled.input`
   font-size: 16px;
   :focus {
     outline: none;
@@ -76,7 +76,7 @@ class Checkbox extends Component {
     >
       <Decorator error={error} bottom={-8} left={-6} >
         <CheckboxAdjust>
-          <Input
+          <StyledInput
             type='checkbox'
             disabled={disabled || inProgress}
             checked={on}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Decorator from './Decorator'
+import Spinner from './Spinner'
 
 const StyledInput = styled.input`
   border: solid 1px #ccc;
@@ -10,10 +11,16 @@ const StyledInput = styled.input`
   border-bottom: solid 1px ${props => props.error ? '#f00' : '#ccc'};
   padding: 7px;
   width: ${props => props.width - 16}px;
+  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'auto'};
   &:focus {
     outline: 0
     border-bottom: solid 1px #484848;
   }
+`
+
+const SpinnerSpan = styled.span`
+  padding-left: 5px;
+  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
 `
 
 class Input extends Component {
@@ -44,16 +51,20 @@ class Input extends Component {
   }
 
   render () {
-    const { name, type, placeholder, disabled, onKeyUp, error } = this.props
+    const { name, type, placeholder, disabled, inProgress, onKeyUp, error } = this.props
     const { value } = this.state
-    return <Decorator error={error}>
-      <StyledInput {...this.props}
-        {...{ name, value, placeholder, onKeyUp, disabled }}
-        onChange={this.handleChange.bind(this)}
-        type={type || 'text'}
-        innerRef={this.inputRef}
-      />
-    </Decorator>
+    return <div>
+      <Decorator error={error}>
+        <StyledInput {...this.props}
+          {...{ name, value, placeholder, onKeyUp }}
+          disabled={disabled || inProgress}
+          onChange={this.handleChange.bind(this)}
+          type={type || 'text'}
+          innerRef={this.inputRef}
+        />
+      </Decorator>
+      {inProgress ? <SpinnerSpan {...{ inProgress, disabled }}><Spinner /></SpinnerSpan> : null}
+    </div>
   }
 
   get value () {
@@ -69,7 +80,8 @@ Input.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   onKeyUp: PropTypes.func,
-  error: PropTypes.bool
+  error: PropTypes.bool,
+  inProgress: PropTypes.bool
 }
 
 Input.defaultProps = {

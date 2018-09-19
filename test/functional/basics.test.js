@@ -54,6 +54,10 @@ const Basics = (props) => <StyledDiv>
       <td><Input disabled value='123' /></td>
     </tr>
     <tr>
+      <td>{`<Input inProgress value='123' />`}:</td>
+      <td><Input inProgress value='123' /></td>
+    </tr>
+    <tr>
       <td>{`<TextButton label='Click me' />`}:</td>
       <td><TextButton label='Click me' onClick={handleClick} /></td>
     </tr>
