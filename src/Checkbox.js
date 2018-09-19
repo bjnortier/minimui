@@ -37,12 +37,6 @@ class Checkbox extends ValueComponent {
     super.handleChange(event, !this.state.value)
   }
 
-  handleKeyUp (event) {
-    if (event.keyCode === 32) {
-      this.handleClick(event)
-    }
-  }
-
   render () {
     const { disabled, error, inProgress, label } = this.props
     const { value } = this.state
