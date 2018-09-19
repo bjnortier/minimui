@@ -68,7 +68,10 @@ Input.propTypes = {
 
 Input.defaultProps = {
   width: 80,
-  value: ''
+  value: '',
+  disabled: false,
+  error: false,
+  inProgress: false
 }
 
 export default Input

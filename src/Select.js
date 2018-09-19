@@ -55,4 +55,10 @@ Select.propTypes = {
   inProgress: PropTypes.bool
 }
 
+Select.defaultProps = {
+  disabled: false,
+  error: false,
+  inProgress: false
+}
+
 export default Select
