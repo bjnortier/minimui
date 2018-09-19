@@ -48,8 +48,8 @@ class Row extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      onChangeValue: props.value,
-      propertyValue: props.value
+      onChangeValue: props.props ? props.props.value : undefined,
+      propertyValue: props.props ? props.props.value : undefined
     }
     this.ref = React.createRef()
   }
@@ -110,7 +110,16 @@ export default (props) => <StyledDiv>
     />
     <Row
       Component={Select}
-      props={{ value: true }}
+      props={{}}
+      children={<React.Fragment>
+        <option>Cape Town</option>
+        <option>Toronto</option>
+        <option>London</option>
+      </React.Fragment>}
+    />
+    <Row
+      Component={Select}
+      props={{ value: 'London' }}
       children={<React.Fragment>
         <option>Cape Town</option>
         <option>Toronto</option>

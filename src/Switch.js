@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import ValueComponent from './ValueComponent'
 import Decorator from './Decorator'
 import Spinner from './Spinner'
 
@@ -38,31 +39,9 @@ const SpinnerPad = styled.div`
   color: #999;
 `
 
-class Switch extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      value: props.value
-    }
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.value !== undefined) {
-      this.setState({ value: nextProps.value })
-    }
-  }
-
-  handleClick (event) {
-    const { disabled, inProgress, onChange } = this.props
-    if (disabled || inProgress) {
-      return
-    }
-    if (onChange) {
-      // State is managed outside of component (e.g. redux)
-      onChange(event, !this.state.value)
-    } else {
-      this.setState({ value: !this.state.value })
-    }
+class Switch extends ValueComponent {
+  handleChange (event) {
+    super.handleChange(event, !this.state.value)
   }
 
   /**
@@ -76,7 +55,7 @@ class Switch extends Component {
 
   handleKeyUp (event) {
     if (event.keyCode === 32) {
-      this.handleClick(event)
+      this.handleChange(event)
     }
   }
 
@@ -89,7 +68,7 @@ class Switch extends Component {
         disabled={disabled}
         value={value}
         inProgress={inProgress}
-        onClick={this.handleClick.bind(this)}
+        onClick={this.handleChange.bind(this)}
         onKeyDown={this.handleKeyDown.bind(this)}
         onKeyUp={this.handleKeyUp.bind(this)}
       >
@@ -98,10 +77,6 @@ class Switch extends Component {
         </Knob>
       </Outer>
     </Decorator>
-  }
-
-  get value () {
-    return this.state.value
   }
 }
 

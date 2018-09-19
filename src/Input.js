@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import ValueComponent from './ValueComponent'
 import Decorator from './Decorator'
 import Spinner from './Spinner'
 
@@ -25,31 +26,13 @@ const StyledInput = styled.input`
   }
 `
 
-class Input extends Component {
-  constructor (props, context) {
-    super(props, context)
-    this.inputRef = React.createRef()
-    this.state = {
-      value: props.value || ''
-    }
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.value !== undefined) {
-      this.setState({ value: nextProps.value })
-    }
+class Input extends ValueComponent {
+  constructor (props) {
+    super(props, '')
   }
 
   handleChange (event) {
-    const { disabled, inProgress, onChange } = this.props
-    if (disabled || inProgress) {
-      return
-    }
-    if (onChange) {
-      onChange(event, event.target.value)
-    } else {
-      this.setState({ value: event.target.value })
-    }
+    super.handleChange(event, event.target.value)
   }
 
   render () {
@@ -64,7 +47,6 @@ class Input extends Component {
           disabled={disabled || inProgress}
           onChange={this.handleChange.bind(this)}
           type={type || 'text'}
-          innerRef={this.inputRef}
         />
       </Decorator>
       {inProgress ? <Spinner padLeft /> : null}
