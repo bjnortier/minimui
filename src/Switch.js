@@ -65,6 +65,15 @@ class Switch extends Component {
     }
   }
 
+  /**
+   * Prevent the default window scrolling behaviour when Switch has focus
+   */
+  handleKeyDown (event) {
+    if (event.keyCode === 32) {
+      event.preventDefault()
+    }
+  }
+
   handleKeyUp (event) {
     if (event.keyCode === 32) {
       this.handleClick(event)
@@ -81,6 +90,7 @@ class Switch extends Component {
         on={on}
         inProgress={inProgress}
         onClick={this.handleClick.bind(this)}
+        onKeyDown={this.handleKeyDown.bind(this)}
         onKeyUp={this.handleKeyUp.bind(this)}
       >
         <Knob on={on} disabled={disabled} inProgress={inProgress}>
