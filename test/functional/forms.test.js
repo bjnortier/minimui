@@ -27,7 +27,7 @@ const StyledDiv = styled.div`
   }
 `
 
-const Basics = (props) => <StyledDiv>
+export default (props) => <StyledDiv>
   <StyledTable><tbody>
     <tr>
       <td>{`<Input />`}:</td>
@@ -92,6 +92,26 @@ const Basics = (props) => <StyledDiv>
     <tr>
       <td>{`<IconButton icon={faSyncAlt} error />`}:</td>
       <td><IconButton icon={faSyncAlt} error onClick={handleClick} /></td>
+    </tr>
+    <tr>
+      <td>{`<IconButton icon={faTrashAlt} />`}:</td>
+      <td><IconButton backgroundColor='transparent' borderColor='transparent' icon={faTrashAlt} onClick={handleClick} /></td>
+    </tr>
+    <tr>
+      <td>{`<IconButton icon={faTrashAlt} disabled />`}:</td>
+      <td><IconButton backgroundColor='transparent' borderColor='transparent' icon={faTrashAlt} disabled onClick={handleClick} /></td>
+    </tr>
+    <tr>
+      <td>{`<IconButton icon={faTrashAlt} inProgress />`}:</td>
+      <td><IconButton backgroundColor='transparent' borderColor='transparent' icon={faTrashAlt} inProgress onClick={handleClick} /></td>
+    </tr>
+    <tr>
+      <td>{`<IconButton icon={faSyncAlt} inProgress />`}:</td>
+      <td><IconButton backgroundColor='transparent' borderColor='transparent' icon={faSyncAlt} inProgress onClick={handleClick} /></td>
+    </tr>
+    <tr>
+      <td>{`<IconButton icon={faSyncAlt} error />`}:</td>
+      <td><IconButton backgroundColor='transparent' borderColor='transparent' icon={faSyncAlt} error onClick={handleClick} /></td>
     </tr>
     <tr>
       <td>{`<IconButton> x2`}:</td>
@@ -219,5 +239,3 @@ const Basics = (props) => <StyledDiv>
     </tr>
   </tbody></StyledTable>
 </StyledDiv>
-
-export default Basics

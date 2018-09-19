@@ -6,16 +6,14 @@ import { injectGlobal } from 'styled-components'
 import reset from '../../src/reset'
 import HSpace from '../../src/HSpace'
 
-import Basics from './basics.test'
+import Forms from './forms.test'
 import Dialogs from './dialogs.test'
 
 const Nav = () => <div>
-  <Link to={'/basics'}>Basics</Link>
+  <Link to={'/forms'}>Forms</Link>
   <HSpace />
   <Link to={'/dialogs'}>Dialogs</Link>
 </div>
-
-const NotFound = (props) => <div>Not found.</div>
 
 injectGlobal`
   body {
@@ -28,9 +26,8 @@ render(<HashRouter>
   <div>
     <Nav />
     <Switch>
-      <Route exact path='/basics' component={Basics} />
+      <Route exact path='/forms' component={Forms} />
       <Route exact path='/dialogs' component={Dialogs} />
-      <Route component={NotFound} />
     </Switch>
   </div>
 </HashRouter>, document.getElementById('contents'))

@@ -5,6 +5,12 @@ import styled from 'styled-components'
 import Decorator from './Decorator'
 import Spinner from './Spinner'
 
+const Outer = styled.div`
+  display: inline-block;
+  cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
+  user-select: none;
+`
+
 const StyledInput = styled.input`
   border: solid 1px #ccc;
   color: ${props => props.error ? 'red' : props.disabled ? '#999' : 'black'};
@@ -53,7 +59,9 @@ class Input extends Component {
   render () {
     const { name, type, placeholder, disabled, inProgress, onKeyUp, error } = this.props
     const { value } = this.state
-    return <div>
+    return <Outer
+      {...{ disabled, error, inProgress }}
+    >
       <Decorator error={error}>
         <StyledInput {...this.props}
           {...{ name, value, placeholder, onKeyUp }}
@@ -64,7 +72,7 @@ class Input extends Component {
         />
       </Decorator>
       {inProgress ? <SpinnerSpan {...{ inProgress, disabled }}><Spinner /></SpinnerSpan> : null}
-    </div>
+    </Outer>
   }
 
   get value () {

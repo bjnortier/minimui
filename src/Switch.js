@@ -9,13 +9,13 @@ const Outer = styled.div`
   display: inline-block;
   width: 48px;
   height: 30px;
-  border: solid 1px #ccc;
+  border: solid 1px ${({ disabled, inProgress, on }) => (on && !disabled) ? '#2e70b5' : '#ccc'};
   border-radius: 16px;
   vertical-align: middle;
   position: relative;
   top: -1px;
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
-  background-color: ${({ disabled, inProgress, on }) => disabled ? 'transparent' : on ? '#d0ecff' : '#fff'}
+  background-color: ${({ disabled, inProgress, on }) => disabled ? 'transparent' : on ? '#3b99fc' : '#fff'}
   :focus {
     outline: none;
   }

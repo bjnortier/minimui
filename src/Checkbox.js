@@ -26,6 +26,7 @@ const StyledInput = styled.input`
 
 const Label = styled.span`
   padding-left: 2px;
+  padding-right: 2px;
   color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
 `
 
@@ -74,7 +75,7 @@ class Checkbox extends Component {
       {...{ disabled, error, inProgress }}
       onClick={this.handleClick.bind(this)}
     >
-      <Decorator error={error} bottom={-8} left={-6} >
+      <Decorator error={error} bottom={-8} >
         <CheckboxAdjust>
           <StyledInput
             type='checkbox'
