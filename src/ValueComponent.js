@@ -1,10 +1,10 @@
 import { Component } from 'react'
 
 class ValueComponent extends Component {
-  constructor (props, defaultValue) {
+  constructor (props) {
     super(props)
     this.state = {
-      value: props.value !== undefined ? props.value : defaultValue
+      value: props.value
     }
   }
 

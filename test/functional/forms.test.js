@@ -48,8 +48,8 @@ class Row extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      onChangeValue: props.props ? props.props.value : undefined,
-      propertyValue: props.props ? props.props.value : undefined
+      onChangeValue: undefined,
+      propertyValue: undefined
     }
     this.ref = React.createRef()
   }
@@ -65,66 +65,68 @@ class Row extends Component {
   }
 
   render () {
-    const { Component, props, children } = this.props
+    const { Component, componentProps, componentChildren } = this.props
     const { onChangeValue, propertyValue } = this.state
+    const element = React.createElement(Component, {
+      ...componentProps,
+      ref: this.ref,
+      onChange: this.handleChange.bind(this),
+      value: onChangeValue !== undefined ? onChangeValue : componentProps.value
+    }, componentChildren)
     return <tr>
-      <td>{`<${Component.name} ${renderProps(props)} />`}:</td>
-      <td>{React.createElement(Component, {
-        ...props,
-        ref: this.ref,
-        onChange: this.handleChange.bind(this),
-        value: onChangeValue
-      }, children)}</td>
+      <td>{`<${Component.name} ${renderProps(componentProps)} />`}:</td>
+      <td>{element}</td>
       <td>{renderValue(onChangeValue)}</td>
       <td>{renderValue(propertyValue)}</td>
     </tr>
   }
 }
 
+
 export default (props) => <StyledDiv>
   <StyledTable><tbody>
     <tr><th>JSX</th><th>Component</th><th>onChange(event, value)</th><th>ref.value</th></tr>
     <Row
       Component={Input}
-      props={{ width: 120 }}
+      componentProps={{ width: 120 }}
     />
     <Row
       Component={Input}
-      props={{ placeholder: 'username' }}
+      componentProps={{ placeholder: 'username' }}
     />
     <Row
       Component={Checkbox}
-      props={{ label: 'Option A' }}
+      componentProps={{ label: 'Option A' }}
     />
     <Row
       Component={Checkbox}
-      props={{ label: <FontAwesomeIcon icon={faFilter} />, value: true }}
+      componentProps={{ label: <FontAwesomeIcon icon={faFilter} />, value: true }}
     />
     <Row
       Component={Switch}
-      props={{}}
+      componentProps={{}}
     />
     <Row
       Component={Switch}
-      props={{ value: true }}
+      componentProps={{ value: true }}
     />
     <Row
       Component={Select}
-      props={{}}
-      children={<React.Fragment>
-        <option>Cape Town</option>
-        <option>Toronto</option>
-        <option>London</option>
-      </React.Fragment>}
+      componentProps={{}}
+      componentChildren={[
+        <option key={0}>Cape Town</option>,
+        <option key={1}>Toronto</option>,
+        <option key={2}>London</option>
+      ]}
     />
     <Row
       Component={Select}
-      props={{ value: 'London' }}
-      children={<React.Fragment>
-        <option>Cape Town</option>
-        <option>Toronto</option>
-        <option>London</option>
-      </React.Fragment>}
+      componentProps={{ value: 'London' }}
+      componentChildren={[
+        <option key={0}>Cape Town</option>,
+        <option key={1}>Toronto</option>,
+        <option key={2}>London</option>
+      ]}
     />
     <tr>
       <td>{`<TextButton label='Click me' />`}:</td>
@@ -138,7 +140,6 @@ export default (props) => <StyledDiv>
       <td>{`<IconButton transparent icon={faTrashAlt} />`}:</td>
       <td><IconButton transparent icon={faTrashAlt} onClick={handleClick} /></td>
     </tr>
-
     <tr>
       <td>{`<Verified pass /> <Verified />`}</td>
       <td><Verified pass /><HSpace /><Verified /></td>

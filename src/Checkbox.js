@@ -58,10 +58,6 @@ class Checkbox extends ValueComponent {
       {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
     </Outer>
   }
-
-  get value () {
-    return this.state.value
-  }
 }
 
 Checkbox.propTypes = {

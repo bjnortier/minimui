@@ -52,10 +52,6 @@ class Input extends ValueComponent {
       {inProgress ? <Spinner padLeft /> : null}
     </Outer>
   }
-
-  get value () {
-    return this.state.value
-  }
 }
 
 Input.propTypes = {
@@ -71,7 +67,8 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
-  width: 80
+  width: 80,
+  value: ''
 }
 
 export default Input
