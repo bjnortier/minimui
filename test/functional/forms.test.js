@@ -126,10 +126,6 @@ export default (props) => <StyledDiv>
       <td><Switch /></td>
     </tr>
     <tr>
-      <td>{`<Switch onChange={...} />`}:</td>
-      <td><Switch /></td>
-    </tr>
-    <tr>
       <td>{`<Switch on />`}:</td>
       <td><Switch on /></td>
     </tr>
@@ -155,10 +151,6 @@ export default (props) => <StyledDiv>
     </tr>
     <tr>
       <td>{`<Checkbox />`}:</td>
-      <td><Checkbox label='Option A' /></td>
-    </tr>
-    <tr>
-      <td>{`<Checkbox onChange={...} />`}:</td>
       <td><Checkbox label='Option A' /></td>
     </tr>
     <tr>

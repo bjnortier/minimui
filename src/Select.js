@@ -8,6 +8,7 @@ import Spinner from './Spinner'
 const Outer = styled.div`
   display: inline-block;
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
+  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
   user-select: none;
 `
 
@@ -15,16 +16,11 @@ const StyledSelect = styled.select`
   border: solid 1px #ccc;
   height: 25px;
   background-color: #fff;
-  color: ${({ disabled }) => disabled ? '#999' : 'black'};
+  color: ${({ disabled, error }) => disabled ? '#999' : error ? 'red' : 'black'};
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   :focus {
     outline: none;
   }
-`
-
-const SpinnerSpan = styled.span`
-  padding-left: 5px;
-  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
 `
 
 class Select extends Component {
@@ -55,12 +51,13 @@ class Select extends Component {
         <StyledSelect
           value={value}
           disabled={disabled || inProgress}
+          error={error}
           onChange={this.handleChange.bind(this)}
         >
           {this.props.children}
         </StyledSelect>
       </Decorator>
-      {inProgress ? <SpinnerSpan {...{ inProgress, disabled }}><Spinner /></SpinnerSpan> : null}
+      {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
     </Outer>
   }
 }

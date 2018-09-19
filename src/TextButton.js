@@ -8,8 +8,8 @@ import Decorator from './Decorator'
 const StyledButton = styled.button`
   border-radius: 16px;
   padding: 7px 10px;
-  cursor: ${props => (props.disabled || props.inProgress) ? 'not-allowed' : 'pointer'};
-  color: ${props => props.error ? 'red' : (props.disabled || props.inProgress) ? '#999' : 'black'};
+  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+  color: ${({ disabled }) => disabled ? '#999' : 'black'};
   border: solid 1px #ccc;
   background-color: white;
   :focus {

@@ -85,7 +85,7 @@ class Switch extends Component {
     const { on } = this.state
     return <Decorator error={error}>
       <Outer
-        tabIndex={disabled ? null : 0}
+        tabIndex={disabled || inProgress ? null : 0}
         disabled={disabled}
         on={on}
         inProgress={inProgress}

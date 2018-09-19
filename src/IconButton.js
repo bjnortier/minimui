@@ -10,8 +10,8 @@ const StyledButton = styled.button`
   width: 32px;
   padding: 7px 8px;
   text-align: center;
-  cursor: ${props => (props.disabled || props.inProgress) ? 'not-allowed' : 'pointer'};
-  color: ${props => props.error ? 'red' : (props.disabled || props.inProgress) ? '#999' : 'black'};
+  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+  color: ${({ disabled }) => disabled ? '#999' : 'black'};
   border: solid 1px ${props => props.borderColor};
   background-color: ${props => props.backgroundColor};
   :focus {
