@@ -31,6 +31,12 @@ class Select extends Component {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.value !== undefined) {
+      this.setState({ value: nextProps.value })
+    }
+  }
+
   handleChange (event) {
     const { disabled, inProgress, onChange } = this.props
     if (disabled || inProgress) {
@@ -58,6 +64,10 @@ class Select extends Component {
       </Decorator>
       {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
     </Outer>
+  }
+
+  get value () {
+    return this.state.value
   }
 }
 

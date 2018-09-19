@@ -9,13 +9,13 @@ const Outer = styled.div`
   display: inline-block;
   width: 48px;
   height: 30px;
-  border: solid 1px ${({ disabled, inProgress, on }) => (on && !disabled) ? '#2e70b5' : '#ccc'};
+  border: solid 1px ${({ disabled, inProgress, value }) => (value && !disabled) ? '#2e70b5' : '#ccc'};
   border-radius: 16px;
   vertical-align: middle;
   position: relative;
   top: -1px;
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
-  background-color: ${({ disabled, inProgress, on }) => disabled ? 'transparent' : on ? '#3b99fc' : '#fff'}
+  background-color: ${({ disabled, inProgress, value }) => disabled ? 'transparent' : value ? '#3b99fc' : '#fff'}
   :focus {
     outline: none;
   }
@@ -23,7 +23,7 @@ const Outer = styled.div`
 const Knob = styled.div`
   display: inline-block;
   position: absolute;
-  left: ${props => props.on ? 19 : -1}px;
+  left: ${props => props.value ? 19 : -1}px;
   top: 0;
   width: 28px;
   height: 28px;
@@ -42,13 +42,13 @@ class Switch extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      on: props.on
+      value: props.value
     }
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.on !== undefined) {
-      this.setState({ on: nextProps.on })
+    if (nextProps.value !== undefined) {
+      this.setState({ value: nextProps.value })
     }
   }
 
@@ -59,9 +59,9 @@ class Switch extends Component {
     }
     if (onChange) {
       // State is managed outside of component (e.g. redux)
-      onChange(event, !this.state.on)
+      onChange(event, !this.state.value)
     } else {
-      this.setState({ on: !this.state.on })
+      this.setState({ value: !this.state.value })
     }
   }
 
@@ -82,39 +82,39 @@ class Switch extends Component {
 
   render () {
     const { disabled, error, inProgress } = this.props
-    const { on } = this.state
+    const { value } = this.state
     return <Decorator error={error}>
       <Outer
         tabIndex={disabled || inProgress ? null : 0}
         disabled={disabled}
-        on={on}
+        value={value}
         inProgress={inProgress}
         onClick={this.handleClick.bind(this)}
         onKeyDown={this.handleKeyDown.bind(this)}
         onKeyUp={this.handleKeyUp.bind(this)}
       >
-        <Knob on={on} disabled={disabled} inProgress={inProgress}>
+        <Knob value={value} disabled={disabled} inProgress={inProgress}>
           {inProgress ? <SpinnerPad><Spinner /></SpinnerPad> : null}
         </Knob>
       </Outer>
     </Decorator>
   }
 
-  get on () {
-    return this.state.on
+  get value () {
+    return this.state.value
   }
 }
 
 Switch.propTypes = {
   onChange: PropTypes.func,
-  on: PropTypes.bool,
+  value: PropTypes.bool,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   inProgress: PropTypes.bool
 }
 
 Switch.defaultProps = {
-  on: false,
+  value: false,
   disabled: false,
   error: false,
   inProgress: false

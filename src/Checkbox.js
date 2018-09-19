@@ -35,13 +35,13 @@ class Checkbox extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      on: props.on
+      value: props.value
     }
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.on !== undefined) {
-      this.setState({ on: nextProps.on })
+    if (nextProps.value !== undefined) {
+      this.setState({ value: nextProps.value })
     }
   }
 
@@ -52,9 +52,9 @@ class Checkbox extends Component {
     }
     if (onChange) {
       // State is managed outside of component (e.g. redux)
-      onChange(event, !this.state.on)
+      onChange(event, !this.state.value)
     } else {
-      this.setState({ on: !this.state.on })
+      this.setState({ value: !this.state.value })
     }
   }
 
@@ -66,7 +66,7 @@ class Checkbox extends Component {
 
   render () {
     const { disabled, error, inProgress, label } = this.props
-    const { on } = this.state
+    const { value } = this.state
     return <Outer
       {...{ disabled, error, inProgress }}
       onClick={this.handleClick.bind(this)}
@@ -76,7 +76,7 @@ class Checkbox extends Component {
           <StyledInput
             type='checkbox'
             disabled={disabled || inProgress}
-            checked={on}
+            checked={value}
             onChange={this.handleClick.bind(this)}
           />
         </CheckboxAdjust>
@@ -85,19 +85,23 @@ class Checkbox extends Component {
       {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
     </Outer>
   }
+
+  get value () {
+    return this.state.value
+  }
 }
 
 Checkbox.propTypes = {
   onChange: PropTypes.func,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-  on: PropTypes.bool,
+  value: PropTypes.bool,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   inProgress: PropTypes.bool
 }
 
 Checkbox.defaultProps = {
-  on: false,
+  value: false,
   disabled: false,
   error: false,
   inProgress: false
