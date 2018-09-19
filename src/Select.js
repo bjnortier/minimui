@@ -16,7 +16,7 @@ const StyledSelect = styled.select`
   border: solid 1px #ccc;
   height: 25px;
   background-color: #fff;
-  color: ${({ disabled, error }) => disabled ? '#999' : error ? 'red' : 'black'};
+  color: ${({ disabled, error }) => disabled ? '#999' : 'black'};
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   :focus {
     outline: none;
@@ -51,7 +51,6 @@ class Select extends Component {
         <StyledSelect
           value={value}
           disabled={disabled || inProgress}
-          error={error}
           onChange={this.handleChange.bind(this)}
         >
           {this.props.children}

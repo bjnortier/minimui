@@ -12,8 +12,8 @@ const StyledButton = styled.button`
   text-align: center;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   color: ${({ disabled }) => disabled ? '#999' : 'black'};
-  border: solid 1px ${props => props.borderColor};
-  background-color: ${props => props.backgroundColor};
+  border: solid 1px ${({ transparent }) => transparent ? 'transparent' : '#ccc'};
+  background-color: ${({ transparent }) => transparent ? 'transparent' : 'white'};
   :focus {
     outline: none;
   }
@@ -21,15 +21,15 @@ const StyledButton = styled.button`
 
 class IconButton extends Component {
   render () {
-    const { icon, inProgress, error, disabled, borderColor, backgroundColor, onClick } = this.props
+    const { icon, inProgress, error, disabled, transparent, onClick } = this.props
     const onClickIfAllowed = (event) => {
       if (!disabled && !inProgress) {
         onClick(event)
       }
     }
-    return <Decorator error={error}>
+    return <Decorator error={error} left={transparent ? 6 : 0}>
       <StyledButton
-        {...{ error, borderColor, backgroundColor, inProgress }}
+        {...{ error, transparent, inProgress }}
         disabled={disabled || inProgress}
         onClick={onClickIfAllowed}
       >
@@ -43,15 +43,16 @@ IconButton.propTypes = {
   icon: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
-  borderColor: PropTypes.string,
-  backgroundColor: PropTypes.string,
+  transparent: PropTypes.bool,
   error: PropTypes.bool,
   inProgress: PropTypes.bool
 }
 
 IconButton.defaultProps = {
-  borderColor: '#ccc',
-  backgroundColor: 'white'
+  disabled: false,
+  error: false,
+  inProgress: false,
+  transparent: false
 }
 
 export default IconButton

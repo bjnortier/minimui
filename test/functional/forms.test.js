@@ -30,96 +30,24 @@ const StyledDiv = styled.div`
 export default (props) => <StyledDiv>
   <StyledTable><tbody>
     <tr>
-      <td>{`<Input />`}:</td>
-      <td><Input /></td>
-    </tr>
-    <tr>
       <td>{`<Input width={120} />`}:</td>
       <td><Input width={120} /></td>
-    </tr>
-    <tr>
-      <td>{`<Input width={120} value='hello' />`}:</td>
-      <td><Input width={120} value='hello' /></td>
     </tr>
     <tr>
       <td>{`<Input placeholder='username' />`}:</td>
       <td><Input placeholder='username' /></td>
     </tr>
     <tr>
-      <td>{`<Input error value='foo' />`}:</td>
-      <td><Input error value='foo' /></td>
-    </tr>
-    <tr>
-      <td>{`<Input disabled value='123' />`}:</td>
-      <td><Input disabled value='123' /></td>
-    </tr>
-    <tr>
-      <td>{`<Input inProgress value='123' />`}:</td>
-      <td><Input inProgress value='123' /></td>
-    </tr>
-    <tr>
       <td>{`<TextButton label='Click me' />`}:</td>
       <td><TextButton label='Click me' onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<TextButton label='In progress' inProgress />`}:</td>
-      <td><TextButton label='In progress' inProgress onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<TextButton label='Error' error />`}:</td>
-      <td><TextButton label='Error' error onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<TextButton label='Disabled' disabled />`}:</td>
-      <td><TextButton label='Disabled' disabled onClick={handleClick} /></td>
     </tr>
     <tr>
       <td>{`<IconButton icon={faTrashAlt} />`}:</td>
       <td><IconButton icon={faTrashAlt} onClick={handleClick} /></td>
     </tr>
     <tr>
-      <td>{`<IconButton icon={faTrashAlt} disabled />`}:</td>
-      <td><IconButton icon={faTrashAlt} disabled onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<IconButton icon={faTrashAlt} inProgress />`}:</td>
-      <td><IconButton icon={faTrashAlt} inProgress onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<IconButton icon={faSyncAlt} inProgress />`}:</td>
-      <td><IconButton icon={faSyncAlt} inProgress onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<IconButton icon={faSyncAlt} error />`}:</td>
-      <td><IconButton icon={faSyncAlt} error onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<IconButton icon={faTrashAlt} />`}:</td>
-      <td><IconButton backgroundColor='transparent' borderColor='transparent' icon={faTrashAlt} onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<IconButton icon={faTrashAlt} disabled />`}:</td>
-      <td><IconButton backgroundColor='transparent' borderColor='transparent' icon={faTrashAlt} disabled onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<IconButton icon={faTrashAlt} inProgress />`}:</td>
-      <td><IconButton backgroundColor='transparent' borderColor='transparent' icon={faTrashAlt} inProgress onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<IconButton icon={faSyncAlt} inProgress />`}:</td>
-      <td><IconButton backgroundColor='transparent' borderColor='transparent' icon={faSyncAlt} inProgress onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<IconButton icon={faSyncAlt} error />`}:</td>
-      <td><IconButton backgroundColor='transparent' borderColor='transparent' icon={faSyncAlt} error onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<IconButton> x2`}:</td>
-      <td>
-        <IconButton icon={faClipboard} onClick={handleClick} />
-        <HSpace />
-        <IconButton icon={faTrashAlt} onClick={handleClick} />
-      </td>
+      <td>{`<IconButton transparent icon={faTrashAlt} />`}:</td>
+      <td><IconButton transparent icon={faTrashAlt} onClick={handleClick} /></td>
     </tr>
     <tr>
       <td>{`<Switch />`}:</td>
@@ -130,52 +58,12 @@ export default (props) => <StyledDiv>
       <td><Switch on /></td>
     </tr>
     <tr>
-      <td>{`<Switch on error />`}:</td>
-      <td><Switch on error /></td>
-    </tr>
-    <tr>
-      <td>{`<Switch inProgress />`}:</td>
-      <td><Switch inProgress /></td>
-    </tr>
-    <tr>
-      <td>{`<Switch on inProgress />`}:</td>
-      <td><Switch on inProgress /></td>
-    </tr>
-    <tr>
-      <td>{`<Switch disabled />`}:</td>
-      <td><Switch disabled /></td>
-    </tr>
-    <tr>
-      <td>{`<Switch on disabled />`}:</td>
-      <td><Switch on disabled /></td>
-    </tr>
-    <tr>
       <td>{`<Checkbox />`}:</td>
       <td><Checkbox label='Option A' /></td>
     </tr>
     <tr>
-      <td>{`<Checkbox on />`}:</td>
-      <td><Checkbox on label='Option A' /></td>
-    </tr>
-    <tr>
-      <td>{`<Checkbox on error />`}:</td>
-      <td><Checkbox on error label={<FontAwesomeIcon icon={faFilter} />} /></td>
-    </tr>
-    <tr>
-      <td>{`<Checkbox inProgress />`}:</td>
-      <td><Checkbox inProgress label='Option A' /></td>
-    </tr>
-    <tr>
-      <td>{`<Checkbox on inProgress />`}:</td>
-      <td><Checkbox on inProgress label='Option A' /></td>
-    </tr>
-    <tr>
-      <td>{`<Checkbox disabled />`}:</td>
-      <td><Checkbox disabled label='Option A' /></td>
-    </tr>
-    <tr>
-      <td>{`<Checkbox on disabled />`}:</td>
-      <td><Checkbox on disabled label={<FontAwesomeIcon icon={faFilter} />} /></td>
+      <td>{`<Checkbox on label={<FontAwesomeIcon icon={faFilter} />} />`}:</td>
+      <td><Checkbox on label={<FontAwesomeIcon icon={faFilter} />} /></td>
     </tr>
     <tr>
       <td>{`<Select />`}</td>
@@ -184,30 +72,6 @@ export default (props) => <StyledDiv>
         <option>Toronto</option>
         <option>London</option>
       </Select></td>
-    </tr>
-    <tr>
-      <td>{`<Select error value='Toronto' />`}</td>
-      <td><Select
-        error
-        onChange={(event, value) => console.log(event, value)}
-        value='Toronto'
-      >
-        <option>Cape Town</option>
-        <option>Toronto</option>
-        <option>London</option>
-      </Select></td>
-    </tr>
-    <tr>
-      <td>{`<Select inProgress />`}</td>
-      <td><Select inProgress onChange={(event, value) => console.log(event, value)}>
-        <option>Cape Town</option>
-        <option>Toronto</option>
-        <option>London</option>
-      </Select></td>
-    </tr>
-    <tr>
-      <td>{`<Select disabled value='Toronto'/>`}</td>
-      <td><Select disabled value='Toronto'><option>Cape Town</option><option>Toronto</option><option>London</option></Select></td>
     </tr>
     <tr>
       <td>{`<Verified pass /> <Verified />`}</td>
@@ -227,6 +91,10 @@ export default (props) => <StyledDiv>
         <Select><option>A</option></Select>
         <HSpace />
         <Verified />
+        <HSpace />
+        <IconButton icon={faClipboard} onClick={handleClick} />
+        <HSpace />
+        <IconButton icon={faTrashAlt} onClick={handleClick} />
       </td>
     </tr>
   </tbody></StyledTable>

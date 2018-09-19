@@ -23,20 +23,23 @@ const StyledDiv = styled.div`
   }
 `
 
-const components = [Input, TextButton, IconButton, Switch, Checkbox, Select]
+const TransparentIconButton = (props) => <IconButton transparent {...props} />
+
+const components = [Input, TextButton, IconButton, TransparentIconButton, Switch, Checkbox, Select]
 const propsCombinations = [
   {},
   { disabled: true },
   { error: true },
-  { inProgress: true },
   { disabled: true, error: true },
-  { inProgress: true, error: true }
+  { inProgress: true },
+  { inProgress: true, on: true }
 ]
 
 const defaultProps = {
   'Input': { value: 'Foo bar' },
   'TextButton': { label: 'Click me', onClick: handleClick },
   'IconButton': { icon: faTrashAlt, onClick: handleClick },
+  'TransparentIconButton': { icon: faTrashAlt, onClick: handleClick },
   'Checkbox': { label: 'Some option' }
 }
 
@@ -54,7 +57,7 @@ export default (props) => <StyledDiv>
   <StyledTable><tbody>
     <tr><th>Component</th>{propsCombinations.map((props, i) => <th key={i}>{renderProps(props)}</th>)}</tr>
     {components.map((Component, i) => <tr key={i}>
-      <td>{`<${Component.name}>`}</td>
+      <td>{`<${Component.name === 'TransparentIconButton' ? 'IconButton transparent' : Component.name} />`}</td>
       {propsCombinations.map((props, j) => <td key={j}>
         {React.createElement(Component, { ...defaultProps[Component.name], ...props }, defaultChildren[Component.name])}
       </td>)}

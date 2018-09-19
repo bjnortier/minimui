@@ -28,7 +28,7 @@ const StyledInput = styled.input`
 const Label = styled.span`
   padding-left: 2px;
   padding-right: 2px;
-  color: ${({ disabled, inProgress, error }) => (disabled || inProgress) ? '#999' : error ? 'red' : 'black'};
+  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
 `
 
 class Checkbox extends Component {
@@ -81,7 +81,7 @@ class Checkbox extends Component {
           />
         </CheckboxAdjust>
       </Decorator>
-      <Label {...{ inProgress, disabled, error }}>{label}</Label>
+      <Label {...{ inProgress, disabled }}>{label}</Label>
       {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
     </Outer>
   }
