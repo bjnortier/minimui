@@ -5,8 +5,11 @@ export default styled.table`
   > tbody > tr > td {
     height: 30px;
   }
-  td {
-    padding: 5px;
+  th {
+    text-align: left;
+  }
+  td, th {
+    padding: 10px;
   }
   > tbody > tr > td:nth-child(2) {
     padding-left: 20px;

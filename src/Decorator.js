@@ -11,7 +11,7 @@ export const Container = styled.div`
 `
 const FocusIconContainer = styled.div`
   position: absolute;
-  left: ${props => props.left ? props.left - 2 : -2}px;
+  left: ${props => props.left ? props.left - 7 : -7}px;
   bottom: ${props => props.bottom ? props.bottom + 7.5 : 7.5}px;
   font-size: 5px;
   z-index: 1;
@@ -20,7 +20,7 @@ const FocusIconContainer = styled.div`
 
 const ErrorIconContainer = styled.div`
   position: absolute;
-  left: ${props => props.left ? props.left - 2.5 : -2.5}px;
+  left: ${props => props.left ? props.left - 7.5 : -7.5}px;
   bottom: ${props => props.bottom ? props.bottom + 7.5 : 7.5}px;
   font-size: 9px;
   color: red;

@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import ValueComponent from './ValueComponent'
 import Decorator from './Decorator'
 import Spinner from './Spinner'
 
 const Outer = styled.div`
   display: inline-block;
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
+  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
   user-select: none;
 `
 
@@ -16,7 +18,7 @@ const CheckboxAdjust = styled.div`
   bottom: 1.5px;
 `
 
-const Input = styled.input`
+const StyledInput = styled.input`
   font-size: 16px;
   :focus {
     outline: none;
@@ -26,66 +28,34 @@ const Input = styled.input`
 
 const Label = styled.span`
   padding-left: 2px;
+  padding-right: 2px;
   color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
 `
 
-const SpinnerSpan = styled.span`
-  padding-left: 5px;
-  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
-`
-
-class Checkbox extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      on: props.on
-    }
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.on !== undefined) {
-      this.setState({ on: nextProps.on })
-    }
-  }
-
-  handleClick (event) {
-    const { disabled, inProgress, onChange } = this.props
-    if (disabled || inProgress) {
-      return
-    }
-    if (onChange) {
-      // State is managed outside of component (e.g. redux)
-      onChange(event, !this.state.on)
-    } else {
-      this.setState({ on: !this.state.on })
-    }
-  }
-
-  handleKeyUp (event) {
-    if (event.keyCode === 32) {
-      this.handleClick(event)
-    }
+class Checkbox extends ValueComponent {
+  handleChange (event) {
+    super.handleChange(event, !this.state.value)
   }
 
   render () {
     const { disabled, error, inProgress, label } = this.props
-    const { on } = this.state
+    const { value } = this.state
     return <Outer
       {...{ disabled, error, inProgress }}
-      onClick={this.handleClick.bind(this)}
+      onClick={this.handleChange.bind(this)}
     >
-      <Decorator error={error} bottom={-8} left={-6} >
+      <Decorator error={error} bottom={-8} >
         <CheckboxAdjust>
-          <Input
+          <StyledInput
             type='checkbox'
             disabled={disabled || inProgress}
-            checked={on}
-            onChange={this.handleClick.bind(this)}
+            checked={value}
+            onChange={this.handleChange.bind(this)}
           />
         </CheckboxAdjust>
       </Decorator>
       <Label {...{ inProgress, disabled }}>{label}</Label>
-      {inProgress ? <SpinnerSpan {...{ inProgress, disabled }}><Spinner /></SpinnerSpan> : null}
+      {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
     </Outer>
   }
 }
@@ -93,14 +63,14 @@ class Checkbox extends Component {
 Checkbox.propTypes = {
   onChange: PropTypes.func,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-  on: PropTypes.bool,
+  value: PropTypes.bool,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   inProgress: PropTypes.bool
 }
 
 Checkbox.defaultProps = {
-  on: false,
+  value: false,
   disabled: false,
   error: false,
   inProgress: false
