@@ -27,8 +27,11 @@ const renderProps = (props) =>
   ).join(' ')
 
 const StyledDiv = styled.div`
-  td:nth-child(2) {
+  td {
     background-color: #f5f5f5;
+  }
+  td:nth-child(1) {
+    background-color: inherit;
   }
 `
 
@@ -82,7 +85,6 @@ class Row extends Component {
   }
 }
 
-
 export default (props) => <StyledDiv>
   <StyledTable><tbody>
     <tr><th>JSX</th><th>Component</th><th>onChange(event, value)</th><th>ref.value</th></tr>
@@ -130,23 +132,23 @@ export default (props) => <StyledDiv>
     />
     <tr>
       <td>{`<TextButton label='Click me' />`}:</td>
-      <td><TextButton label='Click me' onClick={handleClick} /></td>
+      <td colSpan='3' ><TextButton label='Click me' onClick={handleClick} /></td>
     </tr>
     <tr>
       <td>{`<IconButton  />`}:</td>
-      <td><IconButton icon={faTrashAlt} onClick={handleClick} /></td>
+      <td colSpan='3' ><IconButton icon={faTrashAlt} onClick={handleClick} /></td>
     </tr>
     <tr>
       <td>{`<IconButton transparent icon={faTrashAlt} />`}:</td>
-      <td><IconButton transparent icon={faTrashAlt} onClick={handleClick} /></td>
+      <td colSpan='3' ><IconButton transparent icon={faTrashAlt} onClick={handleClick} /></td>
     </tr>
     <tr>
       <td>{`<Verified pass /> <Verified />`}</td>
-      <td><Verified pass /><HSpace /><Verified /></td>
+      <td colSpan='3' ><Verified pass /><HSpace /><Verified /></td>
     </tr>
     <tr>
       <td>Row of components</td>
-      <td>
+      <td colspan='3'>
         <TextButton label='Row' onClick={handleClick} />
         <HSpace />
         <Switch />
