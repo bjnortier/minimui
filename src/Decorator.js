@@ -55,6 +55,12 @@ class Decorator extends Component {
     this.setState({ focussed: false })
   }
 
+  componentDidUpdate () {
+    if (this.state.focussed) {
+      this.domNode.focus()
+    }
+  }
+
   render () {
     const { left, bottom } = this.props
     const bottomOffset = this.state.focussed && this.props.error ? 4 : 0
@@ -64,7 +70,7 @@ class Decorator extends Component {
       {React.cloneElement(
         this.props.children,
         {
-          ref: this.decoratedRef,
+          innerRef: domNode => { this.domNode = domNode },
           onFocus: this.handleFocus.bind(this),
           onBlur: this.handleBlur.bind(this)
         }
