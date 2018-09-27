@@ -8,7 +8,7 @@ import Spinner from './Spinner'
 
 const Outer = styled.div`
   display: inline-block;
-  cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
+  cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'auto'};
   color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
   user-select: none;
 `
@@ -18,7 +18,7 @@ const StyledInput = styled.input`
   border-bottom: solid 1px ${props => props.error ? '#f00' : '#ccc'};
   padding: 7px;
   width: ${props => props.width - 16}px;
-  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'auto'};
   color: ${({ disabled }) => disabled ? '#999' : 'black'};
   &:focus {
     outline: 0

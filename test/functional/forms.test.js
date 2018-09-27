@@ -148,7 +148,7 @@ export default (props) => <StyledDiv>
     </tr>
     <tr>
       <td>Row of components</td>
-      <td colspan='3'>
+      <td colSpan='3'>
         <TextButton label='Row' onClick={handleClick} />
         <HSpace />
         <Switch />
