@@ -13,17 +13,13 @@ const Outer = styled.div`
   user-select: none;
 `
 
-const CheckboxAdjust = styled.div`
-  position: relative;
-  bottom: 1.5px;
-`
-
 const StyledInput = styled.input`
   font-size: 16px;
   :focus {
     outline: none;
   }
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+  vertical-align: text-top;
 `
 
 const Label = styled.span`
@@ -45,14 +41,12 @@ class Checkbox extends ValueComponent {
       onClick={this.handleChange.bind(this)}
     >
       <Decorator error={error} bottom={-8} >
-        <CheckboxAdjust>
-          <StyledInput
-            type='checkbox'
-            disabled={disabled || inProgress}
-            checked={value}
-            onChange={this.handleChange.bind(this)}
-          />
-        </CheckboxAdjust>
+        <StyledInput
+          type='checkbox'
+          disabled={disabled || inProgress}
+          checked={value}
+          onChange={this.handleChange.bind(this)}
+        />
       </Decorator>
       <Label {...{ inProgress, disabled }}>{label}</Label>
       {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
