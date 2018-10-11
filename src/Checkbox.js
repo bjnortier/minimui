@@ -9,7 +9,7 @@ import Spinner from './Spinner'
 const Outer = styled.div`
   display: inline-block;
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
-  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
+  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'inherit'};
   user-select: none;
 `
 
@@ -25,7 +25,7 @@ const StyledInput = styled.input`
 const Label = styled.span`
   padding-left: 2px;
   padding-right: 2px;
-  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
+  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'inherit'};
 `
 
 class Checkbox extends ValueComponent {
