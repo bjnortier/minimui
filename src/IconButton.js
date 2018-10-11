@@ -11,7 +11,7 @@ const StyledButton = styled.button`
   padding: 7px 8px;
   text-align: center;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
-  color: ${({ disabled }) => disabled ? '#999' : 'black'};
+  color: ${({ disabled }) => disabled ? '#999' : 'inherit'};
   border: solid 1px ${({ transparent }) => transparent ? 'transparent' : '#ccc'};
   background-color: ${({ transparent }) => transparent ? 'transparent' : 'white'};
   :focus {
