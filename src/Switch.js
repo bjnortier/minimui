@@ -25,11 +25,11 @@ const Knob = styled.div`
   display: inline-block;
   position: absolute;
   left: ${props => props.value ? 19 : -1}px;
-  top: 0;
-  width: 28px;
-  height: 28px;
+  top: -1px;
+  width: 30px;
+  height: 30px;
   border: solid 1px ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : '#444'};
-  border-radius: 15px;
+  border-radius: 16px;
   background-color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#e6e6e6' : '#fff'};
 `
 
