@@ -1,42 +1,25 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes, faCircle } from '@fortawesome/free-solid-svg-icons'
 
-export const Container = styled.div`
+export const Container1 = styled.div`
   display: inline-block;
   position: relative;
-}
-`
-const FocusIconContainer = styled.div`
-  position: absolute;
-  left: ${props => props.left ? props.left - 7 : -7}px;
-  bottom: ${props => props.bottom ? props.bottom + 7.5 : 7.5}px;
-  font-size: 5px;
-  z-index: 1;
+  left: 2px;
+  border-bottom: 2px dotted ${({ error }) => error ? 'red' : 'transparent'};
+  padding-bottom: 2px;
+  margin-bottom: -2px;
 }
 `
 
-const ErrorIconContainer = styled.div`
-  position: absolute;
-  left: ${props => props.left ? props.left - 7.5 : -7.5}px;
-  bottom: ${props => props.bottom ? props.bottom + 7.5 : 7.5}px;
-  font-size: 9px;
-  color: red;
-  z-index: 1;
-}
+export const Container2 = styled.div`
+  display: inline-block;
+  position: relative;
+  border-bottom: 2px dotted ${({ error }) => error ? 'red' : 'transparent'};
+  padding-bottom: 2px;
+  margin-bottom: -3px;
+  left: 2px;
 `
-
-const FocusIcon = (props) => <FocusIconContainer left={props.left} bottom={props.bottom} >
-  <FontAwesomeIcon icon={faCircle} />
-</FocusIconContainer>
-
-const ErrorIcon = (props) => {
-  return <ErrorIconContainer left={props.left} bottom={props.bottom} >
-    <FontAwesomeIcon icon={faTimes} />
-  </ErrorIconContainer>
-}
 
 class Decorator extends Component {
   constructor (props, context) {
@@ -62,32 +45,24 @@ class Decorator extends Component {
   }
 
   render () {
-    const { left, bottom } = this.props
-    const bottomOffset = this.state.focussed && this.props.error ? 4 : 0
-    return <Container>
-      {this.props.error ? <ErrorIcon left={left} bottom={bottom + bottomOffset} /> : null}
-      {this.state.focussed ? <FocusIcon left={left} bottom={bottom - bottomOffset} /> : null}
-      {React.cloneElement(
-        this.props.children,
-        {
-          innerRef: domNode => { this.domNode = domNode },
-          onFocus: this.handleFocus.bind(this),
-          onBlur: this.handleBlur.bind(this)
-        }
-      )}
-    </Container>
+    const { error } = this.props
+    return <Container1 error={error} >
+      <Container2 error={error} >
+        {React.cloneElement(
+          this.props.children,
+          {
+            innerRef: domNode => { this.domNode = domNode },
+            onFocus: this.handleFocus.bind(this),
+            onBlur: this.handleBlur.bind(this)
+          }
+        )}
+      </Container2>
+    </Container1>
   }
 }
 
 Decorator.propTypes = {
-  children: PropTypes.object.isRequired,
-  left: PropTypes.number,
-  bottom: PropTypes.number
-}
-
-Decorator.defaultProps = {
-  bottom: 0,
-  left: 0
+  children: PropTypes.object.isRequired
 }
 
 export default Decorator

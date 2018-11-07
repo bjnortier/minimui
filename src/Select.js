@@ -21,6 +21,8 @@ const StyledSelect = styled.select`
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   :focus {
     outline: none;
+    border-color: #5b9dd6;
+    box-shadow: 0 0 0px 2px #93cdff;
   }
 `
 
@@ -33,7 +35,7 @@ class Select extends ValueComponent {
     const { disabled, error, inProgress } = this.props
     const { value } = this.state
     return <Outer {...{ disabled, error, inProgress }}>
-      <Decorator error={error} bottom={-4}>
+      <Decorator error={error} >
         <StyledSelect
           value={value}
           disabled={disabled || inProgress}

@@ -16,6 +16,8 @@ const StyledButton = styled.button`
   background-color: ${({ transparent }) => transparent ? 'transparent' : 'white'};
   :focus {
     outline: none;
+    border-color: #5b9dd6;
+    box-shadow: 0 0 0px 2px #93cdff;
   }
 `
 
