@@ -9,6 +9,8 @@ export const Container1 = styled.div`
   border-bottom: 2px dotted ${({ error }) => error ? 'red' : 'transparent'};
   padding-bottom: 2px;
   margin-bottom: -2px;
+  margin-right: 2px;
+  margin-left: -2px;
 }
 `
 
@@ -18,7 +20,9 @@ export const Container2 = styled.div`
   border-bottom: 2px dotted ${({ error }) => error ? 'red' : 'transparent'};
   padding-bottom: 2px;
   margin-bottom: -3px;
-  left: 2px;
+  margin-right: 4px;
+  margin-left: -2px;
+  left: 3px;
 `
 
 class Decorator extends Component {
