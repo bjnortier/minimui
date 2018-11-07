@@ -19,6 +19,8 @@ const Outer = styled.div`
   background-color: ${({ disabled, inProgress, value }) => disabled ? 'transparent' : value ? '#3b99fc' : '#fff'}
   :focus {
     outline: none;
+    border-color: #5b9dd6;
+    box-shadow: 0 0 0px 2px #93cdff;
   }
 `
 const Knob = styled.div`
@@ -26,9 +28,9 @@ const Knob = styled.div`
   position: absolute;
   left: ${props => props.value ? 19 : -1}px;
   top: -1px;
-  width: 30px;
-  height: 30px;
-  border: solid 1px ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : '#444'};
+  width: 28px;
+  height: 28px;
+  border: solid 2px ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : '#666'};
   border-radius: 16px;
   background-color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#e6e6e6' : '#fff'};
 `

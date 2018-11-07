@@ -14,15 +14,16 @@ const Outer = styled.div`
 `
 
 const StyledInput = styled.input`
+  border-radius: 5px;
   border: solid 1px #ccc;
-  border-bottom: solid 1px ${props => props.error ? '#f00' : '#ccc'};
   padding: 7px;
   width: ${props => props.width - 16}px;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'auto'};
   color: ${({ disabled }) => disabled ? '#999' : 'black'};
   &:focus {
-    outline: 0
-    border-bottom: solid 1px #484848;
+    outline: none;
+    border-color: #5b9dd6;
+    box-shadow: 0 0 0px 2px #93cdff;
   }
 `
 
