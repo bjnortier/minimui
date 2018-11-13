@@ -27,12 +27,11 @@ const Label = styled.span`
 
 class Checkbox extends ValueComponent {
   handleChange (event) {
-    super.handleChange(event, !this.state.value)
+    super.handleChange(event, !this.props.value)
   }
 
   render () {
-    const { disabled, error, inProgress, label } = this.props
-    const { value } = this.state
+    const { value, disabled, error, inProgress, label } = this.props
     return <Outer
       {...{ disabled, error, inProgress }}
       onClick={this.handleChange.bind(this)}
@@ -52,9 +51,9 @@ class Checkbox extends ValueComponent {
 }
 
 Checkbox.propTypes = {
-  onChange: PropTypes.func,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-  value: PropTypes.bool,
+  value: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   inProgress: PropTypes.bool

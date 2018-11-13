@@ -51,28 +51,19 @@ class Row extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      onChangeValue: undefined,
-      propertyValue: undefined
+      onChangeValue: undefined
     }
-    this.ref = React.createRef()
   }
 
   handleChange (event, value) {
     this.setState({ onChangeValue: value })
   }
 
-  componentDidUpdate () {
-    if (this.ref.current.value !== this.state.propertyValue) {
-      this.setState({ propertyValue: this.ref.current.value })
-    }
-  }
-
   render () {
     const { Component, componentProps, componentChildren } = this.props
-    const { onChangeValue, propertyValue } = this.state
+    const { onChangeValue } = this.state
     const element = React.createElement(Component, {
       ...componentProps,
-      ref: this.ref,
       onChange: this.handleChange.bind(this),
       value: onChangeValue !== undefined ? onChangeValue : componentProps.value
     }, componentChildren)
@@ -80,21 +71,22 @@ class Row extends Component {
       <td>{`<${Component.name} ${renderProps(componentProps)} />`}:</td>
       <td>{element}</td>
       <td>{renderValue(onChangeValue)}</td>
-      <td>{renderValue(propertyValue)}</td>
     </tr>
   }
 }
 
 export default (props) => <StyledDiv>
   <StyledTable><tbody>
-    <tr><th>JSX</th><th>Component</th><th>onChange(event, value)</th><th>ref.value</th></tr>
+    <tr><th>JSX</th><th>Component</th><th>onChange(event, value)</th></tr>
     <Row
       Component={Input}
       componentProps={{ width: 120 }}
+      value=''
     />
     <Row
       Component={Input}
       componentProps={{ placeholder: 'username' }}
+      value=''
     />
     <Row
       Component={Checkbox}
@@ -111,15 +103,6 @@ export default (props) => <StyledDiv>
     <Row
       Component={Switch}
       componentProps={{ value: true }}
-    />
-    <Row
-      Component={Select}
-      componentProps={{}}
-      componentChildren={[
-        <option key={0}>Cape Town</option>,
-        <option key={1}>Toronto</option>,
-        <option key={2}>London</option>
-      ]}
     />
     <Row
       Component={Select}
@@ -151,13 +134,13 @@ export default (props) => <StyledDiv>
       <td colSpan='3'>
         <TextButton label='Row' onClick={handleClick} />
         <HSpace />
-        <Switch />
+        <Switch onChange={() => {}} />
         <HSpace />
-        <Checkbox label='Option B' />
+        <Checkbox label='Option B' onChange={() => {}} />
         <HSpace />
-        <Input />
+        <Input value='' onChange={() => {}} />
         <HSpace />
-        <Select><option>A</option></Select>
+        <Select onChange={() => {}} value='A'><option>A</option></Select>
         <HSpace />
         <Verified />
         <HSpace />

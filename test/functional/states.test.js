@@ -36,11 +36,13 @@ const propsCombinations = [
 ]
 
 const defaultProps = {
-  'Input': { value: 'Foo bar' },
+  'Input': { value: 'Foo bar', onChange: () => {} },
   'TextButton': { label: 'Click me', onClick: handleClick },
   'IconButton': { icon: faTrashAlt, onClick: handleClick },
   'TransparentIconButton': { icon: faTrashAlt, onClick: handleClick },
-  'Checkbox': { label: 'Some option' }
+  'Checkbox': { label: 'Some option', onChange: () => {} },
+  'Select': { label: 'Some option', onChange: () => {}, value: 'BBBB' },
+  'Switch': { label: 'Some option', onChange: () => {} }
 }
 
 const defaultChildren = {

@@ -28,17 +28,12 @@ const StyledInput = styled.input`
 `
 
 class Input extends ValueComponent {
-  constructor (props) {
-    super(props, '')
-  }
-
   handleChange (event) {
     super.handleChange(event, event.target.value)
   }
 
   render () {
-    const { name, type, placeholder, disabled, inProgress, onKeyUp, error } = this.props
-    const { value } = this.state
+    const { name, type, value, placeholder, disabled, inProgress, onKeyUp, error } = this.props
     return <Outer
       {...{ disabled, error, inProgress }}
     >
@@ -60,8 +55,8 @@ Input.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   onKeyUp: PropTypes.func,
   error: PropTypes.bool,
   inProgress: PropTypes.bool
