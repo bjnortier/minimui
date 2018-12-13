@@ -50,7 +50,7 @@ const defaultProps = {
 }
 
 const defaultChildren = {
-  'Select': <React.Fragment><option>AAAA</option><option>BBBB</option><option>CCCC</option></React.Fragment>
+  'Select': <><option>AAAA</option><option>BBBB</option><option>CCCC</option></>
 }
 
 const renderProps = (props) => <div>
