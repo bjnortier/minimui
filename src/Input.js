@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import ValueComponent from './ValueComponent'
-import Decorator from './Decorator'
+import ErrorDecorator from './ErrorDecorator'
 import Spinner from './Spinner'
 
 const Outer = styled.div`
@@ -14,8 +14,9 @@ const Outer = styled.div`
 `
 
 const StyledInput = styled.input`
-  border-radius: 5px;
+  border-radius: 4px;
   border: solid 1px #ccc;
+  box-shadow: inset 0 1px 2px 0px #e0e0e0;
   padding: 7px;
   width: ${props => props.width - 16}px;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'auto'};
@@ -28,28 +29,23 @@ const StyledInput = styled.input`
 `
 
 class Input extends ValueComponent {
-  constructor (props) {
-    super(props, '')
-  }
-
   handleChange (event) {
     super.handleChange(event, event.target.value)
   }
 
   render () {
-    const { name, type, placeholder, disabled, inProgress, onKeyUp, error } = this.props
-    const { value } = this.state
+    const { name, type, value, placeholder, disabled, inProgress, onKeyUp, error } = this.props
     return <Outer
       {...{ disabled, error, inProgress }}
     >
-      <Decorator error={error}>
+      <ErrorDecorator error={error}>
         <StyledInput {...this.props}
           {...{ name, value, placeholder, onKeyUp }}
           disabled={disabled || inProgress}
           onChange={this.handleChange.bind(this)}
           type={type || 'text'}
         />
-      </Decorator>
+      </ErrorDecorator>
       {inProgress ? <Spinner padLeft /> : null}
     </Outer>
   }
@@ -60,15 +56,15 @@ Input.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   onKeyUp: PropTypes.func,
   error: PropTypes.bool,
   inProgress: PropTypes.bool
 }
 
 Input.defaultProps = {
-  width: 80,
+  width: 96,
   value: '',
   disabled: false,
   error: false,

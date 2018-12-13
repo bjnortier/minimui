@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import ValueComponent from './ValueComponent'
-import Decorator from './Decorator'
+import ErrorDecorator from './ErrorDecorator'
 import Spinner from './Spinner'
 
 const Outer = styled.div`
@@ -27,24 +27,23 @@ const Label = styled.span`
 
 class Checkbox extends ValueComponent {
   handleChange (event) {
-    super.handleChange(event, !this.state.value)
+    super.handleChange(event, !this.props.value)
   }
 
   render () {
-    const { disabled, error, inProgress, label } = this.props
-    const { value } = this.state
+    const { value, disabled, error, inProgress, label } = this.props
     return <Outer
       {...{ disabled, error, inProgress }}
       onClick={this.handleChange.bind(this)}
     >
-      <Decorator error={error} bottom={-8} >
+      <ErrorDecorator error={error} bottom={-8} >
         <StyledInput
           type='checkbox'
           disabled={disabled || inProgress}
           checked={value}
           onChange={this.handleChange.bind(this)}
         />
-      </Decorator>
+      </ErrorDecorator>
       <Label {...{ inProgress, disabled }}>{label}</Label>
       {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
     </Outer>
@@ -52,9 +51,9 @@ class Checkbox extends ValueComponent {
 }
 
 Checkbox.propTypes = {
-  onChange: PropTypes.func,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-  value: PropTypes.bool,
+  value: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   inProgress: PropTypes.bool

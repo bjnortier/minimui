@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import ValueComponent from './ValueComponent'
-import Decorator from './Decorator'
+import ErrorDecorator from './ErrorDecorator'
 import Spinner from './Spinner'
 
 const Outer = styled.div`
   display: inline-block;
-  width: 48px;
-  height: 30px;
+  width: 38px;
+  height: 22px;
   border: solid 1px ${({ disabled, inProgress, value }) => (value && !disabled) ? '#2e70b5' : '#ccc'};
-  border-radius: 16px;
+  border-radius: 13px;
   vertical-align: middle;
   position: relative;
   top: -1px;
@@ -26,24 +26,24 @@ const Outer = styled.div`
 const Knob = styled.div`
   display: inline-block;
   position: absolute;
-  left: ${props => props.value ? 19 : -1}px;
-  top: -1px;
-  width: 28px;
-  height: 28px;
+  left: ${props => props.value ? 16 : 0}px;
+  top: 0px;
+  width: 18px;
+  height: 18px;
   border: solid 2px ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : '#666'};
-  border-radius: 16px;
+  border-radius: 50%;
   background-color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#e6e6e6' : '#fff'};
 `
 
 const SpinnerPad = styled.div`
-  padding-left: 7px;
-  padding-top: 6px;
+  padding-left: 2px;
+  padding-top: 1px;
   color: #999;
 `
 
 class Switch extends ValueComponent {
   handleChange (event) {
-    super.handleChange(event, !this.state.value)
+    super.handleChange(event, !this.props.value)
   }
 
   /**
@@ -62,9 +62,8 @@ class Switch extends ValueComponent {
   }
 
   render () {
-    const { disabled, error, inProgress } = this.props
-    const { value } = this.state
-    return <Decorator error={error}>
+    const { value, disabled, error, inProgress } = this.props
+    return <ErrorDecorator error={error}>
       <Outer
         tabIndex={disabled || inProgress ? null : 0}
         disabled={disabled}
@@ -78,13 +77,13 @@ class Switch extends ValueComponent {
           {inProgress ? <SpinnerPad><Spinner /></SpinnerPad> : null}
         </Knob>
       </Outer>
-    </Decorator>
+    </ErrorDecorator>
   }
 }
 
 Switch.propTypes = {
-  onChange: PropTypes.func,
-  value: PropTypes.bool,
+  value: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   inProgress: PropTypes.bool
