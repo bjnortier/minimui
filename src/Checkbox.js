@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import ValueComponent from './ValueComponent'
-import Decorator from './Decorator'
+import ErrorDecorator from './ErrorDecorator'
 import Spinner from './Spinner'
 
 const Outer = styled.div`
@@ -36,14 +36,14 @@ class Checkbox extends ValueComponent {
       {...{ disabled, error, inProgress }}
       onClick={this.handleChange.bind(this)}
     >
-      <Decorator error={error} bottom={-8} >
+      <ErrorDecorator error={error} bottom={-8} >
         <StyledInput
           type='checkbox'
           disabled={disabled || inProgress}
           checked={value}
           onChange={this.handleChange.bind(this)}
         />
-      </Decorator>
+      </ErrorDecorator>
       <Label {...{ inProgress, disabled }}>{label}</Label>
       {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
     </Outer>

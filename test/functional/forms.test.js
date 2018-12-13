@@ -11,8 +11,7 @@ import {
   IconButton,
   Switch,
   Checkbox,
-  Select,
-  Verified
+  Select
 } from '../../src'
 
 import StyledTable from './StyledTable'
@@ -122,14 +121,6 @@ export default (props) => <StyledDiv>
       <td colSpan='3' ><IconButton icon={faTrashAlt} onClick={handleClick} /></td>
     </tr>
     <tr>
-      <td>{`<IconButton transparent icon={faTrashAlt} />`}:</td>
-      <td colSpan='3' ><IconButton transparent icon={faTrashAlt} onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>{`<Verified pass /> <Verified />`}</td>
-      <td colSpan='3' ><Verified pass /><HSpace /><Verified /></td>
-    </tr>
-    <tr>
       <td>Row of components</td>
       <td colSpan='3'>
         <TextButton label='Row' onClick={handleClick} />
@@ -141,8 +132,6 @@ export default (props) => <StyledDiv>
         <Input value='' onChange={() => {}} />
         <HSpace />
         <Select onChange={() => {}} value='A'><option>A</option></Select>
-        <HSpace />
-        <Verified />
         <HSpace />
         <IconButton icon={faClipboard} onClick={handleClick} />
         <HSpace />

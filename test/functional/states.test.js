@@ -17,22 +17,25 @@ const handleClick = (event) => {
   console.log(event)
 }
 
+const handleChange = (event) => {
+  console.log(event)
+}
+
 const StyledDiv = styled.div`
   td, th {
     background-color: #f5f5f5;
   }
 `
 
-const TransparentIconButton = (props) => <IconButton transparent {...props} />
+const Switch2 = (props) => <Switch value {...props} />
 
-const components = [Input, TextButton, IconButton, TransparentIconButton, Switch, Checkbox, Select]
+const components = [Input, TextButton, IconButton, Switch, Switch2, Checkbox, Select]
 const propsCombinations = [
   {},
   { disabled: true },
   { error: true },
   { disabled: true, error: true },
-  { inProgress: true },
-  { inProgress: true, on: true }
+  { inProgress: true }
 ]
 
 const defaultProps = {
@@ -40,9 +43,10 @@ const defaultProps = {
   'TextButton': { label: 'Click me', onClick: handleClick },
   'IconButton': { icon: faTrashAlt, onClick: handleClick },
   'TransparentIconButton': { icon: faTrashAlt, onClick: handleClick },
-  'Checkbox': { label: 'Some option', onChange: () => {} },
-  'Select': { label: 'Some option', onChange: () => {}, value: 'BBBB' },
-  'Switch': { label: 'Some option', onChange: () => {} }
+  'Checkbox': { label: 'Some option', onChange: handleChange },
+  'Select': { label: 'Some option', onChange: handleChange, value: 'BBBB' },
+  'Switch': { onChange: handleChange },
+  'Switch2': { onChange: handleChange }
 }
 
 const defaultChildren = {
@@ -59,7 +63,7 @@ export default (props) => <StyledDiv>
   <StyledTable><tbody>
     <tr><th>Component</th>{propsCombinations.map((props, i) => <th key={i}>{renderProps(props)}</th>)}</tr>
     {components.map((Component, i) => <tr key={i}>
-      <td>{`<${Component.name === 'TransparentIconButton' ? 'IconButton transparent' : Component.name} />`}</td>
+      <td>{`<${Component.name} />`}</td>
       {propsCombinations.map((props, j) => <td key={j}>
         {React.createElement(Component, { ...defaultProps[Component.name], ...props }, defaultChildren[Component.name])}
       </td>)}

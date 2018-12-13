@@ -3,15 +3,14 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Spinner from './Spinner'
-import Decorator from './Decorator'
+import ErrorDecorator from './ErrorDecorator'
 
 const StyledButton = styled.button`
-  border-radius: 16px;
-  padding: 7px 10px;
+  border-radius: 4px;
+  padding: 7px 12px;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
-  color: ${({ disabled }) => disabled ? '#999' : 'black'};
-  border: solid 1px #ccc;
-  background-color: white;
+  color: ${({ disabled }) => disabled ? '#61779e' : 'white'};
+  background-color: #113577;
   :focus {
     outline: none;
     border-color: #5b9dd6;
@@ -20,8 +19,8 @@ const StyledButton = styled.button`
 `
 
 const SpinnerSpan = styled.span`
-  padding-left: 5px;
-  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'black'};
+  padding-left: 4px;
+  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#61779e' : 'black'};
 `
 
 class TextButton extends Component {
@@ -32,7 +31,7 @@ class TextButton extends Component {
         onClick(event)
       }
     }
-    return <Decorator error={error}>
+    return <ErrorDecorator error={error}>
       <StyledButton
         error={error}
         disabled={disabled || inProgress}
@@ -42,7 +41,7 @@ class TextButton extends Component {
         {label}
         {inProgress ? <SpinnerSpan {...{ inProgress, disabled }}><Spinner /></SpinnerSpan> : null}
       </StyledButton>
-    </Decorator>
+    </ErrorDecorator>
   }
 }
 

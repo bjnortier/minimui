@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import ValueComponent from './ValueComponent'
-import Decorator from './Decorator'
+import ErrorDecorator from './ErrorDecorator'
 import Spinner from './Spinner'
 
 const Outer = styled.div`
@@ -34,7 +34,7 @@ class Select extends ValueComponent {
   render () {
     const { value, disabled, error, inProgress } = this.props
     return <Outer {...{ disabled, error, inProgress }}>
-      <Decorator error={error} >
+      <ErrorDecorator error={error} >
         <StyledSelect
           value={value}
           disabled={disabled || inProgress}
@@ -42,7 +42,7 @@ class Select extends ValueComponent {
         >
           {this.props.children}
         </StyledSelect>
-      </Decorator>
+      </ErrorDecorator>
       {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
     </Outer>
   }

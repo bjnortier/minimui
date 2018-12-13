@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 
-import Decorator from './Decorator'
+import ErrorDecorator from './ErrorDecorator'
 
 const StyledButton = styled.button`
-  border-radius: 16px;
+  border-radius: 4px;
   width: 32px;
   padding: 7px 8px;
   text-align: center;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
-  color: ${({ disabled }) => disabled ? '#999' : 'inherit'};
-  border: solid 1px ${({ transparent }) => transparent ? 'transparent' : '#ccc'};
-  background-color: ${({ transparent }) => transparent ? 'transparent' : 'white'};
+  color: ${({ disabled }) => disabled ? '#61779e' : 'white'};
+  background-color: #113577;
   :focus {
     outline: none;
     border-color: #5b9dd6;
@@ -23,21 +23,23 @@ const StyledButton = styled.button`
 
 class IconButton extends Component {
   render () {
-    const { icon, inProgress, error, disabled, transparent, onClick } = this.props
+    const { icon, inProgress, error, disabled, onClick } = this.props
     const onClickIfAllowed = (event) => {
       if (!disabled && !inProgress) {
         onClick(event)
       }
     }
-    return <Decorator error={error} left={transparent ? 6 : 0}>
+    return <ErrorDecorator error={error} left={0}>
       <StyledButton
-        {...{ error, transparent, inProgress }}
+        {...{ error, inProgress }}
         disabled={disabled || inProgress}
         onClick={onClickIfAllowed}
       >
-        <FontAwesomeIcon icon={icon} spin={inProgress} />
+        {inProgress
+          ? <FontAwesomeIcon icon={faCircleNotch} spin={inProgress} />
+          : <FontAwesomeIcon icon={icon} />}
       </StyledButton>
-    </Decorator>
+    </ErrorDecorator>
   }
 }
 
@@ -45,7 +47,6 @@ IconButton.propTypes = {
   icon: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
-  transparent: PropTypes.bool,
   error: PropTypes.bool,
   inProgress: PropTypes.bool
 }
