@@ -8,6 +8,7 @@ import ErrorDecorator from './ErrorDecorator'
 
 const StyledButton = styled.button`
   border-radius: 4px;
+  border: none;
   width: 32px;
   padding: 7px 8px;
   text-align: center;
