@@ -8,7 +8,7 @@
     "test:functional": "cd test/functional && webpack-dev-server",
     "test": "npm run lint",
     "compile": "babel --optional runtime -d lib/ src/",
-    "prepublishOnly": "rimraf lib/ && npm run compile"
+    "prepublishOnly": "npm audit && rimraf lib/ && npm run compile"
   },
   "repository": {
     "type": "git",
