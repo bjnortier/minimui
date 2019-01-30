@@ -1,11 +1,11 @@
 import React from 'react'
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import {
   Input,
-  TextButton,
-  IconButton,
+  Button,
   Switch,
   Checkbox,
   Select
@@ -27,9 +27,11 @@ const StyledDiv = styled.div`
   }
 `
 
+const IconButton = (props) => <Button secondary {...props} />
+const SecondaryButton = (props) => <Button secondary {...props} />
 const Switch2 = (props) => <Switch value {...props} />
 
-const components = [Input, TextButton, IconButton, Switch, Switch2, Checkbox, Select]
+const components = [Input, Button, SecondaryButton, IconButton, Switch, Switch2, Checkbox, Select]
 const propsCombinations = [
   {},
   { disabled: true },
@@ -40,9 +42,9 @@ const propsCombinations = [
 
 const defaultProps = {
   'Input': { value: 'Foo bar', onChange: () => {} },
-  'TextButton': { label: 'Click me', onClick: handleClick },
-  'IconButton': { icon: faTrashAlt, onClick: handleClick },
-  'TransparentIconButton': { icon: faTrashAlt, onClick: handleClick },
+  'Button': { label: 'Click me', onClick: handleClick },
+  'IconButton': { label: <FontAwesomeIcon icon={faTrashAlt} />, onClick: handleClick },
+  'SecondaryButton': { label: 'Click me', onClick: handleClick, secondary: true },
   'Checkbox': { label: 'Some option', onChange: handleChange },
   'Select': { label: 'Some option', onChange: handleChange, value: 'BBBB' },
   'Switch': { onChange: handleChange },

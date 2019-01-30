@@ -8,14 +8,14 @@ import HSpace from '../../src/HSpace'
 
 import Forms from './forms.test'
 import States from './states.test'
-import Dialogs from './dialogs.test'
+import Panels from './panels.test'
 
 const Nav = () => <div>
   <Link to={'/forms'}>Forms</Link>
   <HSpace />
   <Link to={'/states'}>States</Link>
   <HSpace />
-  <Link to={'/dialogs'}>Dialogs</Link>
+  <Link to={'/panels'}>Panels</Link>
 </div>
 
 injectGlobal`
@@ -31,7 +31,7 @@ render(<HashRouter>
     <Switch>
       <Route exact path='/forms' component={Forms} />
       <Route exact path='/states' component={States} />
-      <Route exact path='/dialogs' component={Dialogs} />
+      <Route exact path='/panels' component={Panels} />
     </Switch>
   </div>
 </HashRouter>, document.getElementById('contents'))

@@ -7,8 +7,7 @@ import styled from 'styled-components'
 import {
   HSpace,
   Input,
-  TextButton,
-  IconButton,
+  Button,
   Switch,
   Checkbox,
   Select
@@ -113,17 +112,17 @@ export default (props) => <StyledDiv>
       ]}
     />
     <tr>
-      <td>{`<TextButton label='Click me' />`}:</td>
-      <td colSpan='3' ><TextButton label='Click me' onClick={handleClick} /></td>
+      <td>{`<Button label='Click me' />`}:</td>
+      <td colSpan='3' ><Button label='Click me' onClick={handleClick} /></td>
     </tr>
     <tr>
-      <td>{`<IconButton  />`}:</td>
-      <td colSpan='3' ><IconButton icon={faTrashAlt} onClick={handleClick} /></td>
+      <td>{`<Button label={<FontAwesomeIcon icon={faTrashAlt} />} />`}:</td>
+      <td colSpan='3' ><Button label={<FontAwesomeIcon icon={faTrashAlt} />} onClick={handleClick} /></td>
     </tr>
     <tr>
       <td>Row of components</td>
       <td colSpan='3'>
-        <TextButton label='Row' onClick={handleClick} />
+        <Button label='Row' onClick={handleClick} />
         <HSpace />
         <Switch onChange={() => {}} />
         <HSpace />
@@ -133,9 +132,9 @@ export default (props) => <StyledDiv>
         <HSpace />
         <Select onChange={() => {}} value='A'><option>A</option></Select>
         <HSpace />
-        <IconButton icon={faClipboard} onClick={handleClick} />
+        <Button label={<FontAwesomeIcon icon={faClipboard} />} onClick={handleClick} />
         <HSpace />
-        <IconButton icon={faTrashAlt} onClick={handleClick} />
+        <Button label={<FontAwesomeIcon icon={faTrashAlt} />} onClick={handleClick} />
       </td>
     </tr>
   </tbody></StyledTable>

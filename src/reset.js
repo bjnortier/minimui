@@ -3,31 +3,29 @@ import { injectGlobal } from 'styled-components'
 
 export default () => injectGlobal`
   ${styledNormalize}
-  @import url('https://rsms.me/inter/inter-ui.css');
-  html { font-family: 'Inter UI', sans-serif; }
-  @supports (font-variation-settings: normal) {
-    html { font-family: 'Inter UI var alt', sans-serif; }
-  }
+  @import url('https://fonts.googleapis.com/css?family=Barlow+Condensed:300,400,700');
+  @import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300,400,700');
+  @import url('https://fonts.googleapis.com/css?family=Barlow:200,300,400,700');
+  html { font-family: 'Barlow', sans-serif; }
   body {
-    background-color: #e4e4e4;
-    font-family: 'Inter UI', Serif;
+    background-color: #f7f7f7;
+    font-family: 'Barlow', sans-serif;
     font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 16px;
     color: black;
   }
   h1, h2, h3 {
-    font-family: 'Inter UI', Serif;
+    font-family: 'Barlow Semi Condensed', sans-serif;
     font-weight: 400;
   }
   h1 {
-    font-size: 20px;
+    font-size: 54px;
   }
   h2 {
-    font-size: 18px;
+    font-size: 36px;
   }
   h3 {
-    font-size: 16px;
+    font-size: 24px;
   }
   a:visited {
     color: black;

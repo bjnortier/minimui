@@ -36,8 +36,7 @@ const Knob = styled.div`
 `
 
 const SpinnerPad = styled.div`
-  padding-left: 2px;
-  padding-top: 1px;
+  padding-left: 1px;
   color: #999;
 `
 
