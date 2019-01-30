@@ -1,25 +1,29 @@
 import React from 'react'
 import { Route, HashRouter, Switch, Link } from 'react-router-dom'
 import { render } from 'react-dom'
+import styled from 'styled-components'
 
-import reset from '../../src/reset'
-import HSpace from '../../src/HSpace'
+import { Reset, HSpace } from '../../src'
 
 import Forms from './forms.test'
 import States from './states.test'
 import Panels from './panels.test'
 
-const Nav = () => <div>
+const StyledNav = styled.div`
+  padding: 8px;
+`
+
+const Nav = () => <StyledNav>
   <Link to={'/forms'}>Forms</Link>
   <HSpace />
   <Link to={'/states'}>States</Link>
   <HSpace />
   <Link to={'/panels'}>Panels</Link>
-</div>
+</StyledNav>
 
-reset()
 render(<HashRouter>
   <div>
+    <Reset />
     <Nav />
     <Switch>
       <Route exact path='/forms' component={Forms} />

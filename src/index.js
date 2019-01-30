@@ -1,7 +1,7 @@
 import HSpace from './HSpace'
 import Button from './Button'
 import Input from './Input'
-import reset from './reset'
+import Reset from './Reset'
 import Spinner from './Spinner'
 import Switch from './Switch'
 import VSpace from './VSpace'
@@ -10,7 +10,7 @@ import Select from './Select'
 import Panel from './Panel'
 
 export {
-  reset,
+  Reset,
   Spinner,
   HSpace,
   VSpace,

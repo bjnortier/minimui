@@ -42,14 +42,6 @@ module.exports = {
           fs.realpathSync(path.resolve(__dirname)),
           fs.realpathSync(path.resolve(__dirname, '..', '..', 'src'))
         ]
-      },
-      {
-        test: /\.woff$/,
-        use: [
-          {
-            loader: 'file-loader'
-          }
-        ]
       }
     ]
   }

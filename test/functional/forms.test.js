@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { faClipboard, faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styled, { injectGlobal } from 'styled-components'
+import styled from 'styled-components'
 
 import {
   HSpace,
@@ -63,12 +63,6 @@ class Row extends Component {
   }
 }
 
-injectGlobal`
-  body {
-    padding: 10px;
-    background-color: red;
-  }
-`
 export default (props) => <StyledDiv>
   <StyledTable><tbody>
     <tr><th>JSX</th><th>Component</th><th>onChange(event, value)</th></tr>
