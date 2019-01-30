@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, HashRouter, Switch, Link } from 'react-router-dom'
 import { render } from 'react-dom'
-import { injectGlobal } from 'styled-components'
 
 import reset from '../../src/reset'
 import HSpace from '../../src/HSpace'
@@ -18,12 +17,6 @@ const Nav = () => <div>
   <Link to={'/panels'}>Panels</Link>
 </div>
 
-injectGlobal`
-  body {
-    padding: 10px;
-    background-color: black;
-  }
-`
 reset()
 render(<HashRouter>
   <div>

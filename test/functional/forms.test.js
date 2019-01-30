@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { faClipboard, faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styled from 'styled-components'
+import styled, { injectGlobal } from 'styled-components'
 
 import {
   HSpace,
@@ -19,18 +19,7 @@ const handleClick = (event) => {
   console.log(event)
 }
 
-const renderProps = (props) =>
-  Object.keys(props).map(key =>
-    `${key}={${props[key]}}`
-  ).join(' ')
-
 const StyledDiv = styled.div`
-  td {
-    background-color: #f5f5f5;
-  }
-  td:nth-child(1) {
-    background-color: inherit;
-  }
 `
 
 const renderValue = value => {
@@ -51,6 +40,7 @@ class Row extends Component {
     this.state = {
       onChangeValue: undefined
     }
+    this.handleChange = this.handleChange.bind(this)
   }
 
   handleChange (event, value) {
@@ -58,51 +48,64 @@ class Row extends Component {
   }
 
   render () {
-    const { Component, componentProps, componentChildren } = this.props
+    const { label, Component, componentProps, componentChildren } = this.props
     const { onChangeValue } = this.state
     const element = React.createElement(Component, {
       ...componentProps,
-      onChange: this.handleChange.bind(this),
+      onChange: this.handleChange,
       value: onChangeValue !== undefined ? onChangeValue : componentProps.value
     }, componentChildren)
     return <tr>
-      <td>{`<${Component.name} ${renderProps(componentProps)} />`}:</td>
+      <td>{label}</td>
       <td>{element}</td>
       <td>{renderValue(onChangeValue)}</td>
     </tr>
   }
 }
 
+injectGlobal`
+  body {
+    padding: 10px;
+    background-color: red;
+  }
+`
 export default (props) => <StyledDiv>
   <StyledTable><tbody>
     <tr><th>JSX</th><th>Component</th><th>onChange(event, value)</th></tr>
     <Row
+      label='<Input width={120} />'
       Component={Input}
       componentProps={{ width: 120 }}
       value=''
     />
     <Row
+      label='<Input placeholder="username" />'
       Component={Input}
       componentProps={{ placeholder: 'username' }}
       value=''
     />
     <Row
+      label='<Checkbox label="Option A" />'
       Component={Checkbox}
       componentProps={{ label: 'Option A' }}
     />
     <Row
+      label='<Checkbox label={<FontAwesomeIcon icon={faFilter} />} />'
       Component={Checkbox}
-      componentProps={{ label: <FontAwesomeIcon icon={faFilter} />, value: true }}
+      componentProps={{ label: <FontAwesomeIcon icon={faFilter} /> }}
     />
     <Row
+      label='<Switch />'
       Component={Switch}
       componentProps={{}}
     />
     <Row
+      label='<Switch value={true} />'
       Component={Switch}
       componentProps={{ value: true }}
     />
     <Row
+      label='<Select />'
       Component={Select}
       componentProps={{ value: 'London' }}
       componentChildren={[
