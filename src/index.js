@@ -7,6 +7,7 @@ import Switch from './Switch'
 import VSpace from './VSpace'
 import Checkbox from './Checkbox'
 import Select from './Select'
+import Panel from './Panel'
 
 export {
   reset,
@@ -17,5 +18,6 @@ export {
   Input,
   Switch,
   Checkbox,
-  Select
+  Select,
+  Panel
 }

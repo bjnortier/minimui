@@ -17,6 +17,7 @@ export default () => injectGlobal`
   h1, h2, h3 {
     font-family: 'Barlow Semi Condensed', sans-serif;
     font-weight: 400;
+    margin: 0;
   }
   h1 {
     font-size: 54px;

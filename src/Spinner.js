@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 
 const Pad = styled.span`
-  padding-left: ${({ padLeft }) => padLeft ? 5 : 0}px;
+  padding-left: ${({ padLeft }) => padLeft ? 4 : 0}px;
 `
 
 export default (props) => <Pad padLeft={props.padLeft}>

@@ -8,7 +8,7 @@ import ErrorDecorator from './ErrorDecorator'
 const StyledButton = styled.button`
   border-radius: 4px;
   border: ${({ secondary }) => secondary ? 'solid 1px #bdbdbd' : 'none'};
-  padding: 7px 12px;
+  padding: 8px 12px;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   color: ${({ disabled, secondary }) => disabled ? (secondary ? '#aaa' : '#61779e') : secondary ? 'black' : 'white'};
   background-color: ${({ secondary }) => secondary ? 'white' : '#113577'};
