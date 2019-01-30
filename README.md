@@ -1,31 +1,25 @@
-"Everything should be made as simple as possible, but not simpler."
-- Einstein (paraphrased)
-
-# THIS IS A WORK IN PROGRESS.
+# THIS IS A WORK IN PROGRESS
 
 # minimui
 
-These are my minimalist React components that I use for various projects.
+Minimui is my minimalist React component library that I use for various projects.
 
-Use them at your discretion or use this as a base to build your own component library.
+YMMV.
 
-## Motivation
-
-- Lack of keyboard navigation support and focus indication.
-- Lack of "in progress" state support. Native components are not designed with asynchronous actions in mind (e.g. when triggering a XHR).
-- Lack of "error" state support in native components.
+I have developed this React component library to standardise form components, create custom components (e.g. a <Switch />), support standardised states, and do this all in a beautiful way.
 
 ## Principles
 
-- Use native components where possible, as this is necessary to avoid problems that lie outside the browser's control. For example, using a <select> with options that extend "under" the bottom of the browser window is problematic, whereas using a native control will cater for this situation.
-- All interactive components should support "focus", "error", "disabled" and "inProgress" states.
-- All interactive components should support keyboard navigation (tab), and keyboard activation where applicable (spacebar).
-- All component states should be observable to color-blind people and if the screen is set to grayscale, i.e. no component state is *primarily* indicated by color, but colors are used as a supplementary state indicators.
-- "inProgress" state is used when a component has triggered an asynchronous action (e.g. a XHR).
-- Components that are in a disabled or in-progress state do not emit events (e.g. onClick)
+- Native components SHOULD be used where possible, as this is necessary to avoid problems that lie outside the browser canvas. For example, using a ```<select>``` with options that overflow over the bottom of the browser window is problematic as they will not be displayed, whereas a native control will render the options upwards and viewable.
+- All form components MUST support "focus", "error", "disabled" and "in-progress" states.
+- All form components MUST support keyboard navigation (tab), and keyboard activation where applicable (spacebar).
+- All component states MUST be observable to colour-blind people and when rendering is grayscale, i.e. no component state is *primarily* indicated by colour, but colours are used as a secondary aesthetic state indicators.
+- All form components MUST support "in-progress" state when an asynchronous action has been triggered (e.g. an XHR).
+- Components that are in a "disabled" or "in-progress" state MUST NOT emit events (e.g. onClick).
+- All form components MUST be [controlled components](https://reactjs.org/docs/uncontrolled-components.html).
 
 ## Dependencies
 
-- React
-- Font Awesome
-- Styled-Components
+- react 16.x
+- font-awesome 5.x
+- styled-components 4.x
