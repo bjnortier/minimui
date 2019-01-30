@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, HashRouter, Switch, Link } from 'react-router-dom'
 import { render } from 'react-dom'
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 import { Reset, HSpace } from '../../src'
 
@@ -11,6 +11,12 @@ import Panels from './panels.test'
 
 const StyledNav = styled.div`
   padding: 8px;
+`
+
+const White = createGlobalStyle`
+  body {
+    background-color: white;
+  }
 `
 
 const Nav = () => <StyledNav>
@@ -24,6 +30,7 @@ const Nav = () => <StyledNav>
 render(<HashRouter>
   <div>
     <Reset />
+    <White />
     <Nav />
     <Switch>
       <Route exact path='/forms' component={Forms} />

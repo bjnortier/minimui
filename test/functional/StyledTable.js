@@ -12,6 +12,5 @@ export default styled.table`
     padding: 8px;
   }
   > tbody > tr > td:nth-child(2) {
-    padding-left: 20px;
   }
 `

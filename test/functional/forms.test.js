@@ -15,13 +15,6 @@ import {
 
 import StyledTable from './StyledTable'
 
-const handleClick = (event) => {
-  console.log(event)
-}
-
-const StyledDiv = styled.div`
-`
-
 const renderValue = value => {
   switch (typeof value) {
     case 'string':
@@ -35,70 +28,145 @@ const renderValue = value => {
 }
 
 class Row extends Component {
+  render () {
+    const { label } = this.props
+    const { value } = this.state
+    return <tr>
+      <td>{label}</td>
+      <td>{this.createElement()}</td>
+      <td>{renderValue(value)}</td>
+    </tr>
+  }
+}
+
+class OnChangeRow extends Row {
   constructor (props) {
     super(props)
     this.state = {
-      onChangeValue: undefined
+      value: undefined
     }
     this.handleChange = this.handleChange.bind(this)
   }
 
   handleChange (event, value) {
-    this.setState({ onChangeValue: value })
+    this.setState({ value })
   }
 
-  render () {
-    const { label, Component, componentProps, componentChildren } = this.props
-    const { onChangeValue } = this.state
-    const element = React.createElement(Component, {
+  createElement () {
+    const { Component, componentProps, componentChildren } = this.props
+    const { value } = this.state
+    return React.createElement(Component, {
       ...componentProps,
       onChange: this.handleChange,
-      value: onChangeValue !== undefined ? onChangeValue : componentProps.value
+      value: value !== undefined ? value : componentProps.value
     }, componentChildren)
-    return <tr>
-      <td>{label}</td>
-      <td>{element}</td>
-      <td>{renderValue(onChangeValue)}</td>
-    </tr>
   }
 }
 
-export default (props) => <StyledDiv>
-  <StyledTable><tbody>
+class OnClickRow extends Row {
+  constructor (props) {
+    super(props)
+    this.state = {
+      value: 0
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick (event) {
+    this.setState({ value: this.state.value + 1 })
+  }
+
+  createElement () {
+    const { Component, componentProps, componentChildren } = this.props
+    return React.createElement(Component, {
+      ...componentProps,
+      onClick: this.handleClick
+    }, componentChildren)
+  }
+}
+
+class VerticalAlignmentTest extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      a: false,
+      b: false,
+      c: '',
+      d: 'A'
+    }
+  }
+
+  render () {
+    const { a, b, c, d } = this.state
+    return <>
+      <Switch
+        onChange={(event, value) => this.setState({ a: value })} value={a}
+      />
+      <HSpace />
+      <Checkbox label='Option B'
+        onChange={(event, value) => this.setState({ b: value })} value={b}
+      />
+      <HSpace />
+      <Input
+        onChange={(event, value) => this.setState({ c: value })} value={c}
+      />
+      <HSpace />
+      <Select
+        onChange={(event, value) => this.setState({ d: value })} value={d}
+      >
+        <option>A</option>
+        <option>B</option>
+      </Select>
+      <HSpace />
+      <Button
+        label={<FontAwesomeIcon icon={faClipboard} />}
+        onClick={() => {}}
+      />
+      <HSpace />
+      <Button
+        label={<FontAwesomeIcon icon={faTrashAlt} />}
+        onClick={() => {}}
+      />
+    </>
+  }
+}
+
+export default (props) => <StyledTable>
+  <tbody>
     <tr><th>JSX</th><th>Component</th><th>onChange(event, value)</th></tr>
-    <Row
+    <OnChangeRow
       label='<Input width={120} />'
       Component={Input}
       componentProps={{ width: 120 }}
       value=''
     />
-    <Row
+    <OnChangeRow
       label='<Input placeholder="username" />'
       Component={Input}
       componentProps={{ placeholder: 'username' }}
       value=''
     />
-    <Row
+    <OnChangeRow
       label='<Checkbox label="Option A" />'
       Component={Checkbox}
       componentProps={{ label: 'Option A' }}
     />
-    <Row
+    <OnChangeRow
       label='<Checkbox label={<FontAwesomeIcon icon={faFilter} />} />'
       Component={Checkbox}
       componentProps={{ label: <FontAwesomeIcon icon={faFilter} /> }}
     />
-    <Row
+    <OnChangeRow
       label='<Switch />'
       Component={Switch}
       componentProps={{}}
     />
-    <Row
+    <OnChangeRow
       label='<Switch value={true} />'
       Component={Switch}
       componentProps={{ value: true }}
     />
-    <Row
+    <OnChangeRow
       label='<Select />'
       Component={Select}
       componentProps={{ value: 'London' }}
@@ -108,31 +176,19 @@ export default (props) => <StyledDiv>
         <option key={2}>London</option>
       ]}
     />
+    <OnClickRow
+      label='<Button label="Click me" />'
+      Component={Button}
+      componentProps={{ label: 'Click me!' }}
+    />
+    <OnClickRow
+      label='<Button label={<FontAwesomeIcon />} />'
+      Component={Button}
+      componentProps={{ label: <FontAwesomeIcon icon={faTrashAlt} /> }}
+    />
     <tr>
-      <td>{`<Button label='Click me' />`}:</td>
-      <td colSpan='3' ><Button label='Click me' onClick={handleClick} /></td>
+      <td>Vertical alignment</td>
+      <td colSpan='2'><VerticalAlignmentTest /></td>
     </tr>
-    <tr>
-      <td>{`<Button label={<FontAwesomeIcon icon={faTrashAlt} />} />`}:</td>
-      <td colSpan='3' ><Button label={<FontAwesomeIcon icon={faTrashAlt} />} onClick={handleClick} /></td>
-    </tr>
-    <tr>
-      <td>Row of components</td>
-      <td colSpan='3'>
-        <Button label='Row' onClick={handleClick} />
-        <HSpace />
-        <Switch onChange={() => {}} />
-        <HSpace />
-        <Checkbox label='Option B' onChange={() => {}} />
-        <HSpace />
-        <Input value='' onChange={() => {}} />
-        <HSpace />
-        <Select onChange={() => {}} value='A'><option>A</option></Select>
-        <HSpace />
-        <Button label={<FontAwesomeIcon icon={faClipboard} />} onClick={handleClick} />
-        <HSpace />
-        <Button label={<FontAwesomeIcon icon={faTrashAlt} />} onClick={handleClick} />
-      </td>
-    </tr>
-  </tbody></StyledTable>
-</StyledDiv>
+  </tbody>
+</StyledTable>
