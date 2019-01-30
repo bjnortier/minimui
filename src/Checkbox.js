@@ -16,11 +16,10 @@ const Outer = styled.div`
 const StyledInput = styled.input`
   font-size: 16px;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
-  vertical-align: text-top;
 `
 
 const Label = styled.span`
-  padding-left: 7px;
+  padding-left: 4px;
   padding-right: 2px;
   color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'inherit'};
 `

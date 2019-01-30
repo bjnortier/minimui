@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons'
-import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import {
   Input,
-  TextButton,
-  IconButton,
+  Button,
   Switch,
   Checkbox,
   Select
@@ -13,23 +12,11 @@ import {
 
 import StyledTable from './StyledTable'
 
-const handleClick = (event) => {
-  console.log(event)
-}
-
-const handleChange = (event) => {
-  console.log(event)
-}
-
-const StyledDiv = styled.div`
-  td, th {
-    background-color: #f5f5f5;
-  }
-`
-
+const IconButton = (props) => <Button secondary {...props} />
+const SecondaryButton = (props) => <Button secondary {...props} />
 const Switch2 = (props) => <Switch value {...props} />
 
-const components = [Input, TextButton, IconButton, Switch, Switch2, Checkbox, Select]
+const components = [Button, SecondaryButton, IconButton, Input, Switch, Switch2, Checkbox, Select]
 const propsCombinations = [
   {},
   { disabled: true },
@@ -39,14 +26,14 @@ const propsCombinations = [
 ]
 
 const defaultProps = {
-  'Input': { value: 'Foo bar', onChange: () => {} },
-  'TextButton': { label: 'Click me', onClick: handleClick },
-  'IconButton': { icon: faTrashAlt, onClick: handleClick },
-  'TransparentIconButton': { icon: faTrashAlt, onClick: handleClick },
-  'Checkbox': { label: 'Some option', onChange: handleChange },
-  'Select': { label: 'Some option', onChange: handleChange, value: 'BBBB' },
-  'Switch': { onChange: handleChange },
-  'Switch2': { onChange: handleChange }
+  'Button': { label: 'Click me' },
+  'IconButton': { label: <FontAwesomeIcon icon={faTrashAlt} /> },
+  'SecondaryButton': { label: 'Click me', secondary: true },
+  'Input': { value: 'Foo bar' },
+  'Checkbox': { label: 'Some option' },
+  'Select': { label: 'Some option', value: 'BBBB' },
+  'Switch': {},
+  'Switch2': {}
 }
 
 const defaultChildren = {
@@ -59,14 +46,38 @@ const renderProps = (props) => <div>
   </div>)}
 </div>
 
-export default (props) => <StyledDiv>
-  <StyledTable><tbody>
-    <tr><th>Component</th>{propsCombinations.map((props, i) => <th key={i}>{renderProps(props)}</th>)}</tr>
+class Wrapper extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      value: defaultProps[props.Component.name].value
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange (event, value) {
+    this.setState({ value })
+  }
+
+  render () {
+    const { Component } = this.props
+    return React.createElement(Component, {
+      ...defaultProps[Component.name],
+      ...this.props,
+      value: this.state.value,
+      onChange: this.handleChange,
+      onClick: () => {}
+    }, defaultChildren[Component.name])
+  }
+}
+
+export default (props) => <StyledTable>
+  <tbody>
+    <tr>{propsCombinations.map((props, i) => <th key={i}>{renderProps(props)}</th>)}</tr>
     {components.map((Component, i) => <tr key={i}>
-      <td>{`<${Component.name} />`}</td>
       {propsCombinations.map((props, j) => <td key={j}>
-        {React.createElement(Component, { ...defaultProps[Component.name], ...props }, defaultChildren[Component.name])}
+        <Wrapper Component={Component} {...props} />
       </td>)}
     </tr>)}
-  </tbody></StyledTable>
-</StyledDiv>
+  </tbody>
+</StyledTable>

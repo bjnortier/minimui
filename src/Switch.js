@@ -30,14 +30,13 @@ const Knob = styled.div`
   top: 0px;
   width: 18px;
   height: 18px;
-  border: solid 2px ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : '#666'};
+  border: solid 2px ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : '#113577'};
   border-radius: 50%;
   background-color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#e6e6e6' : '#fff'};
 `
 
 const SpinnerPad = styled.div`
-  padding-left: 2px;
-  padding-top: 1px;
+  padding-left: 1px;
   color: #999;
 `
 

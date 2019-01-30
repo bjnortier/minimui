@@ -9,9 +9,8 @@ export default styled.table`
     text-align: left;
   }
   td, th {
-    padding: 10px;
+    padding: 8px;
   }
   > tbody > tr > td:nth-child(2) {
-    padding-left: 20px;
   }
 `

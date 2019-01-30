@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const StyledDiv = styled.div`
   display: inline-block;
-  width: 10px;
+  width: 8px;
 `
 
 export default () => <StyledDiv />

@@ -15,7 +15,7 @@ const Outer = styled.div`
 
 const StyledSelect = styled.select`
   border: solid 1px #ccc;
-  height: 25px;
+  height: 24px;
   background-color: #fff;
   color: ${({ disabled, error }) => disabled ? '#999' : 'black'};
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
