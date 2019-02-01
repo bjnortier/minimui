@@ -6,7 +6,7 @@ Minimui is my minimalist React component library that I use for various projects
 
 YMMV.
 
-I have developed this React component library to standardise form components, create custom components (e.g. a <Switch />), support standardised states, and do this all in a beautiful way.
+I have developed this React component library to standardise form components, create custom components (e.g. a <Switch />), support standardised states, and do this all in a visually attractive way.
 
 ## Principles
 
