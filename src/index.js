@@ -1,6 +1,7 @@
 import HSpace from './HSpace'
 import Button from './Button'
 import Input from './Input'
+import Slider from './Slider'
 import Reset from './Reset'
 import Spinner from './Spinner'
 import Switch from './Switch'
@@ -16,6 +17,7 @@ export {
   VSpace,
   Button,
   Input,
+  Slider,
   Switch,
   Checkbox,
   Select,

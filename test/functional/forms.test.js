@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   HSpace,
   Input,
+  Slider,
   Button,
   Switch,
   Checkbox,
@@ -91,12 +92,13 @@ class VerticalAlignmentTest extends Component {
       a: false,
       b: false,
       c: '',
-      d: 'A'
+      d: 'A',
+      e: 50
     }
   }
 
   render () {
-    const { a, b, c, d } = this.state
+    const { a, b, c, d, e } = this.state
     return <>
       <Switch
         onChange={(event, value) => this.setState({ a: value })} value={a}
@@ -126,6 +128,10 @@ class VerticalAlignmentTest extends Component {
         label={<FontAwesomeIcon icon={faTrashAlt} />}
         onClick={() => {}}
       />
+      <HSpace />
+      <Slider
+        onChange={(event, value) => this.setState({ e: value })} value={e}
+      />
     </>
   }
 }
@@ -144,6 +150,12 @@ export default (props) => <StyledTable>
       Component={Input}
       componentProps={{ placeholder: 'username' }}
       value=''
+    />
+    <OnChangeRow
+      label='<Slider />'
+      Component={Slider}
+      componentProps={{ width: 120, min: 10, max: 20 }}
+      value={0}
     />
     <OnChangeRow
       label='<Checkbox label="Option A" />'

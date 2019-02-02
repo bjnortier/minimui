@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import {
   Input,
+  Slider,
   Button,
   Switch,
   Checkbox,
@@ -16,7 +17,7 @@ const IconButton = (props) => <Button secondary {...props} />
 const SecondaryButton = (props) => <Button secondary {...props} />
 const Switch2 = (props) => <Switch value {...props} />
 
-const components = [Button, SecondaryButton, IconButton, Input, Switch, Switch2, Checkbox, Select]
+const components = [Button, SecondaryButton, IconButton, Input, Slider, Switch, Switch2, Checkbox, Select]
 const propsCombinations = [
   {},
   { disabled: true },
@@ -30,10 +31,11 @@ const defaultProps = {
   'IconButton': { label: <FontAwesomeIcon icon={faTrashAlt} /> },
   'SecondaryButton': { label: 'Click me', secondary: true },
   'Input': { value: 'Foo bar' },
+  'Slider': { value: 50 },
   'Checkbox': { label: 'Some option' },
   'Select': { label: 'Some option', value: 'BBBB' },
   'Switch': {},
-  'Switch2': {}
+  'Switch2': { value: true }
 }
 
 const defaultChildren = {
