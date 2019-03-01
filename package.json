@@ -1,6 +1,6 @@
 {
   "name": "minimui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Minimalist React Component Library",
   "main": "lib/index.js",
   "scripts": {
@@ -32,8 +32,8 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.13",
     "@fortawesome/free-regular-svg-icons": "^5.7.0",
