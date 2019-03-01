@@ -1,8 +1,9 @@
 const webpack = require('webpack')
 const path = require('path')
 const fs = require('fs')
+const opn = require('opn')
 
-const port = 7000
+const port = 7444
 
 module.exports = {
   mode: 'development',
@@ -18,7 +19,10 @@ module.exports = {
     filename: '[name].bundle.js'
   },
   devServer: {
-    port
+    port,
+    after: (app, server) => {
+      opn(`http://localhost:${port}/`, { app: 'google chrome' })
+    }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
