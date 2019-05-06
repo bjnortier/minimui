@@ -10,17 +10,20 @@ const Outer = styled.div`
   display: inline-block;
   width: 38px;
   height: 22px;
-  border: solid 1px ${({ disabled, inProgress, value }) => (value && !disabled) ? '#2e70b5' : '#ccc'};
+  border: solid 1px ${({ disabled, inProgress, value, theme }) => (value && !disabled)
+    ? theme.primary ? theme.primary.background : '#113577'
+    : '#ccc'};
   border-radius: 13px;
   vertical-align: middle;
   position: relative;
   top: -1px;
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
-  background-color: ${({ disabled, inProgress, value }) => disabled ? 'transparent' : value ? '#3b99fc' : '#fff'}
+  background-color: ${({ disabled, inProgress, value, theme }) => disabled ? 'transparent' : value
+    ? theme.primary ? theme.primary.background : '#113577'
+    : '#fff'}
   :focus {
     outline: none;
-    border-color: #5b9dd6;
-    box-shadow: 0 0 0px 2px #93cdff;
+    box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
   }
 `
 const Knob = styled.div`
@@ -30,7 +33,9 @@ const Knob = styled.div`
   top: 0px;
   width: 18px;
   height: 18px;
-  border: solid 2px ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : '#113577'};
+  border: solid 2px ${({ disabled, inProgress, theme }) => (disabled || inProgress)
+    ? '#999'
+    : theme.primary ? theme.primary.background : '#113577'};
   border-radius: 50%;
   background-color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#e6e6e6' : '#fff'};
 `
