@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { faClipboard, faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import styled, { ThemeProvider } from 'styled-components'
 
 import {
   HSpace,
@@ -14,76 +15,7 @@ import {
 } from '../../src'
 
 import StyledTable from './StyledTable'
-
-const renderValue = value => {
-  switch (typeof value) {
-    case 'string':
-    case 'number':
-      return `${value} [${typeof value}]`
-    case 'boolean':
-      return `${value ? 'true' : 'false'} [${typeof value}]`
-    default:
-      return value
-  }
-}
-
-class Row extends Component {
-  render () {
-    const { label } = this.props
-    const { value } = this.state
-    return <tr>
-      <td>{label}</td>
-      <td>{this.createElement()}</td>
-      <td>{renderValue(value)}</td>
-    </tr>
-  }
-}
-
-class OnChangeRow extends Row {
-  constructor (props) {
-    super(props)
-    this.state = {
-      value: undefined
-    }
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange (event, value) {
-    this.setState({ value })
-  }
-
-  createElement () {
-    const { Component, componentProps, componentChildren } = this.props
-    const { value } = this.state
-    return React.createElement(Component, {
-      ...componentProps,
-      onChange: this.handleChange,
-      value: value !== undefined ? value : componentProps.value
-    }, componentChildren)
-  }
-}
-
-class OnClickRow extends Row {
-  constructor (props) {
-    super(props)
-    this.state = {
-      value: 0
-    }
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick (event) {
-    this.setState({ value: this.state.value + 1 })
-  }
-
-  createElement () {
-    const { Component, componentProps, componentChildren } = this.props
-    return React.createElement(Component, {
-      ...componentProps,
-      onClick: this.handleClick
-    }, componentChildren)
-  }
-}
+import { OnChangeRow, OnClickRow } from './formsComponents.test'
 
 class VerticalAlignmentTest extends Component {
   constructor (props) {
@@ -136,70 +68,111 @@ class VerticalAlignmentTest extends Component {
   }
 }
 
-export default (props) => <StyledTable>
-  <tbody>
-    <tr><th>JSX</th><th>Component</th><th>onChange(event, value)</th></tr>
-    <OnChangeRow
-      label='<Input width={120} />'
-      Component={Input}
-      componentProps={{ width: 120 }}
-      value=''
-    />
-    <OnChangeRow
-      label='<Input placeholder="username" />'
-      Component={Input}
-      componentProps={{ placeholder: 'username' }}
-      value=''
-    />
-    <OnChangeRow
-      label='<Slider />'
-      Component={Slider}
-      componentProps={{ width: 120, min: 10, max: 20 }}
-      value={0}
-    />
-    <OnChangeRow
-      label='<Checkbox label="Option A" />'
-      Component={Checkbox}
-      componentProps={{ label: 'Option A' }}
-    />
-    <OnChangeRow
-      label='<Checkbox label={<FontAwesomeIcon icon={faFilter} />} />'
-      Component={Checkbox}
-      componentProps={{ label: <FontAwesomeIcon icon={faFilter} /> }}
-    />
-    <OnChangeRow
-      label='<Switch />'
-      Component={Switch}
-      componentProps={{}}
-    />
-    <OnChangeRow
-      label='<Switch value={true} />'
-      Component={Switch}
-      componentProps={{ value: true }}
-    />
-    <OnChangeRow
-      label='<Select />'
-      Component={Select}
-      componentProps={{ value: 'London' }}
-      componentChildren={[
-        <option key={0}>Cape Town</option>,
-        <option key={1}>Toronto</option>,
-        <option key={2}>London</option>
-      ]}
-    />
-    <OnClickRow
-      label='<Button label="Click me" />'
-      Component={Button}
-      componentProps={{ label: 'Click me!' }}
-    />
-    <OnClickRow
-      label='<Button label={<FontAwesomeIcon />} />'
-      Component={Button}
-      componentProps={{ label: <FontAwesomeIcon icon={faTrashAlt} /> }}
-    />
-    <tr>
-      <td>Vertical alignment</td>
-      <td colSpan='2'><VerticalAlignmentTest /></td>
-    </tr>
-  </tbody>
-</StyledTable>
+const ThemeSwitch = styled.div`
+  > div {
+    margin: 4px;
+  }
+  > div:first-child {
+    margin-left: 8px;
+  }
+`
+
+export default class Forms extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      theme: {}
+    }
+  }
+
+  render () {
+    const { theme } = this.state
+    return <ThemeProvider theme={theme}>
+      <div>
+        <ThemeSwitch>
+          <Button onClick={() => this.setState({ theme: {} })} label='Default' />
+          <Button onClick={() => this.setState({ theme: {
+            primary: {
+              text: 'white',
+              disabled: '#619e77',
+              background: 'green',
+              outline: '#93ddcd'
+            }
+          } })} label='Green' />
+        </ThemeSwitch>
+        <StyledTable>
+          <tbody>
+            <tr><th>JSX</th><th>Component</th><th>onChange(event, value)</th></tr>
+            <OnChangeRow
+              label='<Input width={120} />'
+              Component={Input}
+              componentProps={{ width: 120 }}
+              value=''
+            />
+            <OnChangeRow
+              label='<Input placeholder="username" />'
+              Component={Input}
+              componentProps={{ placeholder: 'username' }}
+              value=''
+            />
+            <OnChangeRow
+              label='<Slider />'
+              Component={Slider}
+              componentProps={{ width: 120, min: 10, max: 20 }}
+              value={0}
+            />
+            <OnChangeRow
+              label='<Checkbox label="Option A" />'
+              Component={Checkbox}
+              componentProps={{ label: 'Option A' }}
+            />
+            <OnChangeRow
+              label='<Checkbox label={<FontAwesomeIcon icon={faFilter} />} />'
+              Component={Checkbox}
+              componentProps={{ label: <FontAwesomeIcon icon={faFilter} /> }}
+            />
+            <OnChangeRow
+              label='<Switch />'
+              Component={Switch}
+              componentProps={{}}
+            />
+            <OnChangeRow
+              label='<Switch value={true} />'
+              Component={Switch}
+              componentProps={{ value: true }}
+            />
+            <OnChangeRow
+              label='<Select />'
+              Component={Select}
+              componentProps={{ value: 'London' }}
+              componentChildren={[
+                <option key={0}>Cape Town</option>,
+                <option key={1}>Toronto</option>,
+                <option key={2}>London</option>
+              ]}
+            />
+            <OnClickRow
+              label='<Button label="Click me" />'
+              Component={Button}
+              componentProps={{ label: 'Click me!' }}
+            />
+            <OnClickRow
+              label='<Button secondary label="Click me" />'
+              Component={Button}
+              componentProps={{ secondary: true, label: 'Click me!' }}
+            />
+            <OnClickRow
+              label='<Button label={<FontAwesomeIcon />} />'
+              Component={Button}
+              componentProps={{ label: <FontAwesomeIcon icon={faTrashAlt} /> }}
+            />
+            <tr>
+              <td>Vertical alignment</td>
+              <td colSpan='2'><VerticalAlignmentTest /></td>
+            </tr>
+          </tbody>
+        </StyledTable>
+      </div>
+    </ThemeProvider>
+  }
+}

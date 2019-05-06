@@ -21,8 +21,7 @@ const StyledSelect = styled.select`
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   :focus {
     outline: none;
-    border-color: #5b9dd6;
-    box-shadow: 0 0 0px 2px #93cdff;
+    box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
   }
 `
 

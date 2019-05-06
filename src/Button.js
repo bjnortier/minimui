@@ -10,14 +10,19 @@ const StyledButton = styled.button`
   border: ${({ secondary }) => secondary ? 'solid 1px #bdbdbd' : 'none'};
   padding: 8px 12px;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
-  color: ${({ disabled, secondary }) => disabled ? (secondary ? '#aaa' : '#61779e') : secondary ? 'black' : 'white'};
-  background-color: ${({ secondary }) => secondary ? 'white' : '#113577'};
+  color: ${({ theme, disabled, secondary }) => disabled
+    ? (secondary
+      ? '#aaa' : theme.primary ? theme.primary.disabled : '#61779e')
+    : secondary
+      ? 'black' : theme.primary ? theme.primary.text : 'white'};
+  background-color: ${({ theme, secondary }) => secondary
+    ? 'white'
+    : theme.primary ? theme.primary.background : '#113577'};
   font-family: 'Barlow', sans;
   font-weight: ${({ secondary }) => secondary ? 400 : 200};
   :focus {
     outline: none;
-    border-color: #5b9dd6;
-    box-shadow: 0 0 0px 2px #93cdff;
+    box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
   }
 `
 
