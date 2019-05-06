@@ -28,7 +28,7 @@ export default createGlobalStyle`
   h3 {
     font-size: 24px;
   }
-  a:visited {
+  a, a:visited {
     color: black;
   }
   th {

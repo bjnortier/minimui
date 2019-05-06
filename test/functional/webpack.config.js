@@ -27,9 +27,6 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
-  resolve: {
-    modules: [path.resolve('..', '..', 'node_modules'), 'node_modules']
-  },
   module: {
     rules: [
       {

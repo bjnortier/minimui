@@ -9,6 +9,7 @@ import VSpace from './VSpace'
 import Checkbox from './Checkbox'
 import Select from './Select'
 import Panel from './Panel'
+import TabBar from './TabBar'
 
 export {
   Reset,
@@ -21,5 +22,6 @@ export {
   Switch,
   Checkbox,
   Select,
-  Panel
+  Panel,
+  TabBar
 }
