@@ -4,7 +4,7 @@ import { Button, Panel, VSpace } from '../../src'
 
 import StyledTable from './StyledTable'
 
-const Dialogs = () => <div>
+export default () => <div>
   <StyledTable><tbody>
     <tr>
       <td><Panel>
@@ -22,5 +22,3 @@ const Dialogs = () => <div>
     </tr>
   </tbody></StyledTable>
 </div>
-
-export default Dialogs
