@@ -110,9 +110,9 @@ export default class Forms extends Component {
               value=''
             />
             <OnChangeRow
-              label='<Input placeholder="username" />'
+              label='<Input placeholder="username" autoComplete="username" />'
               Component={Input}
-              componentProps={{ placeholder: 'username' }}
+              componentProps={{ placeholder: 'username', autoComplete: 'username' }}
               value=''
             />
             <OnChangeRow
