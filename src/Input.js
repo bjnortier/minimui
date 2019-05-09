@@ -32,13 +32,12 @@ class Input extends ValueComponent {
   }
 
   render () {
-    const { name, type, value, placeholder, disabled, inProgress, onKeyUp, error } = this.props
+    const { type, disabled, inProgress, error } = this.props
     return <Outer
       {...{ disabled, error, inProgress }}
     >
       <ErrorDecorator error={error}>
         <StyledInput {...this.props}
-          {...{ name, value, placeholder, onKeyUp }}
           disabled={disabled || inProgress}
           onChange={this.handleChange.bind(this)}
           type={type || 'text'}
@@ -54,6 +53,7 @@ Input.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
+  autocomplete: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onKeyUp: PropTypes.func,
