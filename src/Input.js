@@ -53,7 +53,7 @@ Input.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
-  autocomplete: PropTypes.string,
+  autoComplete: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onKeyUp: PropTypes.func,
