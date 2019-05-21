@@ -132,6 +132,11 @@ export default class Forms extends Component {
               componentProps={{ label: <FontAwesomeIcon icon={faFilter} /> }}
             />
             <OnChangeRow
+              label='<Checkbox />'
+              Component={Checkbox}
+              componentProps={{ }}
+            />
+            <OnChangeRow
               label='<Switch />'
               Component={Switch}
               componentProps={{}}

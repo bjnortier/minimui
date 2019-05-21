@@ -43,14 +43,14 @@ class Checkbox extends ValueComponent {
           onChange={this.handleChange.bind(this)}
         />
       </ErrorDecorator>
-      <Label {...{ inProgress, disabled }}>{label}</Label>
+      {label ? <Label {...{ inProgress, disabled }}>{label}</Label> : null}
       {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
     </Outer>
   }
 }
 
 Checkbox.propTypes = {
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   value: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
