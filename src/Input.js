@@ -16,7 +16,7 @@ const Outer = styled.div`
 const StyledInput = styled.input`
   border-radius: 4px;
   background-color: #fff;
-  border: solid 1px #eee;
+  border: solid 1px ${({ theme }) => theme.borderColor || '#eee'};
   padding: 8px;
   width: ${props => props.width - 16}px;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'auto'};

@@ -119,7 +119,8 @@ export default class States extends Component {
               disabled: '#619e77',
               background: 'green',
               outline: '#93ddcd'
-            }
+            },
+            borderColor: '#eee'
           } })} label='Green' />
         </ThemeSwitch>
         <StyledTable>
