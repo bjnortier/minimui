@@ -16,12 +16,14 @@ import StyledTable from './StyledTable'
 
 const IconButton = (props) => <Button secondary {...props} />
 const SecondaryButton = (props) => <Button secondary {...props} />
+const TransparentButton = (props) => <Button transparent {...props} />
 const Switch2 = (props) => <Switch value {...props} />
 const Checkbox2 = (props) => <Checkbox value {...props} />
 
 const components = [
   Button,
   SecondaryButton,
+  TransparentButton,
   IconButton,
   Input,
   Slider,
@@ -43,6 +45,7 @@ const defaultProps = {
   'Button': { label: 'Click me' },
   'IconButton': { label: <FontAwesomeIcon icon={faTrashAlt} /> },
   'SecondaryButton': { label: 'Click me', secondary: true },
+  'TransparentButton': { label: 'Click me', transparent: true },
   'Input': { value: 'Foo bar' },
   'Slider': { value: 50 },
   'Checkbox': { label: 'Some option' },
