@@ -17,8 +17,20 @@ import StyledTable from './StyledTable'
 const IconButton = (props) => <Button secondary {...props} />
 const SecondaryButton = (props) => <Button secondary {...props} />
 const Switch2 = (props) => <Switch value {...props} />
+const Checkbox2 = (props) => <Checkbox value {...props} />
 
-const components = [Button, SecondaryButton, IconButton, Input, Slider, Switch, Switch2, Checkbox, Select]
+const components = [
+  Button,
+  SecondaryButton,
+  IconButton,
+  Input,
+  Slider,
+  Switch,
+  Switch2,
+  Checkbox,
+  Checkbox2,
+  Select
+]
 const propsCombinations = [
   {},
   { disabled: true },
@@ -34,6 +46,7 @@ const defaultProps = {
   'Input': { value: 'Foo bar' },
   'Slider': { value: 50 },
   'Checkbox': { label: 'Some option' },
+  'Checkbox2': { value: true, label: 'Some option 2' },
   'Select': { label: 'Some option', value: 'BBBB' },
   'Switch': {},
   'Switch2': { value: true }

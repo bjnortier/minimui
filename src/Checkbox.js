@@ -6,6 +6,12 @@ import ValueComponent from './ValueComponent'
 import ErrorDecorator from './ErrorDecorator'
 import Spinner from './Spinner'
 
+const Label = styled.span`
+  padding-left: 4px;
+  padding-right: 2px;
+  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'inherit'};
+`
+
 const Outer = styled.div`
   display: inline-block;
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
@@ -13,15 +19,36 @@ const Outer = styled.div`
   user-select: none;
 `
 
-const StyledInput = styled.input`
-  font-size: 16px;
-  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
-`
-
-const Label = styled.span`
-  padding-left: 4px;
-  padding-right: 2px;
-  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'inherit'};
+const Check = styled.div`
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: none;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
+  background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'>
+      <path fill='${({ disabled, inProgress, theme, value }) =>
+    value
+      ? (disabled || inProgress)
+        ? 'gray'
+        : 'white'
+      : 'transparent'
+}' d='M3,7L6,12L11,3L10,2L6,9L4,6L3,7' /></svg>");
+  background-repeat: no-repeat;
+  background-color: ${({ disabled, inProgress, theme, value }) =>
+    (disabled || inProgress)
+      ? '#e6e6e6'
+      : value
+        ? theme.primary ? theme.primary.background : '#113577'
+        : '#fff'};
+  :focus {
+    outline: none;
+    box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
+  }
 `
 
 class Checkbox extends ValueComponent {
@@ -29,22 +56,43 @@ class Checkbox extends ValueComponent {
     super.handleChange(event, !this.props.value)
   }
 
+  /**
+   * Prevent the default window scrolling behaviour when Checkbox has focus
+   */
+  /**
+   * Prevent the default window scrolling behaviour when Switch has focus
+   */
+  handleKeyDown (event) {
+    if (event.keyCode === 32) {
+      event.preventDefault()
+    }
+  }
+
+  handleKeyUp (event) {
+    if (event.keyCode === 32) {
+      this.handleChange(event)
+    }
+  }
+
   render () {
-    const { value, disabled, error, inProgress, label } = this.props
+    const { label, value, disabled, error, inProgress } = this.props
     return <Outer
       {...{ disabled, error, inProgress }}
       onClick={this.handleChange.bind(this)}
     >
-      <ErrorDecorator error={error} bottom={-8} >
-        <StyledInput
-          type='checkbox'
-          disabled={disabled || inProgress}
-          checked={value}
-          onChange={this.handleChange.bind(this)}
+      <ErrorDecorator error={error}>
+        <Check
+          tabIndex={disabled || inProgress ? null : 0}
+          disabled={disabled}
+          value={value}
+          inProgress={inProgress}
+          onClick={this.handleChange.bind(this)}
+          onKeyDown={this.handleKeyDown.bind(this)}
+          onKeyUp={this.handleKeyUp.bind(this)}
         />
+        {label ? <Label {...{ inProgress, disabled }}>{label}</Label> : null}
+        {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
       </ErrorDecorator>
-      {label ? <Label {...{ inProgress, disabled }}>{label}</Label> : null}
-      {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
     </Outer>
   }
 }
