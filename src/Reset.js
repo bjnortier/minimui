@@ -7,8 +7,10 @@ export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300,400,700');
   @import url('https://fonts.googleapis.com/css?family=Barlow:200,300,400,700');
   html { font-family: 'Barlow', sans-serif; }
+  html {
+    background-color: #efefef;
+  }
   body {
-    background-color: #f7f7f7;
     font-family: 'Barlow', sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -20,13 +22,13 @@ export default createGlobalStyle`
     margin: 0;
   }
   h1 {
-    font-size: 54px;
+    font-size: 48px;
   }
   h2 {
-    font-size: 36px;
+    font-size: 32px;
   }
   h3 {
-    font-size: 24px;
+    font-size: 20px;
   }
   a, a:visited {
     color: black;

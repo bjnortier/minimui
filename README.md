@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/bjnortier/minimui.png?branch=master)](https://travis-ci.org/bjnortier/minimui)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 # THIS IS A WORK IN PROGRESS
 
 # minimui

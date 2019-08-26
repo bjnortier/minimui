@@ -8,8 +8,6 @@ import Switch from './Switch'
 import VSpace from './VSpace'
 import Checkbox from './Checkbox'
 import Select from './Select'
-import Panel from './Panel'
-import TabBar from './TabBar'
 
 export {
   Reset,
@@ -21,7 +19,5 @@ export {
   Slider,
   Switch,
   Checkbox,
-  Select,
-  Panel,
-  TabBar
+  Select
 }

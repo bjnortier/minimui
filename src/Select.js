@@ -14,9 +14,9 @@ const Outer = styled.div`
 `
 
 const StyledSelect = styled.select`
-  border: solid 1px #ccc;
   height: 24px;
   background-color: #fff;
+  border: solid 1px #eee;
   color: ${({ disabled, error }) => disabled ? '#999' : 'black'};
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   :focus {
