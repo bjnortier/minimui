@@ -23,7 +23,9 @@ const Check = styled.div`
   display: inline-block;
   width: 14px;
   height: 14px;
-  border: none;
+  border: solid 1px ${({ disabled, inProgress, value, theme }) => (value && !disabled && !inProgress)
+    ? theme.primary ? theme.primary.background : '#113577'
+    : '#eee'};
   border-radius: 4px;
   vertical-align: middle;
   position: relative;
