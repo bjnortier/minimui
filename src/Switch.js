@@ -12,7 +12,7 @@ const Outer = styled.div`
   height: 22px;
   border: solid 1px ${({ disabled, inProgress, value, theme }) => (value && !disabled)
     ? theme.primary ? theme.primary.background : '#113577'
-    : '#eee'};
+    : theme.borderColor || '#eee'};
   border-radius: 13px;
   vertical-align: middle;
   position: relative;
