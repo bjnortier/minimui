@@ -27,9 +27,7 @@ const Check = styled.div`
     ? theme.primary ? theme.primary.background : '#113577'
     : theme.borderColor || '#eee'};
   border-radius: 4px;
-  vertical-align: middle;
-  position: relative;
-  top: -1px;
+  vertical-align: bottom;
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
   background-image:
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'>
