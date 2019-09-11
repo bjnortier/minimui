@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { faTrashAlt } from '@fortawesome/free-regular-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled, { ThemeProvider } from 'styled-components'
 
 import {
@@ -43,7 +41,7 @@ const propsCombinations = [
 
 const defaultProps = {
   'Button': { label: 'Click me' },
-  'IconButton': { label: <FontAwesomeIcon icon={faTrashAlt} /> },
+  'IconButton': { label: <span>🔥</span> },
   'SecondaryButton': { label: 'Click me', secondary: true },
   'TransparentButton': { label: 'Click me', transparent: true },
   'Input': { value: 'Foo bar' },
