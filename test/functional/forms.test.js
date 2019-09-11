@@ -48,9 +48,9 @@ class VerticalAlignmentTest extends Component {
         <option>B</option>
       </Select>
       <HSpace />
-        <Button
-          label='Click me'
-          onClick={() => {}}
+      <Button
+        label='Click me'
+        onClick={() => {}}
       />
       <HSpace />
       <Button
