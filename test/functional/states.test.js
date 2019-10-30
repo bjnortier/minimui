@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled, { ThemeProvider } from 'styled-components'
 
 import {
@@ -40,28 +41,30 @@ const propsCombinations = [
 ]
 
 const defaultProps = {
-  'Button': { label: 'Click me' },
-  'IconButton': { label: <span>🔥</span> },
-  'SecondaryButton': { label: 'Click me', secondary: true },
-  'TransparentButton': { label: 'Click me', transparent: true },
-  'Input': { value: 'Foo bar' },
-  'Slider': { value: 50 },
-  'Checkbox': { label: 'Some option' },
-  'Checkbox2': { value: true, label: 'Some option 2' },
-  'Select': { label: 'Some option', value: 'BBBB' },
-  'Switch': {},
-  'Switch2': { value: true }
+  Button: { label: 'Click me' },
+  IconButton: { label: <span>🔥</span> },
+  SecondaryButton: { label: 'Click me', secondary: true },
+  TransparentButton: { label: 'Click me', transparent: true },
+  Input: { value: 'Foo bar' },
+  Slider: { value: 50 },
+  Checkbox: { label: 'Some option' },
+  Checkbox2: { value: true, label: 'Some option 2' },
+  Select: { label: 'Some option', value: 'BBBB' },
+  Switch: {},
+  Switch2: { value: true }
 }
 
 const defaultChildren = {
-  'Select': <><option>AAAA</option><option>BBBB</option><option>CCCC</option></>
+  Select: <><option>AAAA</option><option>BBBB</option><option>CCCC</option></>
 }
 
-const renderProps = (props) => <div>
-  {Object.keys(props).map(key => <div key={key}>
-    {`${key}=${props[key]}`}
-  </div>)}
-</div>
+const renderProps = (props) => (
+  <div>
+    {Object.keys(props).map(key => (
+      <div key={key}>
+        {`${key}=${props[key]}`}
+      </div>))}
+  </div>)
 
 class Wrapper extends Component {
   constructor (props) {
@@ -88,6 +91,10 @@ class Wrapper extends Component {
   }
 }
 
+Wrapper.propTypes = {
+  Component: PropTypes.object.isRequired
+}
+
 const ThemeSwitch = styled.div`
   > div {
     margin: 4px;
@@ -107,31 +114,41 @@ export default class States extends Component {
 
   render () {
     const { theme } = this.state
-    return <ThemeProvider theme={theme}>
-      <div>
-        <ThemeSwitch>
-          <Button onClick={() => this.setState({ theme: {} })} label='Default' />
-          <Button onClick={() => this.setState({ theme: {
-            primary: {
-              text: 'white',
-              disabled: '#619e77',
-              background: 'green',
-              outline: '#93ddcd'
-            },
-            borderColor: '#eee'
-          } })} label='Green' />
-        </ThemeSwitch>
-        <StyledTable>
-          <tbody>
-            <tr>{propsCombinations.map((props, i) => <th key={i}>{renderProps(props)}</th>)}</tr>
-            {components.map((Component, i) => <tr key={i}>
-              {propsCombinations.map((props, j) => <td key={j}>
-                <Wrapper Component={Component} {...props} />
-              </td>)}
-            </tr>)}
-          </tbody>
-        </StyledTable>
-      </div>
-    </ThemeProvider>
+    return (
+      <ThemeProvider theme={theme}>
+        <div>
+          <ThemeSwitch>
+            <Button onClick={() => this.setState({ theme: {} })} label='Default' />
+            <Button
+              onClick={() => this.setState({
+                theme: {
+                  primary: {
+                    text: 'white',
+                    disabled: '#619e77',
+                    background: 'green',
+                    outline: '#93ddcd'
+                  },
+                  borderColor: '#eee'
+                }
+              })} label='Green'
+            />
+          </ThemeSwitch>
+          <StyledTable>
+            <tbody>
+              <tr>{propsCombinations.map((props, i) =>
+                <th key={i}>{renderProps(props)}</th>)}
+              </tr>
+              {components.map((Component, i) =>
+                <tr key={i}>
+                  {propsCombinations.map((props, j) =>
+                    <td key={j}>
+                      <Wrapper Component={Component} {...props} />
+                    </td>)}
+                </tr>)}
+            </tbody>
+          </StyledTable>
+        </div>
+      </ThemeProvider>
+    )
   }
 }

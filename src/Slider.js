@@ -31,25 +31,33 @@ const SpinnerOuter = styled.div`
 `
 
 class Slider extends ValueComponent {
+  constructor (props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
   handleChange (event) {
     super.handleChange(event, parseInt(event.target.value))
   }
 
   render () {
     const { name, value, disabled, inProgress, error } = this.props
-    return <Outer
-      {...{ disabled, error, inProgress }}
-    >
-      <ErrorDecorator error={error}>
-        <StyledInput {...this.props}
-          {...{ name, value }}
-          disabled={disabled || inProgress}
-          onChange={this.handleChange.bind(this)}
-          type='range'
-        />
-      </ErrorDecorator>
-      {inProgress ? <SpinnerOuter><Spinner padLeft /></SpinnerOuter> : null}
-    </Outer>
+    return (
+      <Outer
+        {...{ disabled, error, inProgress }}
+      >
+        <ErrorDecorator error={error}>
+          <StyledInput
+            {...this.props}
+            {...{ name, value }}
+            disabled={disabled || inProgress}
+            onChange={this.handleChange}
+            type='range'
+          />
+        </ErrorDecorator>
+        {inProgress ? <SpinnerOuter><Spinner padLeft /></SpinnerOuter> : null}
+      </Outer>
+    )
   }
 }
 

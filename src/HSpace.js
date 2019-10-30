@@ -6,4 +6,4 @@ const StyledDiv = styled.div`
   width: 8px;
 `
 
-export default () => <StyledDiv />
+export default function HSpace () { return <StyledDiv /> }

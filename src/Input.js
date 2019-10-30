@@ -28,24 +28,32 @@ const StyledInput = styled.input`
 `
 
 class Input extends ValueComponent {
+  constructor (props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
   handleChange (event) {
     super.handleChange(event, event.target.value)
   }
 
   render () {
     const { type, disabled, inProgress, error } = this.props
-    return <Outer
-      {...{ disabled, error, inProgress }}
-    >
-      <ErrorDecorator error={error}>
-        <StyledInput {...this.props}
-          disabled={disabled || inProgress}
-          onChange={this.handleChange.bind(this)}
-          type={type || 'text'}
-        />
-      </ErrorDecorator>
-      {inProgress ? <Spinner padLeft /> : null}
-    </Outer>
+    return (
+      <Outer
+        {...{ disabled, error, inProgress }}
+      >
+        <ErrorDecorator error={error}>
+          <StyledInput
+            {...this.props}
+            disabled={disabled || inProgress}
+            onChange={this.handleChange}
+            type={type || 'text'}
+          />
+        </ErrorDecorator>
+        {inProgress ? <Spinner padLeft /> : null}
+      </Outer>
+    )
   }
 }
 

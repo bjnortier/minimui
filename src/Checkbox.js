@@ -52,6 +52,13 @@ const Check = styled.div`
 `
 
 class Checkbox extends ValueComponent {
+  constructor (props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleKeyUp = this.handleKeyUp.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this)
+  }
+
   handleChange (event) {
     super.handleChange(event, !this.props.value)
   }
@@ -76,23 +83,25 @@ class Checkbox extends ValueComponent {
 
   render () {
     const { label, value, disabled, error, inProgress } = this.props
-    return <Outer
-      {...{ disabled, error, inProgress }}
-      onClick={this.handleChange.bind(this)}
-    >
-      <ErrorDecorator error={error}>
-        <Check
-          tabIndex={disabled || inProgress ? null : 0}
-          disabled={disabled}
-          value={value}
-          inProgress={inProgress}
-          onKeyDown={this.handleKeyDown.bind(this)}
-          onKeyUp={this.handleKeyUp.bind(this)}
-        />
-        {label ? <Label {...{ inProgress, disabled }}>{label}</Label> : null}
-        {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
-      </ErrorDecorator>
-    </Outer>
+    return (
+      <Outer
+        {...{ disabled, error, inProgress }}
+        onClick={this.handleChange}
+      >
+        <ErrorDecorator error={error}>
+          <Check
+            tabIndex={disabled || inProgress ? null : 0}
+            disabled={disabled}
+            value={value}
+            inProgress={inProgress}
+            onKeyDown={this.handleKeyDown}
+            onKeyUp={this.handleKeyUp}
+          />
+          {label ? <Label {...{ inProgress, disabled }}>{label}</Label> : null}
+          {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
+        </ErrorDecorator>
+      </Outer>
+    )
   }
 }
 

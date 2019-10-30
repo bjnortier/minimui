@@ -26,24 +26,31 @@ const StyledSelect = styled.select`
 `
 
 class Select extends ValueComponent {
+  constructor (props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
   handleChange (event) {
     super.handleChange(event, event.target.value)
   }
 
   render () {
     const { value, disabled, error, inProgress } = this.props
-    return <Outer {...{ disabled, error, inProgress }}>
-      <ErrorDecorator error={error} >
-        <StyledSelect
-          value={value}
-          disabled={disabled || inProgress}
-          onChange={this.handleChange.bind(this)}
-        >
-          {this.props.children}
-        </StyledSelect>
-      </ErrorDecorator>
-      {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
-    </Outer>
+    return (
+      <Outer {...{ disabled, error, inProgress }}>
+        <ErrorDecorator error={error}>
+          <StyledSelect
+            value={value}
+            disabled={disabled || inProgress}
+            onChange={this.handleChange}
+          >
+            {this.props.children}
+          </StyledSelect>
+        </ErrorDecorator>
+        {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
+      </Outer>
+    )
   }
 }
 

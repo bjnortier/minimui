@@ -50,19 +50,21 @@ class Button extends Component {
         onClick(event)
       }
     }
-    return <ErrorDecorator error={error}>
-      <StyledButton
-        transparent={transparent}
-        secondary={secondary}
-        error={error}
-        disabled={disabled || inProgress}
-        inProgress={inProgress}
-        onClick={onClickIfAllowed}
-      >
-        {label}
-        {inProgress ? <SpinnerSpan {...{ inProgress, disabled, secondary }}><Spinner /></SpinnerSpan> : null}
-      </StyledButton>
-    </ErrorDecorator>
+    return (
+      <ErrorDecorator error={error}>
+        <StyledButton
+          transparent={transparent}
+          secondary={secondary}
+          error={error}
+          disabled={disabled || inProgress}
+          inProgress={inProgress}
+          onClick={onClickIfAllowed}
+        >
+          {label}
+          {inProgress ? <SpinnerSpan {...{ inProgress, disabled, secondary }}><Spinner /></SpinnerSpan> : null}
+        </StyledButton>
+      </ErrorDecorator>
+    )
   }
 }
 

@@ -47,6 +47,13 @@ const SpinnerPad = styled.div`
 `
 
 class Switch extends ValueComponent {
+  constructor (props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleKeyUp = this.handleKeyUp.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this)
+  }
+
   handleChange (event) {
     super.handleChange(event, !this.props.value)
   }
@@ -68,21 +75,23 @@ class Switch extends ValueComponent {
 
   render () {
     const { value, disabled, error, inProgress } = this.props
-    return <ErrorDecorator error={error}>
-      <Outer
-        tabIndex={disabled || inProgress ? null : 0}
-        disabled={disabled}
-        value={value}
-        inProgress={inProgress}
-        onClick={this.handleChange.bind(this)}
-        onKeyDown={this.handleKeyDown.bind(this)}
-        onKeyUp={this.handleKeyUp.bind(this)}
-      >
-        <Knob value={value} disabled={disabled} inProgress={inProgress}>
-          {inProgress ? <SpinnerPad><Spinner /></SpinnerPad> : null}
-        </Knob>
-      </Outer>
-    </ErrorDecorator>
+    return (
+      <ErrorDecorator error={error}>
+        <Outer
+          tabIndex={disabled || inProgress ? null : 0}
+          disabled={disabled}
+          value={value}
+          inProgress={inProgress}
+          onClick={this.handleChange}
+          onKeyDown={this.handleKeyDown}
+          onKeyUp={this.handleKeyUp}
+        >
+          <Knob value={value} disabled={disabled} inProgress={inProgress}>
+            {inProgress ? <SpinnerPad><Spinner /></SpinnerPad> : null}
+          </Knob>
+        </Outer>
+      </ErrorDecorator>
+    )
   }
 }
 

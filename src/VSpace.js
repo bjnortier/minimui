@@ -5,4 +5,4 @@ const StyledDiv = styled.div`
   height: 8px;
 `
 
-export default () => <StyledDiv />
+export default function VSpace () { return <StyledDiv /> }

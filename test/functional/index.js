@@ -12,19 +12,23 @@ const StyledNav = styled.div`
   padding: 8px;
 `
 
-const Nav = () => <StyledNav>
-  <Link to={'/forms'}>Forms</Link>
-  <HSpace />
-  <Link to={'/states'}>States</Link>
-</StyledNav>
+const Nav = () => (
+  <StyledNav>
+    <Link to='/forms'>Forms</Link>
+    <HSpace />
+    <Link to='/states'>States</Link>
+  </StyledNav>
+)
 
-render(<Router>
-  <div>
-    <Reset />
-    <Nav />
-    <Switch>
-      <Route exact path='/forms' component={Forms} />
-      <Route exact path='/states' component={States} />
-    </Switch>
-  </div>
-</Router>, document.getElementById('contents'))
+render((
+  <Router>
+    <div>
+      <Reset />
+      <Nav />
+      <Switch>
+        <Route exact path='/forms' component={Forms} />
+        <Route exact path='/states' component={States} />
+      </Switch>
+    </div>
+  </Router>)
+, document.getElementById('contents'))

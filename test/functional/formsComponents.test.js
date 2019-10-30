@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 const renderValue = value => {
   switch (typeof value) {
@@ -16,12 +17,18 @@ class Row extends Component {
   render () {
     const { label } = this.props
     const { value } = this.state
-    return <tr>
-      <td>{label}</td>
-      <td>{this.createElement()}</td>
-      <td>{renderValue(value)}</td>
-    </tr>
+    return (
+      <tr>
+        <td>{label}</td>
+        <td>{this.createElement()}</td>
+        <td>{renderValue(value)}</td>
+      </tr>
+    )
   }
+}
+
+Row.propTypes = {
+  label: PropTypes.string.isRequired
 }
 
 export class OnChangeRow extends Row {
