@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import { faClipboard, faTrashAlt } from '@fortawesome/free-regular-svg-icons'
-import { faFilter } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled, { ThemeProvider } from 'styled-components'
 
 import {
@@ -52,12 +49,12 @@ class VerticalAlignmentTest extends Component {
       </Select>
       <HSpace />
       <Button
-        label={<FontAwesomeIcon icon={faClipboard} />}
+        label='Click me'
         onClick={() => {}}
       />
       <HSpace />
       <Button
-        label={<FontAwesomeIcon icon={faTrashAlt} />}
+        label={<span>↻</span>}
         onClick={() => {}}
       />
       <HSpace />
@@ -127,9 +124,9 @@ export default class Forms extends Component {
               componentProps={{ label: 'Option A' }}
             />
             <OnChangeRow
-              label='<Checkbox label={<FontAwesomeIcon icon={faFilter} />} />'
+              label='<Checkbox label={<span>🔥</span>} />'
               Component={Checkbox}
-              componentProps={{ label: <FontAwesomeIcon icon={faFilter} /> }}
+              componentProps={{ label: <span>🔥</span> }}
             />
             <OnChangeRow
               label='<Checkbox />'
@@ -167,9 +164,14 @@ export default class Forms extends Component {
               componentProps={{ secondary: true, label: 'Click me!' }}
             />
             <OnClickRow
-              label='<Button label={<FontAwesomeIcon />} />'
+              label='<Button transparent label="Click me" />'
               Component={Button}
-              componentProps={{ label: <FontAwesomeIcon icon={faTrashAlt} /> }}
+              componentProps={{ transparent: true, label: 'Click me!' }}
+            />
+            <OnClickRow
+              label='<Button label={<span>↻</span>} />'
+              Component={Button}
+              componentProps={{ label: <span>↻</span> }}
             />
             <tr>
               <td>Vertical alignment</td>

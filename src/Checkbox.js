@@ -86,7 +86,6 @@ class Checkbox extends ValueComponent {
           disabled={disabled}
           value={value}
           inProgress={inProgress}
-          onClick={this.handleChange.bind(this)}
           onKeyDown={this.handleKeyDown.bind(this)}
           onKeyUp={this.handleKeyUp.bind(this)}
         />
