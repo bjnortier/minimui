@@ -5,7 +5,7 @@ const squiggle = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADEAYAAADk
 export default styled.div`
   display: inline-block;
   position: relative;
-  padding-bottom: 4px;
+  padding: 4px 0;
   background: ${({ error }) => error ? `url(${squiggle})` : 'none'};
   background-repeat: repeat-x;
   background-position: bottom;
