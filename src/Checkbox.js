@@ -25,7 +25,7 @@ const Check = styled.div`
   height: 14px;
   border: solid 1px ${({ disabled, inProgress, value, theme }) => (value && !disabled && !inProgress)
     ? theme.primary ? theme.primary.background : '#113577'
-    : disabled
+    : disabled || inProgress
       ? '#dedede'
       : 'white'};
   border-radius: 4px;
