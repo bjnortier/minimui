@@ -16,11 +16,12 @@ const Outer = styled.div`
 const StyledInput = styled.input`
   border-radius: 4px;
   background-color: #fff;
-  border: solid 1px ${({ theme }) => theme.borderColor || '#eee'};
+  border: solid 1px #ececec;
   padding: 8px;
   width: ${props => props.width - 16}px;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'auto'};
   color: ${({ disabled }) => disabled ? '#999' : 'black'};
+  box-shadow: inset 0px 0px 8px 2px #0000000d;
   &:focus {
     outline: none;
     box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};

@@ -25,7 +25,9 @@ const Check = styled.div`
   height: 14px;
   border: solid 1px ${({ disabled, inProgress, value, theme }) => (value && !disabled && !inProgress)
     ? theme.primary ? theme.primary.background : '#113577'
-    : theme.borderColor || '#eee'};
+    : disabled
+      ? '#dedede'
+      : 'white'};
   border-radius: 4px;
   vertical-align: bottom;
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
@@ -45,6 +47,7 @@ const Check = styled.div`
       : value
         ? theme.primary ? theme.primary.background : '#113577'
         : '#fff'};
+  box-shadow: 0px 0px 8px 2px #0000000d;
   :focus {
     outline: none;
     box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
