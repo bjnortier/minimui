@@ -14,13 +14,6 @@ import {
 import StyledTable from './StyledTable'
 import { OnChangeRow, OnClickRow } from './formsComponents.test'
 
-const X = styled.div`
-  display: inline-block;
-  background-color: white;
-  border-radius: 4px;
-  padding: 4px 8px;
-`
-
 class VerticalAlignmentTest extends Component {
   constructor (props) {
     super(props)
@@ -36,7 +29,7 @@ class VerticalAlignmentTest extends Component {
   render () {
     const { a, b, c, d, e } = this.state
     return (
-      <X>
+      <>
         <Switch
           onChange={(event, value) => this.setState({ a: value })} value={a}
         />
@@ -70,7 +63,7 @@ class VerticalAlignmentTest extends Component {
         <Slider
           onChange={(event, value) => this.setState({ e: value })} value={e}
         />
-      </X>
+      </>
     )
   }
 }
