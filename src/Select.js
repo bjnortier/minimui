@@ -16,9 +16,10 @@ const Outer = styled.div`
 const StyledSelect = styled.select`
   height: 24px;
   background-color: #fff;
-  border: solid 1px ${({ theme }) => theme.borderColor || '#eee'};
+  border: solid 1px #eee;
   color: ${({ disabled, error }) => disabled ? '#999' : 'black'};
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+  box-shadow: 0px 0px 8px 2px #0000000d;
   :focus {
     outline: none;
     box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
@@ -26,24 +27,31 @@ const StyledSelect = styled.select`
 `
 
 class Select extends ValueComponent {
+  constructor (props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
   handleChange (event) {
     super.handleChange(event, event.target.value)
   }
 
   render () {
     const { value, disabled, error, inProgress } = this.props
-    return <Outer {...{ disabled, error, inProgress }}>
-      <ErrorDecorator error={error} >
-        <StyledSelect
-          value={value}
-          disabled={disabled || inProgress}
-          onChange={this.handleChange.bind(this)}
-        >
-          {this.props.children}
-        </StyledSelect>
-      </ErrorDecorator>
-      {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
-    </Outer>
+    return (
+      <Outer {...{ disabled, error, inProgress }}>
+        <ErrorDecorator error={error}>
+          <StyledSelect
+            value={value}
+            disabled={disabled || inProgress}
+            onChange={this.handleChange}
+          >
+            {this.props.children}
+          </StyledSelect>
+        </ErrorDecorator>
+        {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
+      </Outer>
+    )
   }
 }
 

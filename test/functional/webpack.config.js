@@ -8,7 +8,7 @@ const port = 7444
 module.exports = {
   mode: 'development',
   entry: {
-    'index': [
+    index: [
       `webpack-dev-server/client?http://localhost:${port}`,
       'webpack/hot/dev-server',
       path.resolve(__dirname, 'index.js')

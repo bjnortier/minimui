@@ -16,11 +16,12 @@ const Outer = styled.div`
 const StyledInput = styled.input`
   border-radius: 4px;
   background-color: #fff;
-  border: solid 1px ${({ theme }) => theme.borderColor || '#eee'};
+  border: solid 1px #ececec;
   padding: 8px;
   width: ${props => props.width - 16}px;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'auto'};
   color: ${({ disabled }) => disabled ? '#999' : 'black'};
+  box-shadow: inset 0px 0px 4px 1px #0000000d;
   &:focus {
     outline: none;
     box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
@@ -28,24 +29,32 @@ const StyledInput = styled.input`
 `
 
 class Input extends ValueComponent {
+  constructor (props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
   handleChange (event) {
     super.handleChange(event, event.target.value)
   }
 
   render () {
     const { type, disabled, inProgress, error } = this.props
-    return <Outer
-      {...{ disabled, error, inProgress }}
-    >
-      <ErrorDecorator error={error}>
-        <StyledInput {...this.props}
-          disabled={disabled || inProgress}
-          onChange={this.handleChange.bind(this)}
-          type={type || 'text'}
-        />
-      </ErrorDecorator>
-      {inProgress ? <Spinner padLeft /> : null}
-    </Outer>
+    return (
+      <Outer
+        {...{ disabled, error, inProgress }}
+      >
+        <ErrorDecorator error={error}>
+          <StyledInput
+            {...this.props}
+            disabled={disabled || inProgress}
+            onChange={this.handleChange}
+            type={type || 'text'}
+          />
+        </ErrorDecorator>
+        {inProgress ? <Spinner padLeft /> : null}
+      </Outer>
+    )
   }
 }
 

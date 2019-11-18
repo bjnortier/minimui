@@ -12,7 +12,7 @@ const Outer = styled.div`
   height: 22px;
   border: solid 1px ${({ disabled, inProgress, value, theme }) => (value && !disabled)
     ? theme.primary ? theme.primary.background : '#113577'
-    : theme.borderColor || '#eee'};
+    : '#eee'};
   border-radius: 13px;
   vertical-align: middle;
   position: relative;
@@ -21,6 +21,7 @@ const Outer = styled.div`
   background-color: ${({ disabled, inProgress, value, theme }) => disabled ? 'transparent' : value
     ? theme.primary ? theme.primary.background : '#113577'
     : '#fff'}
+  box-shadow: 0px 0px 8px 2px #0000000d;
   :focus {
     outline: none;
     box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
@@ -47,6 +48,13 @@ const SpinnerPad = styled.div`
 `
 
 class Switch extends ValueComponent {
+  constructor (props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleKeyUp = this.handleKeyUp.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this)
+  }
+
   handleChange (event) {
     super.handleChange(event, !this.props.value)
   }
@@ -68,21 +76,23 @@ class Switch extends ValueComponent {
 
   render () {
     const { value, disabled, error, inProgress } = this.props
-    return <ErrorDecorator error={error}>
-      <Outer
-        tabIndex={disabled || inProgress ? null : 0}
-        disabled={disabled}
-        value={value}
-        inProgress={inProgress}
-        onClick={this.handleChange.bind(this)}
-        onKeyDown={this.handleKeyDown.bind(this)}
-        onKeyUp={this.handleKeyUp.bind(this)}
-      >
-        <Knob value={value} disabled={disabled} inProgress={inProgress}>
-          {inProgress ? <SpinnerPad><Spinner /></SpinnerPad> : null}
-        </Knob>
-      </Outer>
-    </ErrorDecorator>
+    return (
+      <ErrorDecorator error={error}>
+        <Outer
+          tabIndex={disabled || inProgress ? null : 0}
+          disabled={disabled}
+          value={value}
+          inProgress={inProgress}
+          onClick={this.handleChange}
+          onKeyDown={this.handleKeyDown}
+          onKeyUp={this.handleKeyUp}
+        >
+          <Knob value={value} disabled={disabled} inProgress={inProgress}>
+            {inProgress ? <SpinnerPad><Spinner /></SpinnerPad> : null}
+          </Knob>
+        </Outer>
+      </ErrorDecorator>
+    )
   }
 }
 

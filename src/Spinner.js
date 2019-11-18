@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
 
 const Pad = styled.span`
@@ -25,6 +26,20 @@ const Icon = styled.div`
   animation: ${spin} 1s linear infinite;
 `
 
-export default (props) => <Pad padLeft={props.padLeft}>
-  <Icon />
-</Pad>
+const Spinner = (props) => {
+  return (
+    <Pad padLeft={props.padLeft}>
+      <Icon />
+    </Pad>
+  )
+}
+
+Spinner.propTypes = {
+  padLeft: PropTypes.bool.isRequired
+}
+
+Spinner.defaultProps = {
+  padLeft: false
+}
+
+export default Spinner

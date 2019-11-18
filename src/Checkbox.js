@@ -25,7 +25,9 @@ const Check = styled.div`
   height: 14px;
   border: solid 1px ${({ disabled, inProgress, value, theme }) => (value && !disabled && !inProgress)
     ? theme.primary ? theme.primary.background : '#113577'
-    : theme.borderColor || '#eee'};
+    : disabled || inProgress
+      ? '#dedede'
+      : 'white'};
   border-radius: 4px;
   vertical-align: bottom;
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
@@ -45,6 +47,7 @@ const Check = styled.div`
       : value
         ? theme.primary ? theme.primary.background : '#113577'
         : '#fff'};
+  box-shadow: 0px 0px 8px 2px #0000000d;
   :focus {
     outline: none;
     box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
@@ -52,6 +55,13 @@ const Check = styled.div`
 `
 
 class Checkbox extends ValueComponent {
+  constructor (props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleKeyUp = this.handleKeyUp.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this)
+  }
+
   handleChange (event) {
     super.handleChange(event, !this.props.value)
   }
@@ -76,23 +86,25 @@ class Checkbox extends ValueComponent {
 
   render () {
     const { label, value, disabled, error, inProgress } = this.props
-    return <Outer
-      {...{ disabled, error, inProgress }}
-      onClick={this.handleChange.bind(this)}
-    >
-      <ErrorDecorator error={error}>
-        <Check
-          tabIndex={disabled || inProgress ? null : 0}
-          disabled={disabled}
-          value={value}
-          inProgress={inProgress}
-          onKeyDown={this.handleKeyDown.bind(this)}
-          onKeyUp={this.handleKeyUp.bind(this)}
-        />
-        {label ? <Label {...{ inProgress, disabled }}>{label}</Label> : null}
-        {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
-      </ErrorDecorator>
-    </Outer>
+    return (
+      <Outer
+        {...{ disabled, error, inProgress }}
+        onClick={this.handleChange}
+      >
+        <ErrorDecorator error={error}>
+          <Check
+            tabIndex={disabled || inProgress ? null : 0}
+            disabled={disabled}
+            value={value}
+            inProgress={inProgress}
+            onKeyDown={this.handleKeyDown}
+            onKeyUp={this.handleKeyUp}
+          />
+          {label ? <Label {...{ inProgress, disabled }}>{label}</Label> : null}
+          {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
+        </ErrorDecorator>
+      </Outer>
+    )
   }
 }
 

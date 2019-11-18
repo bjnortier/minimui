@@ -10,7 +10,7 @@ const StyledButton = styled.button`
   border: solid 1px ${({ theme, secondary, transparent }) => transparent
     ? 'transparent'
     : secondary
-      ? theme.borderColor || '#eee'
+      ? 'white'
       : theme.primary
         ? theme.primary.background
         : '#113577'};
@@ -27,7 +27,8 @@ const StyledButton = styled.button`
       ? 'transparent'
       : theme.primary ? theme.primary.background : '#113577'};
   font-family: 'Barlow', sans;
-  font-weight: ${({ secondary, transparent }) => (secondary || transparent) ? 400 : 200};
+  font-weight: ${({ secondary, transparent }) => (secondary || transparent) ? 400 : 400};
+  box-shadow: 0px 0px 8px 2px #0000000d;
   :focus {
     outline: none;
     box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
@@ -50,19 +51,21 @@ class Button extends Component {
         onClick(event)
       }
     }
-    return <ErrorDecorator error={error}>
-      <StyledButton
-        transparent={transparent}
-        secondary={secondary}
-        error={error}
-        disabled={disabled || inProgress}
-        inProgress={inProgress}
-        onClick={onClickIfAllowed}
-      >
-        {label}
-        {inProgress ? <SpinnerSpan {...{ inProgress, disabled, secondary }}><Spinner /></SpinnerSpan> : null}
-      </StyledButton>
-    </ErrorDecorator>
+    return (
+      <ErrorDecorator error={error}>
+        <StyledButton
+          transparent={transparent}
+          secondary={secondary}
+          error={error}
+          disabled={disabled || inProgress}
+          inProgress={inProgress}
+          onClick={onClickIfAllowed}
+        >
+          {label}
+          {inProgress ? <SpinnerSpan {...{ inProgress, disabled, secondary }}><Spinner /></SpinnerSpan> : null}
+        </StyledButton>
+      </ErrorDecorator>
+    )
   }
 }
 

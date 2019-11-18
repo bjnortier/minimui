@@ -15,6 +15,8 @@ export default createGlobalStyle`
     font-weight: 400;
     font-size: 16px;
     color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3 {
     font-family: 'Barlow Semi Condensed', sans-serif;
