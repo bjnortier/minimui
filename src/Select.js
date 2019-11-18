@@ -16,9 +16,10 @@ const Outer = styled.div`
 const StyledSelect = styled.select`
   height: 24px;
   background-color: #fff;
-  border: solid 1px ${({ theme }) => theme.borderColor || '#eee'};
+  border: solid 1px #eee;
   color: ${({ disabled, error }) => disabled ? '#999' : 'black'};
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
+  box-shadow: 0px 0px 8px 2px #0000000d;
   :focus {
     outline: none;
     box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};

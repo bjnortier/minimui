@@ -12,7 +12,7 @@ const Outer = styled.div`
   height: 22px;
   border: solid 1px ${({ disabled, inProgress, value, theme }) => (value && !disabled)
     ? theme.primary ? theme.primary.background : '#113577'
-    : theme.borderColor || '#eee'};
+    : '#eee'};
   border-radius: 13px;
   vertical-align: middle;
   position: relative;
@@ -21,6 +21,7 @@ const Outer = styled.div`
   background-color: ${({ disabled, inProgress, value, theme }) => disabled ? 'transparent' : value
     ? theme.primary ? theme.primary.background : '#113577'
     : '#fff'}
+  box-shadow: 0px 0px 8px 2px #0000000d;
   :focus {
     outline: none;
     box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
