@@ -28,7 +28,7 @@ const StyledButton = styled.button`
       : theme.primary ? theme.primary.background : '#113577'};
   font-family: 'Barlow', sans;
   font-weight: 400;
-  box-shadow: 0px 0px 8px 2px #0000000d;
+  ${({ transparent }) => transparent ? '' : 'box-shadow: 0px 0px 8px 2px #0000000d;'}
   :focus {
     outline: none;
     box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
