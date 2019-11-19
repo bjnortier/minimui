@@ -27,7 +27,7 @@ const StyledButton = styled.button`
       ? 'transparent'
       : theme.primary ? theme.primary.background : '#113577'};
   font-family: 'Barlow', sans;
-  font-weight: ${({ secondary, transparent }) => (secondary || transparent) ? 400 : 400};
+  font-weight: 400;
   box-shadow: 0px 0px 8px 2px #0000000d;
   :focus {
     outline: none;
