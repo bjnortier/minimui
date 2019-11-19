@@ -3,7 +3,6 @@ import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
   ${styledNormalize}
-  @import url('https://fonts.googleapis.com/css?family=Barlow+Condensed:300,400,700');
   @import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300,400,700');
   @import url('https://fonts.googleapis.com/css?family=Barlow:200,300,400,700');
   html { font-family: 'Barlow', sans-serif; }
