@@ -20,7 +20,7 @@ const Outer = styled.div`
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
   background-color: ${({ disabled, inProgress, value, theme }) => disabled ? 'transparent' : value
     ? theme.primary ? theme.primary.background : '#113577'
-    : '#fff'}
+    : '#fff'};
   box-shadow: 0px 0px 8px 2px #0000000d;
   :focus {
     outline: none;
