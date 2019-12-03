@@ -6,6 +6,7 @@ import Spinner from './Spinner'
 import ErrorDecorator from './ErrorDecorator'
 
 const StyledButton = styled.button`
+  position: relative;
   border-radius: 4px;
   border: solid 1px ${({ theme, secondary, transparent }) => transparent
     ? 'transparent'
@@ -42,6 +43,9 @@ const StyledButton = styled.button`
       ? 'text-decoration: underline;'
       : ''
     }
+  }
+  :active:hover {
+    top: 1px;
   }
 `
 
