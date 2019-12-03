@@ -7,6 +7,7 @@ export default styled.table`
   }
   th {
     text-align: left;
+    font-weight: 400;
   }
   td, th {
     padding: 8px;

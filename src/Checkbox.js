@@ -50,7 +50,8 @@ const Check = styled.div`
   box-shadow: 0px 0px 8px 2px #0000000d;
   :focus {
     outline: none;
-    box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
+    border: solid 1px ${({ theme }) => theme.primary ? theme.primary.outline : '#3f8ed4'};
+    box-shadow: 0 0 4px 1px ${({ theme }) => theme.primary ? theme.primary.outline : '#3f8ed4'};
   }
 `
 

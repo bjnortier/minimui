@@ -16,15 +16,16 @@ const Outer = styled.div`
 const StyledInput = styled.input`
   border-radius: 4px;
   background-color: #fff;
-  border: solid 1px #ececec;
+  border: solid 1px #e8e8e8;
   padding: 8px;
   width: ${props => props.width - 16}px;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'auto'};
   color: ${({ disabled }) => disabled ? '#999' : 'black'};
   box-shadow: inset 0px 0px 4px 1px #0000000d;
-  &:focus {
+  :focus {
     outline: none;
-    box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
+    border: solid 1px ${({ theme }) => theme.primary ? theme.primary.outline : '#3f8ed4'};
+    box-shadow: 0 0 4px 1px ${({ theme }) => theme.primary ? theme.primary.outline : '#3f8ed4'};
   }
 `
 
@@ -50,6 +51,7 @@ class Input extends ValueComponent {
             disabled={disabled || inProgress}
             onChange={this.handleChange}
             type={type || 'text'}
+            bg='red'
           />
         </ErrorDecorator>
         {inProgress ? <Spinner padLeft /> : null}

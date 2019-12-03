@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled, { ThemeProvider } from 'styled-components'
 
 import {
   Input,
@@ -92,63 +91,24 @@ class Wrapper extends Component {
 }
 
 Wrapper.propTypes = {
-  Component: PropTypes.object.isRequired
+  Component: PropTypes.func.isRequired
 }
 
-const ThemeSwitch = styled.div`
-  > div {
-    margin: 4px;
-  }
-  > div:first-child {
-    margin-left: 8px;
-  }
-`
+const States = () => (
+  <StyledTable>
+    <tbody>
+      <tr>{propsCombinations.map((props, i) =>
+        <th key={i}>{renderProps(props)}</th>)}
+      </tr>
+      {components.map((Component, i) =>
+        <tr key={i}>
+          {propsCombinations.map((props, j) =>
+            <td key={j}>
+              <Wrapper Component={Component} {...props} />
+            </td>)}
+        </tr>)}
+    </tbody>
+  </StyledTable>
+)
 
-export default class States extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      theme: {}
-    }
-  }
-
-  render () {
-    const { theme } = this.state
-    return (
-      <ThemeProvider theme={theme}>
-        <div>
-          <ThemeSwitch>
-            <Button onClick={() => this.setState({ theme: {} })} label='Default' />
-            <Button
-              onClick={() => this.setState({
-                theme: {
-                  primary: {
-                    text: 'white',
-                    disabled: '#619e77',
-                    background: 'green',
-                    outline: '#93ddcd'
-                  },
-                  borderColor: '#eee'
-                }
-              })} label='Green'
-            />
-          </ThemeSwitch>
-          <StyledTable>
-            <tbody>
-              <tr>{propsCombinations.map((props, i) =>
-                <th key={i}>{renderProps(props)}</th>)}
-              </tr>
-              {components.map((Component, i) =>
-                <tr key={i}>
-                  {propsCombinations.map((props, j) =>
-                    <td key={j}>
-                      <Wrapper Component={Component} {...props} />
-                    </td>)}
-                </tr>)}
-            </tbody>
-          </StyledTable>
-        </div>
-      </ThemeProvider>
-    )
-  }
-}
+export default States
