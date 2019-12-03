@@ -19,9 +19,10 @@ const StyledInput = styled.input`
   padding: 8px;
   width: ${props => props.width - 16}px;
   color: ${({ disabled }) => disabled ? '#999' : 'black'};
-  &:focus {
+  :focus {
     outline: none;
-    box-shadow: 0 0 0px 2px ${({ theme }) => theme.primary ? theme.primary.outline : '#93cdff'};
+    border: solid 1px ${({ theme }) => theme.primary ? theme.primary.outline : '#3f8ed4'};
+    box-shadow: 0 0 4px 1px ${({ theme }) => theme.primary ? theme.primary.outline : '#3f8ed4'};
   }
 `
 
