@@ -15,10 +15,11 @@ const Outer = styled.div`
 
 const StyledInput = styled.input`
   border-radius: 4px;
-  border: none;
+  border: solid 1px transparent;
   padding: 8px;
   width: ${props => props.width - 16}px;
   color: ${({ disabled }) => disabled ? '#999' : 'black'};
+  cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
   :focus {
     outline: none;
     border: solid 1px ${({ theme }) => theme.primary ? theme.primary.outline : '#3f8ed4'};
@@ -42,15 +43,14 @@ class Slider extends ValueComponent {
   }
 
   render () {
-    const { name, value, disabled, inProgress, error } = this.props
+    const { id, value, disabled, min, max, inProgress, error } = this.props
     return (
       <Outer
         {...{ disabled, error, inProgress }}
       >
         <ErrorDecorator error={error}>
           <StyledInput
-            {...this.props}
-            {...{ name, value }}
+            {...{ id, value, disabled, min, max }}
             disabled={disabled || inProgress}
             onChange={this.handleChange}
             type='range'
@@ -64,7 +64,7 @@ class Slider extends ValueComponent {
 
 Slider.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  name: PropTypes.string,
+  id: PropTypes.string,
   value: PropTypes.number.isRequired,
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,

@@ -74,7 +74,7 @@ const Forms = () => (
       <OnChangeRow
         label='<Input width={120} />'
         Component={Input}
-        componentProps={{ width: 120 }}
+        componentProps={{ width: 120, id: 'input-1' }}
         value=''
       />
       <OnChangeRow
@@ -86,13 +86,13 @@ const Forms = () => (
       <OnChangeRow
         label='<Slider />'
         Component={Slider}
-        componentProps={{ width: 120, min: 10, max: 20 }}
+        componentProps={{ width: 120, min: 10, max: 20, id: 'slider-1' }}
         value={0}
       />
       <OnChangeRow
         label='<Checkbox label="Option A" />'
         Component={Checkbox}
-        componentProps={{ label: 'Option A' }}
+        componentProps={{ label: 'Option A', id: 'checkbox-1' }}
       />
       <OnChangeRow
         label='<Checkbox label={<span>🔥</span>} />'
@@ -107,7 +107,7 @@ const Forms = () => (
       <OnChangeRow
         label='<Switch />'
         Component={Switch}
-        componentProps={{}}
+        componentProps={{ id: 'switch-1' }}
       />
       <OnChangeRow
         label='<Switch value={true} />'
@@ -117,7 +117,7 @@ const Forms = () => (
       <OnChangeRow
         label='<Select />'
         Component={Select}
-        componentProps={{ value: 'London' }}
+        componentProps={{ value: 'London', id: 'Cities' }}
         componentChildren={[
           <option key={0}>Cape Town</option>,
           <option key={1}>Toronto</option>,
@@ -127,7 +127,7 @@ const Forms = () => (
       <OnClickRow
         label='<Button label="Click me" />'
         Component={Button}
-        componentProps={{ label: 'Click me!' }}
+        componentProps={{ label: 'Click me!', id: 'button-1' }}
       />
       <OnClickRow
         label='<Button secondary label="Click me" />'
@@ -137,7 +137,7 @@ const Forms = () => (
       <OnClickRow
         label='<Button transparent label="Click me" />'
         Component={Button}
-        componentProps={{ transparent: true, label: 'Click me!' }}
+        componentProps={{ transparent: true, label: 'Click me!', id: 'button-3' }}
       />
       <OnClickRow
         label='<Button label={<span>↻</span>} />'

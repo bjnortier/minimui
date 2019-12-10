@@ -76,19 +76,18 @@ class Switch extends ValueComponent {
   }
 
   render () {
-    const { value, disabled, error, inProgress } = this.props
+    const { id, value, disabled, error, inProgress } = this.props
     return (
       <ErrorDecorator error={error}>
         <Outer
           tabIndex={disabled || inProgress ? null : 0}
-          disabled={disabled}
-          value={value}
+          {...{ id, value, disabled }}
           inProgress={inProgress}
           onClick={this.handleChange}
           onKeyDown={this.handleKeyDown}
           onKeyUp={this.handleKeyUp}
         >
-          <Knob value={value} disabled={disabled} inProgress={inProgress}>
+          <Knob className='knob' value={value} disabled={disabled} inProgress={inProgress}>
             {inProgress ? <SpinnerPad><Spinner /></SpinnerPad> : null}
           </Knob>
         </Outer>
@@ -100,6 +99,7 @@ class Switch extends ValueComponent {
 Switch.propTypes = {
   value: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
+  id: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   inProgress: PropTypes.bool

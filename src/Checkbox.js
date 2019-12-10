@@ -86,7 +86,7 @@ class Checkbox extends ValueComponent {
   }
 
   render () {
-    const { label, value, disabled, error, inProgress } = this.props
+    const { label, id, disabled, value, error, inProgress } = this.props
     return (
       <Outer
         {...{ disabled, error, inProgress }}
@@ -95,9 +95,7 @@ class Checkbox extends ValueComponent {
         <ErrorDecorator error={error}>
           <Check
             tabIndex={disabled || inProgress ? null : 0}
-            disabled={disabled}
-            value={value}
-            inProgress={inProgress}
+            {...{ id, value, disabled, inProgress }}
             onKeyDown={this.handleKeyDown}
             onKeyUp={this.handleKeyUp}
           />
@@ -111,6 +109,7 @@ class Checkbox extends ValueComponent {
 
 Checkbox.propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  id: PropTypes.string,
   value: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,

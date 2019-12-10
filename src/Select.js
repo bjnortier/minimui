@@ -17,7 +17,7 @@ const StyledSelect = styled.select`
   height: 24px;
   background-color: #fff;
   border: solid 1px #eee;
-  color: ${({ disabled, error }) => disabled ? '#999' : 'black'};
+  color: ${({ disabled }) => disabled ? '#999' : 'black'};
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   box-shadow: 0px 0px 8px 2px #0000000d;
   :focus {
@@ -38,12 +38,12 @@ class Select extends ValueComponent {
   }
 
   render () {
-    const { value, disabled, error, inProgress } = this.props
+    const { id, value, disabled, error, inProgress } = this.props
     return (
       <Outer {...{ disabled, error, inProgress }}>
         <ErrorDecorator error={error}>
           <StyledSelect
-            value={value}
+            {...{ id, value }}
             disabled={disabled || inProgress}
             onChange={this.handleChange}
           >
@@ -57,6 +57,7 @@ class Select extends ValueComponent {
 }
 
 Select.propTypes = {
+  id: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
