@@ -1,6 +1,6 @@
 {
   "name": "minimui",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "Minimalist React Component Library",
   "main": "lib/index.js",
   "scripts": {
@@ -31,6 +31,7 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "acorn": "^7.1.0",
     "babel-loader": "^8.0.2",
     "eslint": "^6.5.1",
     "eslint-config-standard": "^14.1.0",
