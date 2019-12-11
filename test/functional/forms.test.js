@@ -72,9 +72,9 @@ const Forms = () => (
     <tbody>
       <tr><th>JSX</th><th>Component</th><th>onChange(event, value)</th></tr>
       <OnChangeRow
-        label='<Input width={120} />'
+        label='<Input width={200} />'
         Component={Input}
-        componentProps={{ width: 120, id: 'input-1' }}
+        componentProps={{ width: 200, id: 'input-1' }}
         value=''
       />
       <OnChangeRow
