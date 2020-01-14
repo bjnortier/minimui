@@ -7,7 +7,8 @@ import {
   Button,
   Switch,
   Checkbox,
-  Select
+  Select,
+  ButtonGroup
 } from '../../src'
 
 import StyledTable from './StyledTable'
@@ -21,12 +22,13 @@ class VerticalAlignmentTest extends Component {
       b: false,
       c: '',
       d: 'A',
-      e: 50
+      e: 50,
+      f: 4
     }
   }
 
   render () {
-    const { a, b, c, d, e } = this.state
+    const { a, b, c, d, e, f } = this.state
     return (
       <>
         <Switch
@@ -62,9 +64,26 @@ class VerticalAlignmentTest extends Component {
         <Slider
           onChange={(event, value) => this.setState({ e: value })} value={e}
         />
+        <HSpace />
+        <ButtonGroup
+          value={f}
+          values={[4, 13]}
+          labels={['Foo', '🏓']}
+          onChange={(event, value) => this.setState({ f: value })}
+        />
       </>
     )
   }
+}
+
+const ButtonGroupTest = (props) => {
+  return (
+    <ButtonGroup
+      {...props}
+      values={[4, 13, '2']}
+      labels={['Foo', 'Bar', '🏓']}
+    />
+  )
 }
 
 const Forms = () => (
@@ -124,6 +143,11 @@ const Forms = () => (
           <option key={2}>London</option>
         ]}
       />
+      <OnChangeRow
+        label='<ButtonGroup />'
+        Component={ButtonGroupTest}
+        componentProps={{ value: 4 }}
+      />
       <OnClickRow
         label='<Button label="Click me" />'
         Component={Button}
@@ -144,6 +168,7 @@ const Forms = () => (
         Component={Button}
         componentProps={{ label: <span>↻</span> }}
       />
+
       <tr>
         <td>Vertical alignment</td>
         <td colSpan='2'><VerticalAlignmentTest /></td>

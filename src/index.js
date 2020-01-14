@@ -8,6 +8,7 @@ import Switch from './Switch'
 import VSpace from './VSpace'
 import Checkbox from './Checkbox'
 import Select from './Select'
+import ButtonGroup from './ButtonGroup'
 
 export {
   Reset,
@@ -19,5 +20,6 @@ export {
   Slider,
   Switch,
   Checkbox,
-  Select
+  Select,
+  ButtonGroup
 }

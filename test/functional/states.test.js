@@ -7,7 +7,8 @@ import {
   Button,
   Switch,
   Checkbox,
-  Select
+  Select,
+  ButtonGroup
 } from '../../src'
 
 import StyledTable from './StyledTable'
@@ -29,7 +30,8 @@ const components = [
   Switch2,
   Checkbox,
   Checkbox2,
-  Select
+  Select,
+  ButtonGroup
 ]
 const propsCombinations = [
   {},
@@ -50,7 +52,8 @@ const defaultProps = {
   Checkbox2: { value: true, label: 'Some option 2' },
   Select: { label: 'Some option', value: 'BBBB' },
   Switch: {},
-  Switch2: { value: true }
+  Switch2: { value: true },
+  ButtonGroup: { value: 4, values: [4, 13, '2'], labels: ['Foo', 'Bar', '🏓'] }
 }
 
 const defaultChildren = {

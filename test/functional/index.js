@@ -59,7 +59,7 @@ export default class Index extends Component {
                   onClick={() => this.setState({
                     theme: {
                       primary: {
-                        text: 'white',
+                        text: '#f0ff23',
                         disabled: '#619e77',
                         background: 'green',
                         outline: '#3eaf56'
