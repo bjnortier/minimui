@@ -7,7 +7,7 @@
     "test:lint": "eslint --fix src test",
     "test:functional": "cd test/functional && webpack-dev-server",
     "test": "npm run test:lint",
-    "compile": "babel --optional runtime -d lib/ src/",
+    "compile": "babel -d lib/ src/",
     "prepublishOnly": "npm audit && rimraf lib/ && npm run compile"
   },
   "repository": {
