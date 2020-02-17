@@ -7,7 +7,7 @@ import ErrorDecorator from './ErrorDecorator'
 
 const StyledButton = styled.button`
   position: relative;
-  border-radius: 4px;
+  border-radius: 22px;
   border: solid 1px ${({ theme, secondary, transparent }) => transparent
     ? 'transparent'
     : secondary

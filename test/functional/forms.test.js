@@ -56,11 +56,6 @@ class VerticalAlignmentTest extends Component {
           onClick={() => {}}
         />
         <HSpace />
-        <Button
-          label={<span>↻</span>}
-          onClick={() => {}}
-        />
-        <HSpace />
         <Slider
           onChange={(event, value) => this.setState({ e: value })} value={e}
         />
@@ -163,12 +158,6 @@ const Forms = () => (
         Component={Button}
         componentProps={{ transparent: true, label: 'Click me!', id: 'button-3' }}
       />
-      <OnClickRow
-        label='<Button label={<span>↻</span>} />'
-        Component={Button}
-        componentProps={{ label: <span>↻</span> }}
-      />
-
       <tr>
         <td>Vertical alignment</td>
         <td colSpan='2'><VerticalAlignmentTest /></td>

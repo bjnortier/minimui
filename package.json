@@ -1,13 +1,13 @@
 {
   "name": "minimui",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Minimalist React Component Library",
   "main": "lib/index.js",
   "scripts": {
     "test:lint": "eslint --fix src test",
     "test:functional": "cd test/functional && webpack-dev-server",
     "test": "npm run test:lint",
-    "compile": "babel --optional runtime -d lib/ src/",
+    "compile": "babel -d lib/ src/",
     "prepublishOnly": "npm audit && rimraf lib/ && npm run compile"
   },
   "repository": {
