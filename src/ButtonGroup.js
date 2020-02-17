@@ -7,9 +7,10 @@ import ErrorDecorator from './ErrorDecorator'
 
 const StyledButtonGroup = styled.div`
   display: inline-block;
-  border-radius: 4px;
+  border-radius: 22px;
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   box-shadow: 0px 0px 8px 2px #0000000d;
+  user-select: none;
   :focus {
     outline: none;
     ${({ theme }) =>
@@ -22,12 +23,12 @@ const Button = styled.div`
   display: inline-block;
   padding: 8px 12px;
   &:first-child {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
   }
   &:last-child {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
   }
   font-weight:  ${({ active }) => active ? 300 : 400};
   color: ${({ theme, disabled, active }) => disabled
