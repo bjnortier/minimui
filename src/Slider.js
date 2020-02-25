@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import ValueComponent from './ValueComponent'
 import ErrorDecorator from './ErrorDecorator'
-import Spinner from './Spinner'
+import Spinner, { Pad } from './Spinner'
 
 const Outer = styled.div`
   display: inline-block;
@@ -56,7 +56,7 @@ class Slider extends ValueComponent {
             type='range'
           />
         </ErrorDecorator>
-        {inProgress ? <SpinnerOuter><Spinner padLeft /></SpinnerOuter> : null}
+        {inProgress ? <SpinnerOuter><Pad /><Spinner /></SpinnerOuter> : null}
       </Outer>
     )
   }

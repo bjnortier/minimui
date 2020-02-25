@@ -57,6 +57,7 @@ class ButtonGroup extends Component {
           tabIndex={disabled || inProgress ? null : 0}
           {...{ id, inProgress }}
           disabled={disabled || inProgress}
+          className='minimui-buttongroup'
         >
           {values.map((v, i) => (
             <Button

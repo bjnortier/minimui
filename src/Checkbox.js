@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import ValueComponent from './ValueComponent'
 import ErrorDecorator from './ErrorDecorator'
-import Spinner from './Spinner'
+import Spinner, { Pad } from './Spinner'
 
 const Label = styled.span`
   padding-left: 4px;
@@ -21,6 +21,8 @@ const Outer = styled.div`
 
 const Check = styled.div`
   display: inline-block;
+  position: relative;
+  top: -2px;
   width: 14px;
   height: 14px;
   border: solid 1px ${({ disabled, inProgress, value, theme }) => (value && !disabled && !inProgress)
@@ -29,7 +31,7 @@ const Check = styled.div`
       ? '#dedede'
       : 'white'};
   border-radius: 4px;
-  vertical-align: bottom;
+  vertical-align: middle;
   cursor: ${({ disabled, inProgress }) => (disabled || inProgress) ? 'not-allowed' : 'pointer'};
   background-image:
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'>
@@ -100,7 +102,7 @@ class Checkbox extends ValueComponent {
             onKeyUp={this.handleKeyUp}
           />
           {label ? <Label {...{ inProgress, disabled }}>{label}</Label> : null}
-          {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
+          {inProgress ? <><Pad /><Spinner /></> : null}
         </ErrorDecorator>
       </Outer>
     )

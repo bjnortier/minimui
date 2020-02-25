@@ -27,7 +27,7 @@ const StyledButton = styled.button`
     : transparent
       ? 'transparent'
       : theme.primary ? theme.primary.background : '#113577'};
-  font-weight: 400;
+  font-weight: ${({ transparent, secondary }) => (transparent || secondary) ? 400 : 300};
   ${({ transparent }) => transparent ? '' : 'box-shadow: 0px 0px 8px 2px #0000000d;'}
   :focus {
     outline: none;
@@ -68,6 +68,7 @@ class Button extends Component {
     return (
       <ErrorDecorator error={error}>
         <StyledButton
+          className='minimui-button'
           {...{ secondary, transparent, id, inProgress }}
           disabled={disabled || inProgress}
           onClick={onClickIfAllowed}
