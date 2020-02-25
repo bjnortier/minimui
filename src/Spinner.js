@@ -1,9 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
 
-const Pad = styled.span`
-  padding-left: ${({ padLeft }) => padLeft ? 4 : 0}px;
+export const Pad = styled.div`
+  display: inline-block;
+  padding-left: 4px;
 `
 
 const spin = keyframes`
@@ -15,11 +15,10 @@ const spin = keyframes`
   }
 `
 
-const Icon = styled.div`
+const Spin = styled.div`
   display: inline-block;
-  box-sizing: border-box;
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
   border: 2px solid #66666644;
   border-top: 2px solid #666;
   border-radius: 50%;
@@ -28,18 +27,8 @@ const Icon = styled.div`
 
 const Spinner = (props) => {
   return (
-    <Pad padLeft={props.padLeft}>
-      <Icon />
-    </Pad>
+    <Spin />
   )
-}
-
-Spinner.propTypes = {
-  padLeft: PropTypes.bool.isRequired
-}
-
-Spinner.defaultProps = {
-  padLeft: false
 }
 
 export default Spinner

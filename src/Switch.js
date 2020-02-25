@@ -43,9 +43,17 @@ const Knob = styled.div`
 `
 
 const SpinnerPad = styled.div`
-  padding-left: 0.5px;
-  padding-top: 0.5px;
-  color: #999;
+  > div {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+  }
+`
+
+const Label = styled.span`
+  padding-left: 4px;
+  padding-right: 2px;
+  color: ${({ disabled, inProgress }) => (disabled || inProgress) ? '#999' : 'inherit'};
 `
 
 class Switch extends ValueComponent {
@@ -76,7 +84,7 @@ class Switch extends ValueComponent {
   }
 
   render () {
-    const { id, value, disabled, error, inProgress } = this.props
+    const { id, value, disabled, error, inProgress, label } = this.props
     return (
       <ErrorDecorator error={error}>
         <Outer
@@ -91,12 +99,14 @@ class Switch extends ValueComponent {
             {inProgress ? <SpinnerPad><Spinner /></SpinnerPad> : null}
           </Knob>
         </Outer>
+        {label ? <Label {...{ inProgress, disabled }}>{label}</Label> : null}
       </ErrorDecorator>
     )
   }
 }
 
 Switch.propTypes = {
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   value: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   id: PropTypes.string,

@@ -92,9 +92,9 @@ const Forms = () => (
         value=''
       />
       <OnChangeRow
-        label='<Input placeholder="username" autoComplete="username" />'
+        label='<Input placeholder="username" />'
         Component={Input}
-        componentProps={{ placeholder: 'username', autoComplete: 'username' }}
+        componentProps={{ placeholder: 'username' }}
         value=''
       />
       <OnChangeRow
@@ -121,12 +121,12 @@ const Forms = () => (
       <OnChangeRow
         label='<Switch />'
         Component={Switch}
-        componentProps={{ id: 'switch-1' }}
+        componentProps={{ id: 'switch-1', label: 'Enabled' }}
       />
       <OnChangeRow
         label='<Switch value={true} />'
         Component={Switch}
-        componentProps={{ value: true }}
+        componentProps={{ value: true, label: 'Airplane mode' }}
       />
       <OnChangeRow
         label='<Select />'

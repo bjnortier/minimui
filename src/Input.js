@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import ValueComponent from './ValueComponent'
 import ErrorDecorator from './ErrorDecorator'
-import Spinner from './Spinner'
+import Spinner, { Pad } from './Spinner'
 
 const Outer = styled.div`
   display: inline-block;
@@ -44,6 +44,7 @@ class Input extends ValueComponent {
     return (
       <Outer
         {...{ disabled, error, inProgress }}
+        className='minimui-input'
       >
         <ErrorDecorator error={error}>
           <StyledInput
@@ -53,7 +54,7 @@ class Input extends ValueComponent {
             type={type || 'text'}
           />
         </ErrorDecorator>
-        {inProgress ? <Spinner padLeft /> : null}
+        {inProgress ? <><Pad /><Spinner /></> : null}
       </Outer>
     )
   }

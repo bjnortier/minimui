@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { Route, HashRouter as Router, Switch, Link } from 'react-router-dom'
 import { render } from 'react-dom'
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
+import styledNormalize from 'styled-normalize'
 
-import { Reset, HSpace, Button } from '../../src'
+import { HSpace, Button } from '../../src'
 
 import Forms from './forms.test'
 import States from './states.test'
@@ -12,10 +13,18 @@ const StyledNav = styled.div`
   padding: 8px;
 `
 
-const Reset2 = createGlobalStyle`
+const Reset = createGlobalStyle`
+  ${styledNormalize}
+  @import url('https://rsms.me/inter/inter.css');
   html {
     background-color: #efefef;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Courier New', sans-serif;
+    font-size: 14px;
+  }
+  .minimui-input, .minimui-button, .minimui-select, .minimui-buttongroup {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-feature-settings: 'ss01', 'ss02';
   }
 `
 
@@ -50,7 +59,6 @@ export default class Index extends Component {
       <Router>
         <div>
           <Reset />
-          <Reset2 />
           <ThemeProvider theme={theme}>
             <div>
               <ThemeSwitch>

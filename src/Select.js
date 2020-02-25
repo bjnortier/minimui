@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import ValueComponent from './ValueComponent'
 import ErrorDecorator from './ErrorDecorator'
-import Spinner from './Spinner'
+import Spinner, { Pad } from './Spinner'
 
 const Outer = styled.div`
   display: inline-block;
@@ -40,7 +40,10 @@ class Select extends ValueComponent {
   render () {
     const { id, value, disabled, error, inProgress } = this.props
     return (
-      <Outer {...{ disabled, error, inProgress }}>
+      <Outer
+        className='minimui-select'
+        {...{ disabled, error, inProgress }}
+      >
         <ErrorDecorator error={error}>
           <StyledSelect
             {...{ id, value }}
@@ -50,7 +53,7 @@ class Select extends ValueComponent {
             {this.props.children}
           </StyledSelect>
         </ErrorDecorator>
-        {inProgress ? <Spinner padLeft={inProgress || disabled} /> : null}
+        {inProgress ? <><Pad /><Spinner /></> : null}
       </Outer>
     )
   }
