@@ -1,6 +1,6 @@
 {
   "name": "minimui",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Minimalist React Component Library",
   "main": "lib/index.js",
   "scripts": {
@@ -55,6 +55,5 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
