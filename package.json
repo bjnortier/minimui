@@ -23,7 +23,7 @@
   "peerDependencies": {
     "react": "16.x",
     "prop-types": "15.x",
-    "styled-components": "4.x",
+    "styled-components": "4.x || 5.x",
     "styled-normalize": "8.x"
   },
   "devDependencies": {
@@ -49,11 +49,12 @@
     "react-dom": "^16.12.0",
     "react-router-dom": "^4.3.1",
     "rimraf": "^2.7.1",
-    "styled-components": "^4.4.1",
-    "styled-normalize": "^8.0.6",
+    "styled-components": "^5.0.1",
+    "styled-normalize": "^8.0.7",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
   },
-  "dependencies": {}
+  "dependencies": {
+  }
 }
