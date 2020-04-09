@@ -56,7 +56,7 @@ const SpinnerSpan = styled.span`
 
 class Button extends Component {
   render () {
-    const { id, label, transparent, secondary, inProgress, error, disabled, onClick } = this.props
+    const { id, label, transparent, secondary, inProgress, error, disabled, onClick, type } = this.props
     if (transparent && secondary) {
       console.warn('<Button /> cannot be both secondary and transparent. Rendered as transparent.')
     }
@@ -72,6 +72,7 @@ class Button extends Component {
           {...{ secondary, transparent, id, inProgress }}
           disabled={disabled || inProgress}
           onClick={onClickIfAllowed}
+          type={type}
         >
           {label}
           {inProgress ? <SpinnerSpan {...{ inProgress, disabled, secondary }}><Spinner /></SpinnerSpan> : null}
@@ -89,7 +90,8 @@ Button.propTypes = {
   disabled: PropTypes.bool.isRequired,
   error: PropTypes.bool.isRequired,
   secondary: PropTypes.bool.isRequired,
-  transparent: PropTypes.bool.isRequired
+  transparent: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired
 }
 
 Button.defaultProps = {
@@ -97,7 +99,8 @@ Button.defaultProps = {
   disabled: false,
   error: false,
   secondary: false,
-  transparent: false
+  transparent: false,
+  type: 'button'
 }
 
 export default Button
