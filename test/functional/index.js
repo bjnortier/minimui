@@ -15,7 +15,6 @@ const StyledNav = styled.div`
 
 const Reset = createGlobalStyle`
   ${styledNormalize}
-  @import url('https://rsms.me/inter/inter.css');
   html {
     background-color: #efefef;
     font-family: 'Courier New', sans-serif;
