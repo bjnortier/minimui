@@ -146,7 +146,7 @@ const Forms = () => (
       <OnClickRow
         label='<Button label="Click me" />'
         Component={Button}
-        componentProps={{ label: 'Click me!', id: 'button-1' }}
+        componentProps={{ label: 'Click me!', id: 'button-1', type: 'button' }}
       />
       <OnClickRow
         label='<Button secondary label="Click me" />'
