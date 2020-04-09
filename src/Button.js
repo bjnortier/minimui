@@ -100,7 +100,7 @@ Button.defaultProps = {
   error: false,
   secondary: false,
   transparent: false,
-  type: null
+  type: 'button'
 }
 
 export default Button
