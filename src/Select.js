@@ -20,6 +20,7 @@ const StyledSelect = styled.select`
   color: ${({ disabled }) => disabled ? '#999' : 'black'};
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   box-shadow: 0px 0px 8px 2px #0000000d;
+  border-radius: 4px;
   :focus {
     outline: none;
     border: solid 1px ${({ theme }) => theme.primary ? theme.primary.outline : '#3f8ed4'};
