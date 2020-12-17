@@ -1,6 +1,6 @@
 {
   "name": "minimui",
-  "version": "2.3.6",
+  "version": "2.3.7",
   "description": "Minimalist React Component Library",
   "main": "lib/index.js",
   "scripts": {
