@@ -1,6 +1,6 @@
 {
   "name": "minimui",
-  "version": "2.3.7",
+  "version": "2.3.8",
   "description": "Minimalist React Component Library",
   "main": "lib/index.js",
   "scripts": {
@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/bjnortier/minimui#readme",
   "peerDependencies": {
-    "react": "16.x",
     "prop-types": "15.x",
+    "react": "16.x",
     "styled-components": "4.x || 5.x",
     "styled-normalize": "8.x"
   },
@@ -54,6 +54,5 @@
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
-  },
-  "dependencies": {}
+  }
 }
